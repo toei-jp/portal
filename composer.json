@@ -1,0 +1,20 @@
+{
+    "name": "toei-jp/portal",
+    "description": "Toei Portal Frontend",
+    "type": "project",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Toei\\Portal\\": "src/"
+        }
+    },
+    "require": {
+        "php": "~7.2",
+        "slim/slim" : "^3.0",
+        "slim/twig-view": "^2.4",
+        "vlucas/phpdotenv": "^2.5",
+        "monolog/monolog": "^1.23",
+        "doctrine/orm": "2.6.*",
+        "microsoft/azure-storage-blob": "^1.2"
+    }
+}
