@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MainBanner entity class
  * 
- * @ORM\Entity
+ * @ORM\Entity(readOnly=true)
  * @ORM\Table(name="main_banner", options={"collate"="utf8mb4_general_ci"})
  * @ORM\HasLifecycleCallbacks
  */
