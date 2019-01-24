@@ -24,5 +24,18 @@ class IndexController extends GeneralController
      */
     public function executeIndex($request, $response, $args)
     {
+        $this->data->set('mainBanners', $this->getMainBanners());
+    }
+    
+    /**
+     * return main_banners
+     *
+     * @return Entity\MainBanner[]
+     */
+    protected function getMainBanners()
+    {
+        return $this->em
+            ->getRepository(Entity\MainBanner::class)
+            ->findByPageId(self::PAGE_ID);
     }
 }

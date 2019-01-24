@@ -1,5 +1,15 @@
 {% extends "layout.html.twig" %}
 
+{% block css %}
+<link href="/css/top.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+<script src="/js/top.js"></script>
+{% endblock %}
+
 {% block contents %}
-トップページ
+{% include 'include/slide.html.twig' with {
+    mainBanners: mainBanners
+} only %}
 {% endblock %}

@@ -1,0 +1,20 @@
+<div class="main-slider">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        {% for mainBanner in mainBanners %}
+            <div class="swiper-slide">
+            {% if mainBanner.isLinkTypeUrl() %}
+                <a href="{{ mainBanner.getLinkUrl() }}" class="d-block" target="_blank">
+            {% endif %}
+                    <img src="{{ file_url(mainBanner.getImage()) }}" class="w-100">
+            {% if mainBanner.isLinkTypeUrl() %}
+                </a>
+            {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+        <div class="swiper-button-next d-md-block d-none rounded-circle"></div>
+        <div class="swiper-button-prev d-md-block d-none rounded-circle"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
