@@ -12,4 +12,9 @@
 {% include 'include/slide.html.twig' with {
     mainBanners: mainBanners
 } only %}
+
+{% include "index/include/theater.html.twig" with {
+    shibuya: shibuya,
+    marunouchi: marunouchi,
+} only %}
 {% endblock %}

@@ -14,6 +14,9 @@ use Toei\Portal\ORM\Entity;
  */
 class IndexController extends GeneralController
 {
+    const THEATER_SHIBUYA = 1;
+    const THEATER_MARUNOUCHI = 2;
+    
     /**
      * index action
      * 
@@ -25,6 +28,9 @@ class IndexController extends GeneralController
     public function executeIndex($request, $response, $args)
     {
         $this->data->set('mainBanners', $this->getMainBanners());
+        
+        $this->data->set('shibuya', $this->getTheater(self::THEATER_SHIBUYA));
+        $this->data->set('marunouchi', $this->getTheater(self::THEATER_MARUNOUCHI));
     }
     
     /**
@@ -37,5 +43,18 @@ class IndexController extends GeneralController
         return $this->em
             ->getRepository(Entity\MainBanner::class)
             ->findByPageId(self::PAGE_ID);
+    }
+    
+    /**
+     * return theater
+     *
+     * @param int $id
+     * @return Entity\Theater|null
+     */
+    protected function getTheater(int $id)
+    {
+        return $this->em
+            ->getRepository(Entity\Theater::class)
+            ->findOneById($id);
     }
 }
