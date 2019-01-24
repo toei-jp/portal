@@ -25,6 +25,6 @@ class IndexResponder extends BaseResponder
      */
     public function index(Response $response, Collection $data)
     {
-        return $this->view->render($response, 'index.html.twig', $data->all());
+        return $this->view->render($response, 'index/index.html.twig', $data->all());
     }
 }
