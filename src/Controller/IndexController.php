@@ -29,8 +29,14 @@ class IndexController extends GeneralController
     {
         $this->data->set('mainBanners', $this->getMainBanners());
         
-        $this->data->set('shibuya', $this->getTheater(self::THEATER_SHIBUYA));
-        $this->data->set('marunouchi', $this->getTheater(self::THEATER_MARUNOUCHI));
+        $shibuya = $this->getTheater(self::THEATER_SHIBUYA);
+        $this->data->set('shibuya', $shibuya);
+        
+        $marunouchi = $this->getTheater(self::THEATER_MARUNOUCHI);
+        $this->data->set('marunouchi', $marunouchi);
+        
+        $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
+        $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
     }
     
     /**
@@ -56,5 +62,21 @@ class IndexController extends GeneralController
         return $this->em
             ->getRepository(Entity\Theater::class)
             ->findOneById($id);
+    }
+    
+    /**
+     * return topics
+     * 
+     * 劇場に設定されたものを取得する TOEI-137
+     *
+     * @param Entity\Theater $theater
+     * @return Entity\News[]
+     * @link https://m-p.backlog.jp/view/TOEI-137
+     */
+    protected function getTopics(Entity\Theater $theater)
+    {
+        return $this->em
+            ->getRepository(Entity\News::class)
+            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 2);
     }
 }

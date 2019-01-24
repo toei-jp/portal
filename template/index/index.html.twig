@@ -17,4 +17,11 @@
     shibuya: shibuya,
     marunouchi: marunouchi,
 } only %}
+
+{% include "index/include/topics.html.twig" with {
+    shibuya: shibuya,
+    shibuyaTopics: shibuyaTopics,
+    marunouchi: marunouchi,
+    marunouchiTopics: marunouchiTopics,
+} only %}
 {% endblock %}
