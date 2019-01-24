@@ -1,0 +1,21 @@
+<header class="bg-black">
+    <div class="header-inner d-flex base-width mx-auto pl-3">
+        
+        <div class="d-flex align-items-center mr-auto logo">
+            <a class="d-flex align-items-center text-ultra-dark-gray" href="#">
+                <img src="/images/common/logo.svg" class="mr-1">
+                <div class="text-xx-large d-none d-md-block text-white">TOEI THEATERS</div>
+                <div class="d-md-none text-s-large text-white">TOEI THEATERS</div>
+            </a>
+        </div>
+        
+        {% include 'include/menu_pc.html.twig' only %}
+        
+        <div class="d-md-none align-items-center d-flex pr-3 sp-menu-button">
+            <a href="#">
+                <img class="menu" src="/images/header/sp_menu.svg">
+                <img class="d-none menu-close" src="/images/header/sp_menu_close.svg">
+            </a>
+        </div>
+    </div>
+</header>

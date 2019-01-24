@@ -1,0 +1,474 @@
+body {
+    position: relative;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", Arial, メイリオ, Meiryo, sans-serif;
+}
+
+p {
+    line-height: 1.4;
+}
+
+a, a:-webkit-any-link {
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.7;
+    transition: opacity 0.5s; 
+}
+
+.not-event {
+    pointer-events: none;
+}
+
+.break-all {
+    word-break: break-all;
+ }
+
+
+/* 幅 */
+.base-width {
+    max-width: 940px;
+    min-width: 320px;
+}
+
+
+/* 背景色・文字色・枠色 */
+.bg-transparent {
+    background-color: transparent !important;
+}
+.bg-white {
+    background-color: #FFF !important;
+}
+.text-white {
+    color: #FFF !important;
+}
+.border-white {
+    border-color: #FFF !important;
+}
+
+.bg-black {
+    background-color: #000 !important;
+}
+.text-black {
+    color: #000 !important;
+}
+.border-black {
+    border-color: #000 !important;
+}
+
+.bg-orange {
+    background-color: #F8B713 !important;
+}
+.text-orange {
+    color: #F8B713 !important;
+}
+.border-orange {
+    border-color: #F8B713 !important;
+}
+
+.bg-super-light-orange {
+    background-color: #F8F6F4 !important;
+}
+.text-super-light-orange {
+    color: #F8F6F4 !important;
+}
+.border-super-light-orange {
+    border-color: #F8F6F4 !important;
+}
+
+.bg-ultra-light-gray {
+    background-color: #EEEEEF !important;
+}
+.text-ultra-light-gray {
+    color: #EEEEEF !important;
+}
+.border-ultra-light-gray {
+    border-color: #EEEEEF !important;
+}
+
+.bg-super-light-gray {
+    background-color: #dbdcdc !important;
+}
+.text-super-light-gray {
+    color: #dbdcdc !important;
+}
+.border-super-light-gray {
+    border-color: #dbdcdc !important;
+}
+
+.bg-light-gray {
+    background-color: #C8C9CA !important;
+}
+.text-light-gray {
+    color: #C8C9CA !important;
+}
+.border-light-gray {
+    border-color: #C8C9CA !important;
+}
+
+.bg-gray {
+    background-color: #9fa0a0 !important;
+}
+.text-gray {
+    color: #9fa0a0 !important;
+}
+.border-gray {
+    border-color: #9fa0a0 !important;
+}
+
+.bg-dark-gray {
+    background-color: #717071 !important;
+}
+.text-dark-gray {
+    color: #717071 !important;
+}
+.border-dark-gray {
+    border-color: #717071 !important;
+}
+
+.bg-super-dark-gray {
+    background-color: #595757 !important;
+}
+.text-super-dark-gray {
+    color: #595757 !important;
+}
+.border-super-dark-gray {
+    border-color: #595757 !important;
+}
+
+.bg-ultra-dark-gray {
+    background-color: #231815 !important;
+}
+.text-ultra-dark-gray {
+    color: #231815 !important;
+}
+.border-ultra-dark-gray {
+    border-color: #231815 !important;
+}
+
+.bg-light-gold {
+    background-color: #E8E7E2 !important;
+}
+.text-light-gold {
+    color: #E8E7E2 !important;
+}
+.border-light-gold {
+    border-color: #E8E7E2 !important;
+}
+.bg-dark-gold {
+    background-color: #A59F8B !important;
+}
+.text-dark-gold {
+    color: #A59F8B !important;
+}
+.border-dark-gold {
+    border-color: #A59F8B !important;
+}
+
+.bg-light-blue {
+    background-color: #4cafe8 !important;
+}
+.text-light-blue {
+    color: #4cafe8 !important;
+}
+.border-light-blue {
+    border-color: #4cafe8 !important;
+}
+
+.bg-blue {
+    background-color: #0060c5 !important;
+}
+.text-blue {
+    color: #0060c5 !important;
+}
+.border-blue {
+    border-color: #0060c5 !important;
+}
+
+.bg-dark-blue {
+    background-color: #003e80 !important;
+}
+.text-dark-blue {
+    color: #003e80 !important;
+}
+.border-dark-blue {
+    border-color: #003e80 !important;
+}
+
+.bg-yellow {
+    background-color: #ffdd00 !important;
+}
+.text-yellow {
+    color: #ffdd00 !important;  
+}
+.border-yellow {
+    border-color: #ffdd00 !important;
+}
+
+.bg-red {
+    background-color: #EF3F50 !important;
+}
+.text-red {
+    color: #EF3F50 !important;
+}
+.border-red {
+    border-color: #EF3F50 !important;
+}
+
+.bg-pink {
+    background-color: #e3007f !important;
+}
+.text-pink {
+    color: #e3007f !important;
+}
+.border-pink {
+    border-color: #e3007f !important;
+}
+
+
+
+
+/* 文字サイズ */
+.text-xx-large {
+    font-size: 28px; 
+}
+.text-large {
+    font-size: 20px;
+}
+.text-s-large {
+    font-size: 18px;
+}
+.text-x-large {
+    font-size: 22px;
+}
+
+.text-small {
+    font-size: 14px;
+}
+.text-s-small {
+    font-size: 12px;
+}
+.text-x-small {
+    font-size: 11px;
+}
+.text-xx-small {
+    font-size: 10px;
+}
+
+
+/* ヘッダー */
+.header-inner {
+    height: 130px;
+}
+
+.header-inner img {
+    width: 80px;
+}
+.header-inner li img {
+    width: 30px;
+}
+.header-icon {
+    margin-bottom: 12px;
+}
+
+.header-menu li a:hover {
+    opacity: 0.65;
+}
+.sub-header-inner {
+    height: 79px;
+}
+.sub-header ul {
+    height: 100%;
+}
+.sub-header li {
+    height: 100%;
+    width: calc(100% / 6);
+}
+.sub-header li a {
+    height: 100%;
+}
+.sub-header li a span {
+    width: 100%;
+}
+.sub-header .active a {
+    border-bottom: 4px solid #251714;
+}
+.sub-header .swiper-container {
+    height: 100%;
+}
+
+.sp-menu {
+    position: absolute;
+    z-index: 1000;
+    top: 53px;
+    left: 0;
+    right: 0;
+}
+
+
+@media (max-width: 767.98px) {
+    .header-inner {
+        height: 64px;
+    }
+    .header-inner .logo img {
+        width: 46px;
+    }
+    .header-inner img {
+        width: 30px;
+    }
+}
+
+/* フッター */
+footer a {
+    width: 26px;
+}
+
+/* メインスライダー */
+.main-slider {
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+
+.main-slider .swiper-container {
+    width: 750px;
+    max-width: 100%;
+    overflow: visible !important;
+}
+
+.main-slider .swiper-slide {
+    position: relative;
+}
+
+.main-slider .swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.5;
+}
+
+.main-slider .swiper-slide-active::after {
+    display: none;
+}
+
+.main-slider .swiper-button-next,
+.main-slider .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background-image: url(/images/icon/slider_arrow2.svg);
+    background-size: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.main-slider .swiper-button-next {
+    right: -20px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.main-slider .swiper-button-prev {
+    left: -20px;
+}
+
+.main-slider .swiper-pagination {
+    bottom: -20px;
+}
+
+.main-slider .swiper-pagination-bullet {
+    /* background-color: #595757; */
+    margin: 0 10px !important;
+}
+
+.main-slider .swiper-pagination .swiper-pagination-bullet-active {
+    background-color: #0181D1;
+}
+
+@media (max-width: 820px) {
+    /* メインスライダー */
+    .main-slider .swiper-button-next {
+        right: 0px;
+    }
+    
+    .main-slider .swiper-button-prev {
+        left: 0px;
+    }
+}
+
+/* トッピクス */
+
+
+.topics li a div:first-child {
+    width: 100px;
+}
+
+.topics li a div:last-child {
+    width: 150px;
+}
+
+@media (max-width: 767.98px) {
+    /* トッピクス */
+    .topics li a {
+        background-image: url(/images/icon/arrow_dark_gray.svg);
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 10px;
+    }
+    .topics li a div:first-child {
+        width: auto;
+    }
+
+    .topics li a p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+/* パンくずリスト */
+.breadcrumb-list li,
+.breadcrumb-list li a {
+    color: #717071;
+}
+.breadcrumb-list {
+    padding-left:0;
+    margin-left:0;
+}
+.breadcrumb-list li {
+    display:inline;
+}
+.breadcrumb-list li:after{/* >を表示*/
+    content: '>';
+    padding: 0 5px;
+    color: #4cafe8;
+}
+.breadcrumb-list li:last-child:after{
+    content: '';
+}
+
+
+/* アイコン */
+.arrow-blue {
+    padding-right: 15px;
+    background-image: url(/images/icon/arrow_blue.svg);
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    background-size: 6px 8px;
+}
+.arrow-gray {
+    padding-right: 15px;
+    background-image: url(/images/icon/arrow_gray.svg);
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    background-size: 26px 18px;
+}
+.another-tab {
+    padding-right: 15px;
+    background-image: url(/images/icon/another-tab.svg);
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    background-size: 12px 12px;
+}
