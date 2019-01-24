@@ -140,14 +140,6 @@ class Title extends AbstractEntity
     protected $universal;
     
     /**
-     * trailers
-     *
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="Trailer", mappedBy="title", indexBy="id")
-     */
-    protected $trailers;
-    
-    /**
      * campaigns
      *
      * @var Collection
@@ -502,20 +494,6 @@ class Title extends AbstractEntity
     public function setUniversal(array $universal)
     {
         throw new \LogicException('Not allowed.');
-    }
-    
-    /**
-     * get trailers
-     *
-     * @return Collection
-     */
-    public function getTrailers()
-    {
-        $criteria = Criteria::create()
-            ->where(Criteria::expr()->eq('isDeleted', false))
-            ->orderBy([ 'createdAt' => Criteria::DESC ]);
-        
-        return $this->trailers->matching($criteria);
     }
     
     /**
