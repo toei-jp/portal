@@ -12,7 +12,7 @@ use Toei\Portal\ORM\Entity;
 /**
  * Index controller
  */
-class IndexController extends BaseController
+class IndexController extends GeneralController
 {
     /**
      * index action
