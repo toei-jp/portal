@@ -32,18 +32,16 @@ class TheaterRepository extends EntityRepository
     }
     
     /**
-     * find one by id
+     * find by active
      *
-     * @param int $id
-     * @return Theater|null
+     * @return Theater[]
      */
-    public function findOneById(int $id)
+    public function findByActive()
     {
         $qb = $this->getActiveQuery();
         $qb
-            ->andWhere('t.id = :id')
-            ->setParameter('id', $id);
-            
-        return $qb->getQuery()->getOneOrNullResult();
+            ->orderBy('t.displayOrder', 'ASC');
+        
+        return $qb->getQuery()->getResult();
     }
 }

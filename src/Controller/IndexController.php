@@ -29,10 +29,26 @@ class IndexController extends GeneralController
     {
         $this->data->set('mainBanners', $this->getMainBanners());
         
-        $shibuya = $this->getTheater(self::THEATER_SHIBUYA);
-        $this->data->set('shibuya', $shibuya);
+        $theaters = $this->getTheaters();
+        $this->data->set('theaters', $theaters);
         
-        $marunouchi = $this->getTheater(self::THEATER_MARUNOUCHI);
+        $shibuya = null;
+        $marunouchi = null;
+        
+        foreach ($theaters as $theater) {
+            /** @var Entity\Theater $theater */
+            
+            if ($theater->getId() === self::THEATER_SHIBUYA) {
+                /** @var Entity\Theater $shibuya */
+                $shibuya = $theater;
+            } else if ($theater->getId() === self::THEATER_MARUNOUCHI) {
+                /** @var Entity\Theater $marunouchi */
+                $marunouchi = $theater;
+            }
+            
+        }
+        
+        $this->data->set('shibuya', $shibuya);
         $this->data->set('marunouchi', $marunouchi);
         
         $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
@@ -52,16 +68,16 @@ class IndexController extends GeneralController
     }
     
     /**
-     * return theater
+     * return theaters
      *
      * @param int $id
-     * @return Entity\Theater|null
+     * @return Entity\Theater[]
      */
-    protected function getTheater(int $id)
+    protected function getTheaters()
     {
         return $this->em
             ->getRepository(Entity\Theater::class)
-            ->findOneById($id);
+            ->findByActive();
     }
     
     /**
