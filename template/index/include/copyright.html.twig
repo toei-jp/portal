@@ -1,0 +1,17 @@
+{% set copyrightList = [] %}
+
+{% for schedule in showingSchedules %}
+    {% set copyrightList = copyrightList|merge([ schedule.getTitle().getCredit() ]) %}
+{% endfor %}
+
+{% for schedule in soonSchedules %}
+    {% set copyrightList = copyrightList|merge([ schedule.getTitle().getCredit() ]) %}
+{% endfor %}
+
+{% if copyrightList|length > 0 %}
+<div class="py-5">
+    <div class="base-width mx-auto px-3">
+        <p class="text-x-small text-gray mb-0 break-all">{{ copyrightList|join() }}</p>
+    </div>
+</div>
+{% endif %}

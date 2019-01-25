@@ -40,4 +40,9 @@
 } only %}
 
 {% include "index/include/other_cinema.html.twig" only %}
+
+{% include "index/include/copyright.html.twig" with {
+    showingSchedules: showingSchedules,
+    soonSchedules: soonSchedules,
+} only %}
 {% endblock %}
