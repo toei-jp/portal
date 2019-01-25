@@ -1,20 +1,21 @@
-{% if showingSchedules|length > 0 %}
-<div class="bg-ultra-light-gray py-5 now-showing">
+{% if soonSchedules|length > 0 %}
+<div class="bg-super-light-orange py-5 coming-soon">
     <div class="base-width mx-auto px-md-3">
-        <h2 class="d-flex text-large mb-4 align-items-center justify-content-center"><img class="mr-2" src="/images/portal-top/icon_top_08.svg"><strong>上映中作品</strong></h2>
-        <div class="position-relative screening-work">
+        <h2 class="d-flex text-large mb-4 align-items-center justify-content-center"><img class="mr-2" src="/images/portal-top/icon_top_09.svg"><strong>上映予定作品</strong></h2>
+        <div class="position-relative scheduled-work">
             <div class="swiper-container">
                 <ul class="swiper-wrapper">
                 
-                {% for schedule in showingSchedules %}
+                {% for schedule in soonSchedules %}
                     {% include "index/include/schedule_row.html.twig" with {
-                        type: 'showing',
+                        type: 'soon',
                         theaters: theaters,
                         schedule: schedule
                     } only %}
                 {% endfor %}
                 
                 </ul>
+
             </div>
             <div class="swiper-button-next d-md-block d-none rounded-circle"></div>
             <div class="swiper-button-prev d-md-block d-none rounded-circle"></div>

@@ -29,4 +29,9 @@
     theaters: theaters,
     showingSchedules: showingSchedules
 } only %}
+
+{% include "index/include/soon_schedule.html.twig" with {
+    theaters: theaters,
+    soonSchedules: soonSchedules
+} only %}
 {% endblock %}

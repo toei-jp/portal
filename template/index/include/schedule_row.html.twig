@@ -2,6 +2,9 @@
 <li class="swiper-slide pl-md-0 pl-3">
     <a class="d-block mb-4" href="#TODO">
         <div class="border border-super-light-gray image mb-2" style="background-image: url({{ file_url(title.getImage()) }})"></div>
+    {% if type == 'soon' %}
+        <p class="text-small text-ultra-dark-gray mb-2">{{ schedule.getStartDate()|date('Y/m/d') }}公開</p>
+    {% endif %}
         <p class="text-small text-ultra-dark-gray">{{ title.getName() }}</p>
     </a>
     

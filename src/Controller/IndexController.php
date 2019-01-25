@@ -55,6 +55,8 @@ class IndexController extends GeneralController
         $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
         
         $this->data->set('showingSchedules', $this->getShowingSchedules());
+        
+        $this->data->set('soonSchedules', $this->getSoonSchedules());
     }
     
     /**
@@ -108,5 +110,17 @@ class IndexController extends GeneralController
         return $this->em
             ->getRepository(Entity\Schedule::class)
             ->findShowing();
+    }
+    
+    /**
+     * return soon schedules
+     *
+     * @return Entity\Schedule[]
+     */
+    protected function getSoonSchedules()
+    {
+        return $this->em
+            ->getRepository(Entity\Schedule::class)
+            ->findSoon();
     }
 }
