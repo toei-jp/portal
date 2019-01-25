@@ -34,4 +34,8 @@
     theaters: theaters,
     soonSchedules: soonSchedules
 } only %}
+
+{% include "index/include/campaign.html.twig" with {
+    campaigns: campaigns
+} only %}
 {% endblock %}

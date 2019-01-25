@@ -1,0 +1,11 @@
+{% if campaigns|length > 0 %}
+<div class="py-5">
+    <div class="banner mx-auto px-3">
+        <ul class="d-md-flex">
+        {% for campaign in campaigns %}
+            <li class="mr-md-2 mb-2 mb-md-0"><a class="d-block" href="{{ campaign.getUrl() }}" target="_blank"><img class="w-100" src="{{ file_url(campaign.getImage()) }}"></a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}

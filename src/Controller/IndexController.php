@@ -57,6 +57,8 @@ class IndexController extends GeneralController
         $this->data->set('showingSchedules', $this->getShowingSchedules());
         
         $this->data->set('soonSchedules', $this->getSoonSchedules());
+        
+        $this->data->set('campaigns', $this->getCampaigns(self::PAGE_ID));
     }
     
     /**
@@ -122,5 +124,18 @@ class IndexController extends GeneralController
         return $this->em
             ->getRepository(Entity\Schedule::class)
             ->findSoon();
+    }
+    
+    /**
+     * return campaigns
+     *
+     * @param int $pageId
+     * @return Entity\Campaign[]
+     */
+    protected function getCampaigns(int $pageId)
+    {
+        return $this->em
+            ->getRepository(Entity\Campaign::class)
+            ->findByPage($pageId);
     }
 }
