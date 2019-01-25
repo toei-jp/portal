@@ -53,6 +53,8 @@ class IndexController extends GeneralController
         
         $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
         $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
+        
+        $this->data->set('showingSchedules', $this->getShowingSchedules());
     }
     
     /**
@@ -94,5 +96,17 @@ class IndexController extends GeneralController
         return $this->em
             ->getRepository(Entity\News::class)
             ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 2);
+    }
+    
+    /**
+     * return showing schedules
+     *
+     * @return Entity\Schedule[]
+     */
+    protected function getShowingSchedules()
+    {
+        return $this->em
+            ->getRepository(Entity\Schedule::class)
+            ->findShowing();
     }
 }

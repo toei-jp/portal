@@ -24,4 +24,9 @@
     marunouchi: marunouchi,
     marunouchiTopics: marunouchiTopics,
 } only %}
+
+{% include "index/include/showing_schedule.html.twig" with {
+    theaters: theaters,
+    showingSchedules: showingSchedules
+} only %}
 {% endblock %}
