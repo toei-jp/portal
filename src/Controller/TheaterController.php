@@ -68,5 +68,19 @@ class TheaterController extends BaseController
      */
     public function executeIndex($request, $response, $args)
     {
+        $this->data->set('mainBanners', $this->getMainBanners($this->theater));
+    }
+    
+    /**
+     * return main_banners
+     *
+     * @param Entity\Theater $theater
+     * @return Entity\MainBanner[]
+     */
+    protected function getMainBanners(Entity\Theater $theater)
+    {
+        return $this->em
+            ->getRepository(Entity\MainBanner::class)
+            ->findByTheaterId($theater->getId());
     }
 }

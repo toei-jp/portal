@@ -9,5 +9,7 @@
 {% endblock %}
 
 {% block contents %}
-{{ theater.getNameJa() }} トップページ
+{% include 'include/slide.html.twig' with {
+    mainBanners: mainBanners
+} only %}
 {% endblock %}
