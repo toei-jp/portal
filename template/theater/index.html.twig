@@ -1,5 +1,13 @@
 {% extends "theater/layout.html.twig" %}
 
+{% block css %}
+<link href="/css/top.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+<script src="/js/top.js"></script>
+{% endblock %}
+
 {% block contents %}
 {{ theater.getNameJa() }} トップページ
 {% endblock %}
