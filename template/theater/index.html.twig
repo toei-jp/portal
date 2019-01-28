@@ -12,4 +12,9 @@
 {% include 'include/slide.html.twig' with {
     mainBanners: mainBanners
 } only %}
+
+{% include "theater/include/index/topics.html.twig" with {
+    topics: topics,
+    theater: theater,
+} only %}
 {% endblock %}

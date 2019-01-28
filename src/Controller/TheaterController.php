@@ -69,6 +69,8 @@ class TheaterController extends BaseController
     public function executeIndex($request, $response, $args)
     {
         $this->data->set('mainBanners', $this->getMainBanners($this->theater));
+        
+        $this->data->set('topics', $this->getTopics($this->theater));
     }
     
     /**
@@ -82,5 +84,18 @@ class TheaterController extends BaseController
         return $this->em
             ->getRepository(Entity\MainBanner::class)
             ->findByTheaterId($theater->getId());
+    }
+    
+    /**
+     * return topics
+     * 
+     * @param Entity\Theater $theater
+     * @return Entity\News[]
+     */
+    protected function getTopics(Entity\Theater $theater)
+    {
+        return $this->em
+            ->getRepository(Entity\News::class)
+            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 3);
     }
 }
