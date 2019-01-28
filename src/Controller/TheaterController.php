@@ -54,6 +54,8 @@ class TheaterController extends BaseController
         }
         
         $this->data->set('theater', $this->theater);
+        
+        parent::preExecute($request, $response, $args);
     }
     
     /**

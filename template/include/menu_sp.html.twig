@@ -6,12 +6,11 @@
         <li class="border-bottom border-super-dark-gray">
             <a class="d-block text-white p-3" href="#">上映予定作品</a>
         </li>
+    {% for theater in theaters %}
         <li class="border-bottom border-super-dark-gray">
-            <a class="d-block text-white p-3" href="#">丸の内 TOEI</a>
+            <a class="d-block text-white p-3" href="{{ path_for('theater', { name: theater.getName() }) }}">{{ theater.getNameJa() }} TOEI</a>
         </li>
-        <li class="border-bottom border-super-dark-gray">
-            <a class="d-block text-white p-3" href="#">渋谷 TOEI</a>
-        </li>
+    {% endfor %}
         <li class="border-bottom border-super-dark-gray">
             <a class="d-block text-white p-3" href="#">よくあるご質問</a>
         </li>

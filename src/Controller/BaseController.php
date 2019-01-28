@@ -10,6 +10,7 @@ namespace Toei\Portal\Controller;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 
+use Toei\Portal\ORM\Entity;
 use Toei\Portal\Responder;
 
 /**
@@ -17,6 +18,22 @@ use Toei\Portal\Responder;
  */
 abstract class BaseController extends AbstractController
 {
+    /** @var Entity\Theater[] */
+    protected $theaters;
+    
+    /**
+     * return theaters
+     *
+     * @param int $id
+     * @return Entity\Theater[]
+     */
+    private function getTheaters()
+    {
+        return $this->em
+            ->getRepository(Entity\Theater::class)
+            ->findByActive();
+    }
+    
     /**
      * pre execute
      * 
@@ -27,6 +44,8 @@ abstract class BaseController extends AbstractController
      */
     protected function preExecute($request, $response, $args): void
     {
+        $this->theaters = $this->getTheaters();
+        $this->data->set('theaters', $this->theaters);
     }
     
     /**

@@ -33,8 +33,12 @@
 </head>
 
 <body class="text-ultra-dark-gray">
-    {% include 'theater/include/header_toppage.html.twig' only %}
-    {% include 'include/menu_sp.html.twig' only %}
+    {% include 'theater/include/header_toppage.html.twig' with {
+        theaters: theaters,
+    } only %}
+    {% include 'include/menu_sp.html.twig' with {
+        theaters: theaters,
+    } only %}
     {% include 'theater/include/navbar.html.twig' only %}
     
     <div class="contents">

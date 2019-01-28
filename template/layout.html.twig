@@ -33,8 +33,12 @@
 </head>
 
 <body class="text-ultra-dark-gray">
-    {% include 'include/header.html.twig' only %}
-    {% include 'include/menu_sp.html.twig' only %}
+    {% include 'include/header.html.twig' with {
+        theaters: theaters,
+    } only %}
+    {% include 'include/menu_sp.html.twig' with {
+        theaters: theaters,
+    } only %}
     
     <div class="contents">
         {% block contents %}{% endblock %}

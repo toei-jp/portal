@@ -9,7 +9,9 @@
             </a>
         </div>
         
-        {% include 'include/menu_pc.html.twig' only %}
+        {% include 'include/menu_pc.html.twig' with {
+            theaters: theaters,
+        } only %}
         
         <div class="d-md-none align-items-center d-flex pr-3 sp-menu-button">
             <a href="#">
