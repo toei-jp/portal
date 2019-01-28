@@ -72,7 +72,7 @@ abstract class AbstractController
     ) {
         try {
             $this->logger->debug('Run preExecute().');
-            $this->preExecute($request, $response);
+            $this->preExecute($request, $response, $args);
             
             $this->logger->debug('Run {method}().', [ 'method' => $actionMethod ]);
             
@@ -80,7 +80,7 @@ abstract class AbstractController
             $method = $this->$actionMethod($request, $response, $args);
             
             $this->logger->debug('Run postExecute().');
-            $this->postExecute($request, $response);
+            $this->postExecute($request, $response, $args);
             
         } catch (RedirectException $e) {
             $this->logger->debug('Redirect.', [
@@ -104,9 +104,10 @@ abstract class AbstractController
      *
      * @param Request  $request
      * @param Response $response
+     * @param array    $args
      * @return void
      */
-    abstract protected function preExecute($request, $response): void;
+    abstract protected function preExecute($request, $response, $args): void;
     
     /**
      * pre execute
@@ -116,9 +117,10 @@ abstract class AbstractController
      * 
      * @param Request  $request
      * @param Response $response
+     * @param array    $args
      * @return void
      */
-    abstract protected function postExecute($request, $response): void;
+    abstract protected function postExecute($request, $response, $args): void;
     
     /**
      * redirect

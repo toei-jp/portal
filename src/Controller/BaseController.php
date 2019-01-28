@@ -22,9 +22,10 @@ abstract class BaseController extends AbstractController
      * 
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
+     * @param array               $args
      * @return void
      */
-    protected function preExecute($request, $response): void
+    protected function preExecute($request, $response, $args): void
     {
     }
     
@@ -33,9 +34,10 @@ abstract class BaseController extends AbstractController
      *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
+     * @param array               $args
      * @return void
      */
-    protected function postExecute($request, $response): void
+    protected function postExecute($request, $response, $args): void
     {
     }
     
