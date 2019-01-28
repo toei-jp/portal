@@ -2,10 +2,10 @@
     <div class="header-inner d-flex base-width mx-auto pl-3">
         
         <div class="d-flex align-items-center mr-auto logo">
-            <a class="d-flex align-items-center text-ultra-dark-gray" href="#">
+            <a class="d-flex align-items-center text-ultra-dark-gray" href="{% block logo_link %}{{ path_for('homepage') }}{% endblock %}">
                 <img src="/images/common/logo.svg" class="mr-1">
-                <div class="text-xx-large d-none d-md-block text-white">TOEI THEATERS</div>
-                <div class="d-md-none text-s-large text-white">TOEI THEATERS</div>
+                <div class="text-xx-large d-none d-md-block text-white">{% block logo_text %}TOEI THEATERS{% endblock %}</div>
+                <div class="d-md-none text-s-large text-white">{{ block('logo_text') }}</div>
             </a>
         </div>
         
