@@ -15,6 +15,34 @@ use Twig\Extension\StringLoaderExtension;
  */
 class AuthController extends BaseController
 {
+    /** @var string */
+    protected $authServer;
+    
+    /** @var string */
+    protected $authClientId;
+    
+    /** @var string */
+    protected $authClientSecret;
+    
+    /**
+     * pre execute
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return void
+     */
+    protected function preExecute($request, $response, $args): void
+    {
+        $settings = $this->settings['api'];
+        
+        $this->authServer = $settings['auth_server'];
+        $this->authClientId = $settings['auth_client_id'];
+        $this->authClientSecret = $settings['auth_client_secret'];
+        
+        parent::preExecute($request, $response, $args);
+    }
+    
     /**
      * token action
      * 
@@ -80,7 +108,7 @@ class AuthController extends BaseController
             'http_errors' => true,
         ];
         
-        $config['base_uri'] = 'https://' . 'toei-cinerino-development.auth.ap-northeast-1.amazoncognito.com';
+        $config['base_uri'] = 'https://' . $this->authServer;
         
         return new HttpClient($config);
     }
@@ -92,8 +120,8 @@ class AuthController extends BaseController
      */
     protected function createAuthStr(): String
     {
-        $clientId = '6r1gts0rac17him965il1p8jrt';
-        $clientSecret = '190b0pc64or9midfleursrbcoe2qa52uvla6ag4sulvvlie88l13';
+        $clientId = $this->authClientId;
+        $clientSecret = $this->authClientSecret;
         
         return 'Basic ' . base64_encode($clientId . ':' . $clientSecret);
     }

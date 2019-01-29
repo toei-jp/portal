@@ -91,4 +91,11 @@ $settings['storage'] = [
     ],
 ];
 
+// API
+$settings['api'] = [
+    'auth_server' => getenv('APPSETTING_API_AUTH_SERVER'),
+    'auth_client_id' => getenv('APPSETTING_API_AUTH_CLIENT_ID'),
+    'auth_client_secret' => getenv('APPSETTING_API_AUTH_CLIENT_SECRET'),
+];
+
 return $settings;
