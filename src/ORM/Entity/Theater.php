@@ -61,6 +61,14 @@ class Theater extends AbstractEntity
     protected $area;
     
     /**
+     * master_code
+     *
+     * @var string
+     * @ORM\Column(type="string", name="master_code", length=3, options={"fixed":true})
+     */
+    protected $masterCode;
+    
+    /**
      * display_order
      *
      * @var int
@@ -203,6 +211,28 @@ class Theater extends AbstractEntity
      * @throws \LogicException
      */
     public function setArea($area)
+    {
+        throw new \LogicException('Not allowed.');
+    }
+    
+    /**
+     * get master_code
+     *
+     * @return string
+     */
+    public function getMasterCode()
+    {
+        return $this->masterCode;
+    }
+    
+    /**
+     * set master_code
+     *
+     * @param string $masterCode
+     * @return void
+     * @throws \LogicException
+     */
+    public function setMasterCode($masterCode)
     {
         throw new \LogicException('Not allowed.');
     }
