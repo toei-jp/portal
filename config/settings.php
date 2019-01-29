@@ -98,4 +98,12 @@ $settings['api'] = [
     'auth_client_secret' => getenv('APPSETTING_API_AUTH_CLIENT_SECRET'),
 ];
 
+// MotionPicture
+$settings['mp'] = [
+    'api_endpoint' => getenv('APPSETTING_MP_API_ENDPOINT'),
+    'waiter_server_url' => getenv('APPSETTING_MP_WAITER_SERVER_URL'),
+    'ticket_site_url' => getenv('APPSETTING_MP_TICKET_SITE_URL'),
+    'project_id' => getenv('APPSETTING_MP_PROJECT_ID'),
+];
+
 return $settings;

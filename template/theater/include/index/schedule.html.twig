@@ -53,7 +53,7 @@
 </div>
 
 <input type="hidden" name="THEATER_CODE" value="{{ theater.getMasterCode() }}">
-<input type="hidden" name="API_ENDPOINT" value="https://toei-cinerino-api-development.azurewebsites.net">
-<input type="hidden" name="WAITER_SERVER_URL" value="https://waiter-development.appspot.com">
-<input type="hidden" name="TICKET_SITE_URL" value="https://toei-frontend-development.azurewebsites.net">
-<input type="hidden" name="PROJECT_ID" value="toei-development">
+<input type="hidden" name="API_ENDPOINT" value="{{ mp_api_endpoint() }}">
+<input type="hidden" name="WAITER_SERVER_URL" value="{{ mp_waiter_server_url() }}">
+<input type="hidden" name="TICKET_SITE_URL" value="{{ mp_ticket_site_url() }}">
+<input type="hidden" name="PROJECT_ID" value="{{ mp_project_id() }}">
