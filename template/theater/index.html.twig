@@ -17,4 +17,8 @@
     topics: topics,
     theater: theater,
 } only %}
+
+{% include 'theater/include/index/schedule.html.twig' with {
+    theater: theater,
+} only %}
 {% endblock %}

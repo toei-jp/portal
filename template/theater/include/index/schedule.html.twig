@@ -1,0 +1,59 @@
+<div class="py-5">
+    <div class="base-width mx-auto px-3">
+            <h2 class="d-flex text-large mb-4 align-items-center justify-content-center"><img class="mr-2" src="/images/theater-top/theater_icon_top_01.svg"><strong>スケジュール選択</strong></h2>
+        <p class="text-center mb-0">鑑賞希望作品の上映時間を選択してください。</p>
+        <div class="change-schedule-button d-none mx-auto mt-3">
+            <a class="btn bg-orange text-white d-block" href="#">先行販売スケジュール</a>
+            <a class="btn bg-super-dark-gray text-white d-none" href="#">通常販売スケジュール</a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-black py-5">
+    <div class="base-width mx-auto px-md-5 px-3">
+        <div class="schedule-slider position-relative">
+            <div class="swiper-container">
+                <div class="swiper-wrapper text-center">
+
+                </div>
+            </div>
+            <div class="swiper-button-next d-md-block d-none"></div>
+            <div class="swiper-button-prev d-md-block d-none"></div>
+        </div>
+        <div class="pre-schedule-slider d-none position-relative">
+            <div class="swiper-container">
+                <div class="swiper-wrapper text-center">
+
+                </div>
+            </div>
+            <div class="swiper-button-next d-md-block d-none"></div>
+            <div class="swiper-button-prev d-md-block d-none"></div>
+        </div>
+    </div>
+</div>
+
+<div class="py-5">
+    <div class="base-width mx-auto px-3">
+        <div class="text-orange text-x-large mb-3 target-date"></div>
+        <div class="schedule">
+            <ul class="films text-ultra-dark-gray mb-3">
+
+            </ul>
+        </div>
+        <p class="text-small">
+            《注意事項》<br>
+            ※チケット購入に際し、下記の事項を予めご了承ください。<br>
+            ・チケットご購入後、お客様のご都合による変更・払い戻しは、いかなる場合におきましても行っておりません。<br>
+            ・3歳以上有料／3歳未満で座席が必要な場合は有料となります。<br>
+            ・予約可能期間は、鑑賞日2日前の0：00から上映開始20分前までです。<br>
+            　また、クレジット決済後のキャンセル・変更・払い戻しは一切致しません。<br>
+            ・学生料金やシニア料金・ハンディキャップ料金をご利用のお客様は、ご鑑賞当日、規約所定の証明書をお持ちください。<br>
+        </p>
+    </div>
+</div>
+
+<input type="hidden" name="THEATER_CODE" value="{{ theater.getMasterCode() }}">
+<input type="hidden" name="API_ENDPOINT" value="https://toei-cinerino-api-development.azurewebsites.net">
+<input type="hidden" name="WAITER_SERVER_URL" value="https://waiter-development.appspot.com">
+<input type="hidden" name="TICKET_SITE_URL" value="https://toei-frontend-development.azurewebsites.net">
+<input type="hidden" name="PROJECT_ID" value="toei-development">
