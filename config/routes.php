@@ -8,8 +8,16 @@
 use Toei\Portal\Controller\IndexController;
 use Toei\Portal\Controller\TheaterController;
 
+use Toei\Portal\Controller\API\AuthController as AuthApiController;
+
 $app->get('/', IndexController::class . ':index')->setName('homepage');
 
 $app->group('/theaters/{name}', function () {
     $this->get('/', TheaterController::class . ':index')->setName('theater');
+});
+
+$app->group('/api', function() {
+    $this->group('/auth', function() {
+        $this->post('/token', AuthApiController::class . ':token');
+    });
 });
