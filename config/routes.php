@@ -7,10 +7,13 @@
 
 use Toei\Portal\Controller\IndexController;
 use Toei\Portal\Controller\TheaterController;
+use Toei\Portal\Controller\ScheduleController;
 
 use Toei\Portal\Controller\API\AuthController as AuthApiController;
 
 $app->get('/', IndexController::class . ':index')->setName('homepage');
+
+$app->get('/showing/', ScheduleController::class . ':showing')->setName('showing');
 
 $app->group('/theaters/{name}', function () {
     $this->get('/', TheaterController::class . ':index')->setName('theater');

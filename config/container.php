@@ -32,6 +32,8 @@ $container['view'] = function ($container) {
     
     $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension($container));
     $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container));
+    $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());
+    $view->addExtension(new \Toei\Portal\Twig\Extension\TitleExtension());
     
     return $view;
 };
