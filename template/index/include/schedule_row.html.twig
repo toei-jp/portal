@@ -8,19 +8,6 @@
         <p class="text-small text-ultra-dark-gray">{{ title.getName() }}</p>
     </a>
     
-    {# ループ前に宣言する #}
-    {% set isShibuyaShowing = false %}
-    {% set isMarunouchiShowing = false %}
-                    
-    {% for showingTehater in schedule.getShowingTheaters %}
-        {% if showingTehater.getTheater().getId() == shibuya.getId() %}
-            {% set isShibuyaShowing = true %}
-        {% endif %}
-        {% if showingTehater.getTheater().getId() == marunouchi.getId() %}
-            {% set isMarunouchiShowing = true %}
-        {% endif %}
-    {% endfor %}
-    
     <div class="d-flex text-center">
     {% for theater in theaters %}
         {% set isShowing = false %}{# ループ前に宣言する #}
