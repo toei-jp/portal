@@ -1,5 +1,9 @@
 {% set title = schedule.getTitle() %}
 <div class="d-md-none border-bottom border-light-gold py-5">
+{% if type == 'soon' %}
+    <div class="mb-3">{{ schedule.getStartDate()|date('Y/m/d') }} 公開</div>
+{% endif %}
+
     <p class="text-large mb-3">{{ title.getName() }}<br>{{ title.getSubTitle() }}</p>
     
     <div class="d-flex text-center mb-3 text-small">
@@ -44,9 +48,11 @@
         </div>
         
         <p class="mb-3">
+        {% if type == 'showing' %}
             &lt;上映期間&gt;<br>
             {{ schedule.getStartDate()|date('m/d') }} ～<br>
             <br>
+        {% endif %}
             &lt;監督&gt;<br>
             {{ title.getDirector() }}<br>
             <br>

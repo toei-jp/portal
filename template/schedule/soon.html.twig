@@ -1,17 +1,17 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}上映中作品 | {{ parent() }}{% endblock %}
+{% block title %}上映予定作品 | {{ parent() }}{% endblock %}
 
-{% block description %} TOEI THEATERSの上映中作品ページです。上映中の映画作品のご案内{% endblock %}
+{% block description %} TOEI THEATERSの上映予定作品ページです。上映予定の映画作品のご案内{% endblock %}
 
-{% block keywords %}{{ parent()}},上映中,公開中,作品情報,{% endblock %}
+{% block keywords %}{{ parent()}},上映予定,公開予定,作品情報{% endblock %}
 
 {% block css %}
-<link href="/css/now-showing.css" rel="stylesheet">
+<link href="/css/coming-soon.css" rel="stylesheet">
 {% endblock %}
 
 {% block javascript %}
-<script src="/js/now-showing.js"></script>
+<script src="/js/coming-soon.js"></script>
 {% endblock %}
 
 {% block contents %}
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <span>上映中作品</span>
+                <span>上映予定作品</span>
             </li>
         </ul>
     </div>
@@ -32,11 +32,11 @@
 
 <div class="py-4 text-ultra-dark-gray">
     <div class="base-width mx-auto px-3">
-        <h2 class="text-large text-center"><strong>上映中作品</strong></h2>
-    
+        <h2 class="text-large text-center"><strong>上映予定作品</strong></h2>
+        
     {% for schedule in schedules %}
         {% include "schedule/include/row.html.twig" with {
-            type: 'showing',
+            type: 'soon',
             schedule: schedule,
             theaters: theaters,
         } only %}

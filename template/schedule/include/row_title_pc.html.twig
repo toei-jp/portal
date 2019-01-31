@@ -5,6 +5,10 @@
         <p class="text-x-small text-gray mb-0">{{ title.getCredit() }}</p>
     </div>
     <div class="info pl-5">
+    {% if type == 'soon' %}
+        <div class="mb-3">{{ schedule.getStartDate()|date('Y/m/d') }} 公開</div>
+    {% endif %}
+    
         <div class="d-flex w-50 text-center mb-3 theater">
     {% for theater in theaters %}
         {% set isShowing = false %}{# ループ前に宣言する #}
@@ -44,9 +48,12 @@
         </div>
         
         <p class="mb-3">
+        {% if type == 'showing' %}
             &lt;上映期間&gt;<br>
             {{ schedule.getStartDate()|date('m/d') }} ～<br>
             <br>
+        {% endif %}
+        
             &lt;監督&gt;<br>
             {{ title.getDirector() }}<br>
             <br>

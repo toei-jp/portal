@@ -27,4 +27,16 @@ class ScheduleResponder extends BaseResponder
     {
         return $this->view->render($response, 'schedule/showing.html.twig', $data->all());
     }
+    
+    /**
+     * soon
+     *
+     * @param Response   $response
+     * @param Collection $data
+     * @return Response
+     */
+    public function soon(Response $response, Collection $data)
+    {
+        return $this->view->render($response, 'schedule/soon.html.twig', $data->all());
+    }
 }

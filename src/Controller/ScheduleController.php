@@ -38,4 +38,29 @@ class ScheduleController extends GeneralController
             ->getRepository(Entity\Schedule::class)
             ->findShowing();
     }
+    
+    /**
+     * soon action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeSoon($request, $response, $args)
+    {
+        $this->data->set('schedules', $this->getSoonSchedules());
+    }
+    
+    /**
+     * return soon schedules
+     *
+     * @return Entity\Schedule[]
+     */
+    protected function getSoonSchedules()
+    {
+        return $this->em
+            ->getRepository(Entity\Schedule::class)
+            ->findSoon();
+    }
 }
