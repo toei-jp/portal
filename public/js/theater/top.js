@@ -303,8 +303,8 @@ function selectDate(event) {
 function screeningEventToFilm() {
     var screeningEvents = toei.screeningEvents;
     var films = [];
-    screeningEvents.forEach((screeningEvent) => {
-        const registered = films.find((film) => {
+    screeningEvents.forEach(function(screeningEvent) {
+        const registered = films.find(function(film) {
             return (film.info !== undefined
                 && film.info.superEvent.id === screeningEvent.superEvent.id);
         });
@@ -318,7 +318,21 @@ function screeningEventToFilm() {
         }
     });
 
-    return films;
+    return films.sort(function(film1, film2) {
+        if (film1.info.workPerformed.datePublished === undefined
+            || film2.info.workPerformed.datePublished === undefined) {
+                return 0;
+            }
+        const unixA = moment(film1.info.workPerformed.datePublished).unix();
+        const unixB = moment(film2.info.workPerformed.datePublished).unix();
+        if (unixA > unixB) {
+            return -1;
+        }
+        if (unixA < unixB) {
+            return 1;
+        }
+        return 0;
+    });
 }
 
 /**
