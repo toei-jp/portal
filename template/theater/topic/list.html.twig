@@ -45,6 +45,7 @@
     {% for news in topics %}
         {% include "theater/topic/include/list_row.html.twig" with {
             news: news,
+            theater: theater,
         } only %}
     {% endfor %}
     

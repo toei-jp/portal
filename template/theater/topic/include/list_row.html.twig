@@ -1,3 +1,7 @@
+{% set detailLink = path_for('theater_topic_detail', {
+    name: theater.getName(),
+    id: news.getId()
+}) %}
 <div class="item">
     <div class="d-md-flex d-none border-bottom border-light-gold py-5">
         <div class="thumbnail">
@@ -8,7 +12,7 @@
             <p class="text-large mb-4">{{ news.getHeadline()|truncate(54) }}</p>
             <p class="mb-4">{{ news.getBody()|striptags|truncate(105) }}</p>
 
-            <div><a class="text-light-blue" href="#TODO">さらに詳しく > </a></div>
+            <div><a class="text-light-blue" href="{{ detailLink }}">さらに詳しく > </a></div>
         </div>
     </div>
     <div class="d-md-none border-bottom border-light-gold py-5">
@@ -18,7 +22,7 @@
             <div class="border border-super-light-gray image mb-2" style="background-image: url({{ file_url(news.getImage()) }});"></div>
         </div>
         <div class="text-center py-2">
-            <a class="text-light-blue" href="#TODO">さらに詳しく > </a>
+            <a class="text-light-blue" href="{{ detailLink }}">さらに詳しく > </a>
         </div>
     </div>
 </div>
