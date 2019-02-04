@@ -20,6 +20,10 @@ $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedu
 
 $app->group('/theaters/{name}/', function () {
     $this->get('', TheaterController::class . ':index')->setName('theater');
+    
+    $this->group('topics/', function() {
+        $this->get('', TheaterController::class . ':topicList')->setName('topic_list');
+    });
 });
 
 $app->group('/api', function() {

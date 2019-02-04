@@ -99,4 +99,17 @@ class TheaterController extends BaseController
             ->getRepository(Entity\News::class)
             ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], $limit);
     }
+    
+    /**
+     * topic list action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeTopicList($request, $response, $args)
+    {
+        $this->data->set('topics', $this->getTopics($this->theater));
+    }
 }
