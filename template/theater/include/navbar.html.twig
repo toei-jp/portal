@@ -2,7 +2,7 @@
     <div class="sub-header-inner base-width mx-auto">
         <ul class="d-flex align-items-center text-small text-center">
             <li class="active">
-                <a class="d-flex align-items-center text-ultra-dark-gray" href="#">
+                <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ path_for('theater', { name: theater.getName() }) }}">
                     <span class="border-left border-dark-gold py-2">TOP/<br>上映スケジュール</span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
         <div class="swiper-container">
             <ul class="d-flex align-items-center text-small text-center swiper-wrapper">
                 <li class="active swiper-slide">
-                    <a class="d-flex align-items-center text-ultra-dark-gray" href="#">
+                    <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ path_for('theater', { name: theater.getName() }) }}">
                         <span class="border-left border-dark-gold py-2">TOP/<br>上映スケジュール</span>
                     </a>
                 </li>

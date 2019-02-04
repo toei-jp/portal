@@ -40,7 +40,9 @@
     {% include 'include/menu_sp.html.twig' with {
         theaters: theaters,
     } only %}
-    {% include 'theater/include/navbar.html.twig' only %}
+    {% include 'theater/include/navbar.html.twig' with {
+        theater: theater,
+    } only %}
     
     <div class="contents">
         {% block contents %}{% endblock %}
