@@ -22,7 +22,7 @@ $app->group('/theaters/{name}/', function () {
     $this->get('', TheaterController::class . ':index')->setName('theater');
     
     $this->group('topics/', function() {
-        $this->get('', TheaterController::class . ':topicList')->setName('topic_list');
+        $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
     });
 });
 
