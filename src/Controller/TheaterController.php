@@ -70,7 +70,7 @@ class TheaterController extends BaseController
     {
         $this->data->set('mainBanners', $this->getMainBanners($this->theater));
         
-        $this->data->set('topics', $this->getTopics($this->theater));
+        $this->data->set('topics', $this->getTopics($this->theater, 3));
     }
     
     /**
@@ -90,12 +90,13 @@ class TheaterController extends BaseController
      * return topics
      * 
      * @param Entity\Theater $theater
+     * @param int|null       $limit
      * @return Entity\News[]
      */
-    protected function getTopics(Entity\Theater $theater)
+    protected function getTopics(Entity\Theater $theater, ?int $limit = null)
     {
         return $this->em
             ->getRepository(Entity\News::class)
-            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 3);
+            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], $limit);
     }
 }
