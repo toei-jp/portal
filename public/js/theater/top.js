@@ -51,8 +51,8 @@ $(function () {
     toei.WAITER_SERVER_URL = $('input[name=WAITER_SERVER_URL]').val();
     toei.TICKET_SITE_URL = $('input[name=TICKET_SITE_URL]').val();
     toei.PROJECT_ID = $('input[name=PROJECT_ID]').val();
-    getMovieTheater(function (theaters) {
-        var findResult = theaters.find(function (theater) {
+    getMovieTheater().then(function (movieTheaters) {
+        var findResult = movieTheaters.find(function (theater) {
             return (theater.location.branchCode === toei.THEATER_CODE);
         });
         if (findResult === undefined) {
@@ -62,6 +62,8 @@ $(function () {
         toei.movieTheater = findResult;
         createSchedule();
         createPreSchedule();
+    }).catch(function (error) {
+        alert('劇場一覧取得エラー');
     });
 });
 
@@ -134,56 +136,48 @@ function createOptions(accessToken) {
 
 /**
  * 劇場一覧取得
- * @param {Function} cb 
  */
-function getMovieTheater(cb) {
-    try {
-        getCredentials().then(function (credentials) {
+function getMovieTheater() {
+    var deferred = new $.Deferred;
+    getCredentials()
+        .then(function (credentials) {
             var accessToken = credentials.data.access_token;
             var options = createOptions(accessToken);
             var organizationService = new cinerino.service.Organization(options);
-            organizationService.searchMovieTheaters().then(function (movieTheatersResult) {
-                var movieTheaters = movieTheatersResult.data;
-                cb(movieTheaters);
-            }).catch(function (error2) {
-                throw new Error(error2.responseText);
-            });
-        }).catch(function (error1) {
-            throw new Error(error1.responseText);
+            return organizationService.searchMovieTheaters();
+        }).then(function (movieTheatersResult) {
+            var movieTheaters = movieTheatersResult.data;
+            deferred.resolve(movieTheaters);
+        }).catch(function (error) {
+            console.error(error);
+            deferred.reject(error);
         });
-    } catch (error) {
-        console.error(error);
-        alert('劇場一覧取得エラー');
-    }
+    return deferred.promise();
 }
 
 /**
  * 上映作品取得
- * @param {*} params 
- * @param {Function} cb 
+ * @param {*} params
  */
-function getScreeningEvent(params, cb) {
-    try {
-        toei.isRequest = true;
-        getCredentials().then(function (credentials) {
+function getScreeningEvent(params) {
+    var deferred = new $.Deferred;
+    toei.isRequest = true;
+    getCredentials()
+        .then(function (credentials) {
             var accessToken = credentials.data.access_token;
             var options = createOptions(accessToken);
             var eventService = new cinerino.service.Event(options);
-            eventService.searchScreeningEvents(params).then(function (screeningEventsResult) {
-                toei.isRequest = false;
-                var screeningEvents = screeningEventsResult.data;
-                cb(screeningEvents);
-            }).catch(function (error2) {
-                throw new Error(error2.responseText);
-            });
-        }).catch(function (error1) {
-            throw new Error(error1.responseText);
+            return eventService.searchScreeningEvents(params)
+        }).then(function (screeningEventsResult) {
+            toei.isRequest = false;
+            var screeningEvents = screeningEventsResult.data;
+            deferred.resolve(screeningEvents);
+        }).catch(function (error) {
+            toei.isRequest = false;
+            console.error(error);
+            deferred.reject(error);
         });
-    } catch (error) {
-        toei.isRequest = false;
-        console.error(error);
-        alert('上映作品取得エラー');
-    }
+    return deferred.promise();
 }
 
 /**
@@ -191,7 +185,7 @@ function getScreeningEvent(params, cb) {
  */
 function createSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toISOString();
-    getScreeningEvent({
+    var params = {
         eventStatuses: ['EventScheduled'],
         superEvent: {
             locationBranchCodes: toei.THEATER_CODE
@@ -202,17 +196,21 @@ function createSchedule() {
             availableFrom: today,
             availableThrough: today
         }
-    }, function (screeningEvents) {
-        var dates = screeningEventToDate(screeningEvents);
-        var domList = [];
-        dates.forEach(function (date) {
-            domList.push(createDateDom(date));
+    };
+    getScreeningEvent(params)
+        .then(function (screeningEvents) {
+            var dates = screeningEventToDate(screeningEvents);
+            var domList = [];
+            dates.forEach(function (date) {
+                domList.push(createDateDom(date));
+            });
+            $('.schedule-slider .swiper-wrapper').append(domList.join('\n'));
+            toei.scheduleSlider = createScheduleSlider();
+            var today = moment(moment().format('YYYYMMDD')).toISOString();
+            $('.schedule-slider .swiper-slide a[data-date="' + today + '"]').trigger('click');
+        }).catch(function (error) {
+            alert('上映作品取得エラー');
         });
-        $('.schedule-slider .swiper-wrapper').append(domList.join('\n'));
-        toei.scheduleSlider = createScheduleSlider();
-        var today = moment(moment().format('YYYYMMDD')).toISOString();
-        $('.schedule-slider .swiper-slide a[data-date="' + today + '"]').trigger('click');
-    });
 }
 
 /**
@@ -274,7 +272,7 @@ function selectDate(event) {
     $('.schedule-slider .swiper-slide .bg-orange').removeClass(activeClass).addClass(defaultClass);
     $(this).removeClass(defaultClass).addClass(activeClass);
     $('.target-date').text(moment(date).format('YYYY/MM/DD(ddd)'));
-    getScreeningEvent({
+    var params = {
         eventStatuses: ['EventScheduled'],
         superEvent: {
             locationBranchCodes: toei.THEATER_CODE
@@ -285,15 +283,19 @@ function selectDate(event) {
             availableFrom: today,
             availableThrough: today
         }
-    }, function (screeningEvents) {
-        toei.screeningEvents = screeningEvents;
-        var films = screeningEventToFilm();
-        var domList = [];
-        films.forEach(function (film) {
-            domList.push(createFilmDom(film));
-        });
-        $('.films').html(domList.join('\n'));
-    });
+    };
+    getScreeningEvent(params)
+        .then(function (screeningEvents) {
+            toei.screeningEvents = screeningEvents;
+            var films = screeningEventToFilm();
+            var domList = [];
+            films.forEach(function (film) {
+                domList.push(createFilmDom(film));
+            });
+            $('.films').html(domList.join('\n'));
+        }).catch(function (error) {
+            alert('上映作品取得エラー');
+        });;
 }
 
 
@@ -303,8 +305,8 @@ function selectDate(event) {
 function screeningEventToFilm() {
     var screeningEvents = toei.screeningEvents;
     var films = [];
-    screeningEvents.forEach(function(screeningEvent) {
-        const registered = films.find(function(film) {
+    screeningEvents.forEach(function (screeningEvent) {
+        const registered = films.find(function (film) {
             return (film.info !== undefined
                 && film.info.superEvent.id === screeningEvent.superEvent.id);
         });
@@ -318,11 +320,11 @@ function screeningEventToFilm() {
         }
     });
 
-    return films.sort(function(film1, film2) {
+    return films.sort(function (film1, film2) {
         if (film1.info.workPerformed.datePublished === undefined
             || film2.info.workPerformed.datePublished === undefined) {
-                return 0;
-            }
+            return 0;
+        }
         const unixA = moment(film1.info.workPerformed.datePublished).unix();
         const unixB = moment(film2.info.workPerformed.datePublished).unix();
         if (unixA > unixB) {
@@ -453,7 +455,7 @@ function createPerformanceDom(performance) {
 function createPreSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toISOString();
     var now = moment().toDate();
-    getScreeningEvent({
+    var params = {
         eventStatuses: ['EventScheduled'],
         superEvent: {
             locationBranchCodes: toei.THEATER_CODE
@@ -465,22 +467,26 @@ function createPreSchedule() {
             availableFrom: now,
             availableThrough: now
         }
-    }, function (screeningEvents) {
-        var dates = screeningEventToDate(screeningEvents);
-        var filterResult = dates.filter(function (date) {
-            return date.data !== undefined;
-        });
-        if (filterResult.length === 0) {
-            return;
-        }
-        var domList = [];
-        filterResult.forEach(function (date) {
-            domList.push(createDateDom(date));
-        });
-        $('.pre-schedule-slider .swiper-wrapper').append(domList.join('\n'));
-        toei.preScheduleSlider = createPreScheduleSlider();
-        $('.change-schedule-button').removeClass('d-none');
-    });
+    };
+    getScreeningEvent(params)
+        .then(function (screeningEvents) {
+            var dates = screeningEventToDate(screeningEvents);
+            var filterResult = dates.filter(function (date) {
+                return date.data !== undefined;
+            });
+            if (filterResult.length === 0) {
+                return;
+            }
+            var domList = [];
+            filterResult.forEach(function (date) {
+                domList.push(createDateDom(date));
+            });
+            $('.pre-schedule-slider .swiper-wrapper').append(domList.join('\n'));
+            toei.preScheduleSlider = createPreScheduleSlider();
+            $('.change-schedule-button').removeClass('d-none');
+        }).catch(function (error) {
+            alert('上映作品取得エラー');
+        });;
 }
 
 /**
