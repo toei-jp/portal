@@ -23,6 +23,7 @@ $app->group('/theaters/{name}/', function () {
     
     $this->group('topics/', function() {
         $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
+        $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
 });
 

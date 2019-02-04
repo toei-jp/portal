@@ -112,4 +112,36 @@ class TheaterController extends BaseController
     {
         $this->data->set('topics', $this->getTopics($this->theater));
     }
+    
+    /**
+     * topic detail action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeTopicDetail($request, $response, $args)
+    {
+        if (!isset($args['id']) || empty($args['id'])) {
+            throw new NotFoundException($request, $response);
+        }
+        
+        $id = (int) $args['id'];
+        
+        $this->data->set('news', $this->getTopic($id));
+    }
+    
+    /**
+     * return topic
+     * 
+     * @param int $id
+     * @return Entity\News
+     */
+    protected function getTopic(int $id)
+    {
+        return $this->em
+            ->getRepository(Entity\News::class)
+            ->findOneById($id);
+    }
 }
