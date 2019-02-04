@@ -11,6 +11,8 @@ use Toei\Portal\Controller\ScheduleController;
 
 use Toei\Portal\Controller\API\AuthController as AuthApiController;
 
+/** @var \Slim\App $app */
+
 $app->get('/', IndexController::class . ':index')->setName('homepage');
 
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
