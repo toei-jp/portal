@@ -12,7 +12,8 @@
 
             {% for news in marunouchiTopics %}
                 {% include "index/include/topics_row.html.twig" with {
-                    news: news
+                    news: news,
+                    theater: marunouchi,
                 } only %}
             {% endfor %}
             
@@ -27,7 +28,8 @@
                 
             {% for news in shibuyaTopics %}
                 {% include "index/include/topics_row.html.twig" with {
-                    news: news
+                    news: news,
+                    theater: shibuya,
                 } only %}
             {% endfor %}
                 
