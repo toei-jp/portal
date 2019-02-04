@@ -18,8 +18,8 @@ $app->get('/', IndexController::class . ':index')->setName('homepage');
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
 $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedule_soon');
 
-$app->group('/theaters/{name}', function () {
-    $this->get('/', TheaterController::class . ':index')->setName('theater');
+$app->group('/theaters/{name}/', function () {
+    $this->get('', TheaterController::class . ':index')->setName('theater');
 });
 
 $app->group('/api', function() {
