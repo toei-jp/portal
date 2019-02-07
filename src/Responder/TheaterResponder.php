@@ -51,4 +51,16 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/topic/detail.html.twig', $data->all());
     }
+    
+    /**
+     * advance ticket
+     *
+     * @param Response   $response
+     * @param Collection $data
+     * @return Response
+     */
+    public function advanceTicket(Response $response, Collection $data)
+    {
+        return $this->view->render($response, 'theater/advance_ticket/index.html.twig', $data->all());
+    }
 }

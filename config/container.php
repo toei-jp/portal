@@ -31,6 +31,7 @@ $container['view'] = function ($container) {
     $view->addExtension(new \Twig_Extension_Debug());
     $view->addExtension(new \Twig_Extensions_Extension_Text());
     
+    $view->addExtension(new \Toei\Portal\Twig\Extension\AdvanceTicketExtension());
     $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension($container));
     $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container));
     $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());

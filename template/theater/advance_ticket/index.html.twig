@@ -1,0 +1,59 @@
+{% extends "theater/layout.html.twig" %}
+
+{% block title %}前売券情報 | {{ parent() }}{% endblock %}
+
+{% block description %}{{ theater.getNameJa() }}TOEIの前売券情報ページです。映画作品の前売券に関する発売日や前売特典のご案内など{% endblock %}
+
+{% block keywords %}{{ parent()}},前売券,ムビチケ,特典,発売日{% endblock %}
+
+{% block css %}
+<link href="/css/theater/advance-ticket.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+{% include 'theater/include/header_subpage.html.twig' with {
+    theaters: theaters,
+    theater: theater,
+} only %}
+{% endblock %}
+
+{% block contents %}
+<div class="py-3">
+    <div class="base-width mx-auto px-3">
+        <ul class="breadcrumb-list text-small">
+            <li>
+                <a class="text-light-blue" href="{{ path_for('homepage') }}">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a class="text-light-blue" href="{{ path_for('theater', { name: theater.getName() }) }}">
+                    <span>{{ theater.getNameJa() }}ホーム</span>
+                </a>
+            </li>
+            <li>
+                <span>前売券情報</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="py-4 text-ultra-dark-gray advance-ticket">
+    <div class="base-width mx-auto px-3">
+        <h2 class="text-large text-center"><strong>前売券情報</strong></h2>
+        <ul class="py-5">
+            <li>・前売券の販売は、公開日の前日までとなっております。</li>
+            <li>・前売券は通常、ご鑑賞日の2日前から窓口で当日券へのお引換えが可能ですが、作品によっては早まる場合がございますのでご了承下さい。</li>
+            <li>・前売特典は数に限りがあり、なくなり次第終了となります。予めご了承下さい。</li>
+            <li>・前売特典が終了となっていない作品でも、ご来場時に終了している場合があります。予めご了承下さい。</li>
+        </ul>
+        
+    {% for advanceTicket in advanceTicketList %}
+        {% include "theater/advance_ticket/include/row.html.twig" with {
+            advanceTicket: advanceTicket,
+        } only %}
+    {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

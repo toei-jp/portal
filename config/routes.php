@@ -25,6 +25,8 @@ $app->group('/theaters/{name}/', function () {
         $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
         $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
+    
+    $this->get('advance_tickets/', TheaterController::class . ':advanceTicket')->setName('theater_advance_ticket');
 });
 
 $app->group('/api', function() {

@@ -144,4 +144,30 @@ class TheaterController extends BaseController
             ->getRepository(Entity\News::class)
             ->findOneById($id);
     }
+    
+    /**
+     * advance ticket action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeAdvanceTicket($request, $response, $args)
+    {
+        $this->data->set('advanceTicketList', $this->getAdvanceTicketList($this->theater));
+    }
+    
+    /**
+     * return advance ticket list
+     *
+     * @param Entity\Theater $theater
+     * @return Entity\AdvanceTicket[]
+     */
+    protected function getAdvanceTicketList(Entity\Theater $theater)
+    {
+        return $this->em
+            ->getRepository(Entity\AdvanceTicket::class)
+            ->findByTheater($theater->getId());
+    }
 }
