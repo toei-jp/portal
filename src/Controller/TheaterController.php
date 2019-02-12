@@ -170,4 +170,16 @@ class TheaterController extends BaseController
             ->getRepository(Entity\AdvanceTicket::class)
             ->findByTheater($theater->getId());
     }
+    
+    /**
+     * price action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executePrice($request, $response, $args)
+    {
+    }
 }

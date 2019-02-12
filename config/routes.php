@@ -26,6 +26,7 @@ $app->group('/theaters/{name}/', function () {
         $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
     
+    $this->get('prices/', TheaterController::class . ':price')->setName('theater_price');
     $this->get('advance_tickets/', TheaterController::class . ':advanceTicket')->setName('theater_advance_ticket');
 });
 
