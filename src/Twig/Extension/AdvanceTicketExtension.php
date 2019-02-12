@@ -1,7 +1,7 @@
 <?php
 /**
  * AdvanceTicketExtension.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -44,7 +44,7 @@ class AdvanceTicketExtension extends \Twig_Extension
     {
         if ($type === AdvanceTicket::TYPE_MVTK) {
             return 'ムビチケ';
-        } else if ($type === AdvanceTicket::TYPE_PAPER) {
+        } elseif ($type === AdvanceTicket::TYPE_PAPER) {
             return '紙券';
         }
         
@@ -61,9 +61,9 @@ class AdvanceTicketExtension extends \Twig_Extension
     {
         if ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_IN) {
             return '（有り）';
-        } else if ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_FEW) {
+        } elseif ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_FEW) {
             return '（残り僅か）';
-        } else if ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN) {
+        } elseif ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN) {
             return '（特典終了）';
         }
         

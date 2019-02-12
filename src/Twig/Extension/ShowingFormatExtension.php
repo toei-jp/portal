@@ -1,7 +1,7 @@
 <?php
 /**
  * ShowingFormatExtension.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -45,7 +45,7 @@ class ShowingFormatExtension extends \Twig_Extension
     {
         if (ShowingFormat::VOICE_SUBTITLE === $voice) {
             return '字幕版';
-        } else if (ShowingFormat::VOICE_DUB === $voice) {
+        } elseif (ShowingFormat::VOICE_DUB === $voice) {
             return '吹替版';
         }
         

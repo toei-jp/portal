@@ -1,7 +1,7 @@
 <?php
 /**
  * TitleExtension.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -45,11 +45,11 @@ class TitleExtension extends \Twig_Extension
     {
         if (Title::RATING_G === $rating) {
             return 'G';
-        } else if (Title::RATING_PG12 === $rating) {
+        } elseif (Title::RATING_PG12 === $rating) {
             return 'PG12';
-        } else if (Title::RATING_R15 === $rating) {
+        } elseif (Title::RATING_R15 === $rating) {
             return 'R15+';
-        } else if (Title::RATING_R18 === $rating) {
+        } elseif (Title::RATING_R18 === $rating) {
             return 'R18+';
         }
         

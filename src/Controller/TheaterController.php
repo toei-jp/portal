@@ -1,7 +1,7 @@
 <?php
 /**
  * TheaterController.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -34,7 +34,7 @@ class TheaterController extends BaseController
     
     /**
      * pre execute
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -60,7 +60,7 @@ class TheaterController extends BaseController
     
     /**
      * index action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -88,7 +88,7 @@ class TheaterController extends BaseController
     
     /**
      * return topics
-     * 
+     *
      * @param Entity\Theater $theater
      * @param int|null       $limit
      * @return Entity\News[]
@@ -102,7 +102,7 @@ class TheaterController extends BaseController
     
     /**
      * topic list action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -115,7 +115,7 @@ class TheaterController extends BaseController
     
     /**
      * topic detail action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -134,7 +134,7 @@ class TheaterController extends BaseController
     
     /**
      * return topic
-     * 
+     *
      * @param int $id
      * @return Entity\News
      */
@@ -147,7 +147,7 @@ class TheaterController extends BaseController
     
     /**
      * advance ticket action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -173,7 +173,7 @@ class TheaterController extends BaseController
     
     /**
      * price action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -185,7 +185,7 @@ class TheaterController extends BaseController
     
     /**
      * floor guide action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -197,7 +197,7 @@ class TheaterController extends BaseController
     
     /**
      * access action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args

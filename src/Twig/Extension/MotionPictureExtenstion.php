@@ -1,7 +1,7 @@
 <?php
 /**
  * MotionPictureExtenstion.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -19,7 +19,7 @@ class MotionPictureExtenstion extends \Twig_Extension
     
     /**
      * construct
-     * 
+     *
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)

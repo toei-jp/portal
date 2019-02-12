@@ -1,7 +1,7 @@
 <?php
 /**
  * routes.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -21,7 +21,7 @@ $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedu
 $app->group('/theaters/{name}/', function () {
     $this->get('', TheaterController::class . ':index')->setName('theater');
     
-    $this->group('topics/', function() {
+    $this->group('topics/', function () {
         $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
         $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
@@ -32,8 +32,8 @@ $app->group('/theaters/{name}/', function () {
     $this->get('access/', TheaterController::class . ':access')->setName('theater_access');
 });
 
-$app->group('/api', function() {
-    $this->group('/auth', function() {
+$app->group('/api', function () {
+    $this->group('/auth', function () {
         $this->post('/token', AuthApiController::class . ':token');
     });
 });
