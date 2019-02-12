@@ -194,4 +194,16 @@ class TheaterController extends BaseController
     public function executeFloorGuide($request, $response, $args)
     {
     }
+    
+    /**
+     * access action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeAccess($request, $response, $args)
+    {
+    }
 }
