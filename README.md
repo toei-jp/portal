@@ -8,7 +8,7 @@
 
 ※現状では開発環境としての利用のみを想定
 
-web: http://localhost:8000/
+web: http://localhost:8010/
 
 ### コマンド例
 
