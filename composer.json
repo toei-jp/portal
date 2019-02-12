@@ -18,5 +18,8 @@
         "doctrine/orm": "2.6.*",
         "microsoft/azure-storage-blob": "^1.2",
         "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
     }
 }
