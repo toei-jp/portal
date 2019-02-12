@@ -1,0 +1,32 @@
+
+.floor-guide .thumbnail {
+    width: 41%;
+}
+.floor-guide .contents {
+    width: 59%;
+}
+.floor-guide dt {
+    font-weight: normal;
+    width: 38%;
+}
+.floor-guide dd {
+    line-height: 1.6;
+    width: 62%;
+}
+
+
+@media (max-width: 767.98px) {
+    .floor-guide .thumbnail {
+        width: auto;
+    }
+    .floor-guide .contents {
+        width: auto;
+    }
+    .floor-guide dt {
+        width: 50%;
+    }
+    .floor-guide dd {
+        width: 50%;
+        text-align: left;
+    }
+}

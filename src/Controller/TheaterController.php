@@ -182,4 +182,16 @@ class TheaterController extends BaseController
     public function executePrice($request, $response, $args)
     {
     }
+    
+    /**
+     * floor guide action
+     * 
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeFloorGuide($request, $response, $args)
+    {
+    }
 }
