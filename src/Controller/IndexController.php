@@ -1,7 +1,7 @@
 <?php
 /**
  * IndexController.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -19,7 +19,7 @@ class IndexController extends GeneralController
     
     /**
      * index action
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -38,11 +38,10 @@ class IndexController extends GeneralController
             if ($theater->getId() === self::THEATER_SHIBUYA) {
                 /** @var Entity\Theater $shibuya */
                 $shibuya = $theater;
-            } else if ($theater->getId() === self::THEATER_MARUNOUCHI) {
+            } elseif ($theater->getId() === self::THEATER_MARUNOUCHI) {
                 /** @var Entity\Theater $marunouchi */
                 $marunouchi = $theater;
             }
-            
         }
         
         $this->data->set('shibuya', $shibuya);
@@ -73,7 +72,7 @@ class IndexController extends GeneralController
     
     /**
      * return topics
-     * 
+     *
      * 劇場に設定されたものを取得する TOEI-137
      *
      * @param Entity\Theater $theater

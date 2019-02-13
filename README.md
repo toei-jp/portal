@@ -17,3 +17,11 @@ web: http://localhost:8010/
 ```sh
 $ docker-compose up
 ```
+
+## その他
+
+### PHP CodeSniffer
+
+```sh
+vendor/bin/phpcs --standard=phpcs.xml
+```

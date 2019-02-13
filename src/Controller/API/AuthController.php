@@ -1,7 +1,7 @@
 <?php
 /**
  * AuthController.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
@@ -26,7 +26,7 @@ class AuthController extends BaseController
     
     /**
      * pre execute
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -45,9 +45,9 @@ class AuthController extends BaseController
     
     /**
      * token action
-     * 
+     *
      * @link https://m-p.backlog.jp/view/TOEI-112
-     * 
+     *
      * @param \Slim\Http\Request  $request
      * @param \Slim\Http\Response $response
      * @param array               $args
@@ -70,7 +70,7 @@ class AuthController extends BaseController
     
     /**
      * request Token
-     * 
+     *
      * @link https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/token-endpoint.html
      *
      * @return \Psr\Http\Message\ResponseInterface

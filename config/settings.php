@@ -1,9 +1,9 @@
 <?php
 /**
  * settings.php
- * 
+ *
  * @author Atsushi Okui <okui@motionpicture.jp>
- * 
+ *
  * @return array
  */
 
@@ -24,7 +24,7 @@ $settings['view'] = [
 ];
 
 // logger
-$getLoggerSetting = function($isDebug) {
+$getLoggerSetting = function ($isDebug) {
     $settings = [
         'name' => 'app',
     ];
@@ -51,7 +51,7 @@ $getLoggerSetting = function($isDebug) {
 $settings['logger'] = $getLoggerSetting($isDebug);
 
 // doctrine
-$getDoctrineSetting = function() {
+$getDoctrineSetting = function () {
     $settings = [
         'dev_mode' => (APP_ENV === 'dev'),
         'metadata_dirs' => [APP_ROOT . '/src/ORM/Entity'],
