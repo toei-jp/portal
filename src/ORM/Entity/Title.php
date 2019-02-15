@@ -49,6 +49,14 @@ class Title extends AbstractEntity
     protected $image;
     
     /**
+     * chever_code
+     *
+     * @var string|null
+     * @ORM\Column(name="chever_code", type="string", length=100, unique=true, nullable=true)
+     */
+    protected $cheverCode;
+    
+    /**
      * name
      *
      * @var string
@@ -213,6 +221,28 @@ class Title extends AbstractEntity
      * @throws \LogicException
      */
     public function setImage($image)
+    {
+        throw new \LogicException('Not allowed.');
+    }
+    
+    /**
+     * get chever_code
+     *
+     * @return string|null
+     */
+    public function getCheverCode()
+    {
+        return $this->cheverCode;
+    }
+    
+    /**
+     * set chever_code
+     *
+     * @param string|null $cheverCode
+     * @return void
+     * @throws \LogicException
+     */
+    public function setCheverCode(?string $cheverCode)
     {
         throw new \LogicException('Not allowed.');
     }
