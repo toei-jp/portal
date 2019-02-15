@@ -75,7 +75,7 @@ class Title extends AbstractEntity
     /**
      * sub_title
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="sub_title", nullable=true)
      */
     protected $subTitle;
@@ -83,7 +83,7 @@ class Title extends AbstractEntity
     /**
      * credit
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", nullable=true)
      */
     protected $credit;
@@ -91,7 +91,7 @@ class Title extends AbstractEntity
     /**
      * catchcopy
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     protected $catchcopy;
@@ -99,7 +99,7 @@ class Title extends AbstractEntity
     /**
      * introduction
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     protected $introduction;
@@ -107,7 +107,7 @@ class Title extends AbstractEntity
     /**
      * director
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", nullable=true)
      */
     protected $director;
@@ -115,7 +115,7 @@ class Title extends AbstractEntity
     /**
      * cast
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", nullable=true)
      */
     protected $cast;
@@ -131,7 +131,7 @@ class Title extends AbstractEntity
     /**
      * official_site
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="official_site", nullable=true)
      */
     protected $officialSite;
@@ -139,7 +139,7 @@ class Title extends AbstractEntity
     /**
      * rating
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="smallint", nullable=true, options={"unsigned"=true})
      */
     protected $rating;
@@ -147,7 +147,7 @@ class Title extends AbstractEntity
     /**
      * universal
      *
-     * @var array
+     * @var array|null
      * @ORM\Column(type="json", nullable=true)
      */
     protected $universal;
@@ -316,7 +316,7 @@ class Title extends AbstractEntity
     /**
      * credit
      *
-     * @return string
+     * @return string|null
      */
     public function getCredit()
     {
@@ -326,11 +326,11 @@ class Title extends AbstractEntity
     /**
      * set credit
      *
-     * @param string $credit
+     * @param string|null $credit
      * @return void
      * @throws \LogicException
      */
-    public function setCredit(string $credit)
+    public function setCredit(?string $credit)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -338,7 +338,7 @@ class Title extends AbstractEntity
     /**
      * get catchcopy
      *
-     * @return string
+     * @return string|null
      */
     public function getCatchcopy()
     {
@@ -348,11 +348,11 @@ class Title extends AbstractEntity
     /**
      * set catchcopy
      *
-     * @param string $catchcopy
+     * @param string|null $catchcopy
      * @return void
      * @throws \LogicException
      */
-    public function setCatchcopy(string $catchcopy)
+    public function setCatchcopy(?string $catchcopy)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -360,7 +360,7 @@ class Title extends AbstractEntity
     /**
      * get introduction
      *
-     * @return string
+     * @return string|null
      */
     public function getIntroduction()
     {
@@ -370,11 +370,11 @@ class Title extends AbstractEntity
     /**
      * set introduction
      *
-     * @param string $introduction
+     * @param string|null $introduction
      * @return void
      * @throws \LogicException
      */
-    public function setIntroduction(string $introduction)
+    public function setIntroduction(?string $introduction)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -382,7 +382,7 @@ class Title extends AbstractEntity
     /**
      * get director
      *
-     * @return string
+     * @return string|null
      */
     public function getDirector()
     {
@@ -392,11 +392,11 @@ class Title extends AbstractEntity
     /**
      * set director
      *
-     * @param string $director
+     * @param string|null $director
      * @return void
      * @throws \LogicException
      */
-    public function setDirector(string $director)
+    public function setDirector(?string $director)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -404,7 +404,7 @@ class Title extends AbstractEntity
     /**
      * get cast
      *
-     * @return string
+     * @return string|null
      */
     public function getCast()
     {
@@ -414,11 +414,11 @@ class Title extends AbstractEntity
     /**
      * set cast
      *
-     * @param string $cast
+     * @param string|null $cast
      * @return void
      * @throws \LogicException
      */
-    public function setCast(string $cast)
+    public function setCast(?string $cast)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -448,7 +448,7 @@ class Title extends AbstractEntity
     /**
      * get official_site
      *
-     * @return string
+     * @return string|null
      */
     public function getOfficialSite()
     {
@@ -458,11 +458,11 @@ class Title extends AbstractEntity
     /**
      * set official_site
      *
-     * @param string $officialSite
+     * @param string|null $officialSite
      * @return void
      * @throws \LogicException
      */
-    public function setOfficialSite(string $officialSite)
+    public function setOfficialSite(?string $officialSite)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -470,7 +470,7 @@ class Title extends AbstractEntity
     /**
      * get rating
      *
-     * @return int
+     * @return int|null
      */
     public function getRating()
     {
@@ -480,11 +480,11 @@ class Title extends AbstractEntity
     /**
      * set rating
      *
-     * @param int $rating
+     * @param int|null $rating
      * @return void
      * @throws \LogicException
      */
-    public function setRating(int $rating)
+    public function setRating(?int $rating)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -492,7 +492,7 @@ class Title extends AbstractEntity
     /**
      * get universal
      *
-     * @return array
+     * @return array|null
      */
     public function getUniversal()
     {
@@ -522,11 +522,11 @@ class Title extends AbstractEntity
     /**
      * set universal
      *
-     * @param array $universal
+     * @param array|null $universal
      * @return void
      * @throws \LogicException
      */
-    public function setUniversal(array $universal)
+    public function setUniversal(?array $universal)
     {
         throw new \LogicException('Not allowed.');
     }
