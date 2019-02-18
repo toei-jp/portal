@@ -5,6 +5,7 @@
  * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
+use Toei\Portal\Controller\AboutController;
 use Toei\Portal\Controller\IndexController;
 use Toei\Portal\Controller\TheaterController;
 use Toei\Portal\Controller\ScheduleController;
@@ -14,6 +15,8 @@ use Toei\Portal\Controller\API\AuthController as AuthApiController;
 /** @var \Slim\App $app */
 
 $app->get('/', IndexController::class . ':index')->setName('homepage');
+
+$app->get('/faq/', AboutController::class . ':faq')->setName('faq');
 
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
 $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedule_soon');

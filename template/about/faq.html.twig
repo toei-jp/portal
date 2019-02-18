@@ -1,0 +1,313 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}よくあるご質問(Q&A) | {{ parent() }}{% endblock %}
+
+{% block description %}シネサンシャインのよくあるご質問(Q&A)ページです。お客様からいただいたご質問などをご案内{% endblock %}
+
+{% block keywords %}{{ parent()}},よくあるご質問,Q&A{% endblock %}
+
+{% block css %}
+<link href="/css/faq.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+<script src="/js/faq.js"></script>
+{% endblock %}
+
+{% block contents %}
+<div class="py-3">
+    <div class="base-width mx-auto px-3">
+        <ul class="breadcrumb-list text-small">
+            <li>
+                <a class="text-light-blue" href="{{ path_for('homepage') }}">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <span>よくあるご質問</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="py-4 text-ultra-dark-gray">
+    <div class="base-width mx-auto px-3">
+        <h2 class="text-large text-center mb-4"><strong>よくあるご質問</strong></h2>
+        <div class="mb-5">
+            <div class="border-bottom border-ultra-light-gray py-3">
+                <h3>チケットについて</h3>
+            </div>
+            <ul>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットはいつから購入できますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>前売券・特別鑑賞券を持っている場合は？</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットは何歳から必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>購入したチケットの払い戻しや日時、作品、座席の変更はできますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>学生のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>シニア、夫婦50割引のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mb-5">
+            <div class="border-bottom border-ultra-light-gray py-3">
+                <h3>山路を登りながら</h3>
+            </div>
+            <ul>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットはいつから購入できますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>前売券・特別鑑賞券を持っている場合は？</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットは何歳から必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>購入したチケットの払い戻しや日時、作品、座席の変更はできますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>学生のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>シニア、夫婦50割引のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mb-5">
+            <div class="border-bottom border-ultra-light-gray py-3">
+                <h3>山路を登りながら</h3>
+            </div>
+            <ul>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットはいつから購入できますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>前売券・特別鑑賞券を持っている場合は？</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>チケットは何歳から必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>購入したチケットの払い戻しや日時、作品、座席の変更はできますか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>学生のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="border-bottom border-ultra-light-gray py-3">
+                    <div class="question">
+                        <a href="#" class="d-flex align-items-baseline text-ultra-dark-gray pr-4">
+                            <p class="text-light-blue text-xx-large mr-4">Q</p>
+                            <p>シニア、夫婦50割引のチケット購入は証明証が必要ですか。</p>
+                        </a>
+                    </div>
+                    <div class="d-none answer">
+                        <div class="d-flex align-items-baseline mt-3 pr-4">
+                            <p class="text-pink text-xx-large mr-4">A</p>
+                            <p>ご鑑賞日の2日前から購入できます。（作品によっては2日より前から購入できる場合もあります。）</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
