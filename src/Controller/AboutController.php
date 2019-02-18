@@ -25,4 +25,16 @@ class AboutController extends GeneralController
     public function executeFaq($request, $response, $args)
     {
     }
+    
+    /**
+     * law action
+     *
+     * @param \Slim\Http\Request  $request
+     * @param \Slim\Http\Response $response
+     * @param array               $args
+     * @return string|void
+     */
+    public function executeLaw($request, $response, $args)
+    {
+    }
 }

@@ -17,6 +17,7 @@ use Toei\Portal\Controller\API\AuthController as AuthApiController;
 $app->get('/', IndexController::class . ':index')->setName('homepage');
 
 $app->get('/faq/', AboutController::class . ':faq')->setName('faq');
+$app->get('/business_deal/', AboutController::class . ':law')->setName('law');
 
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
 $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedule_soon');

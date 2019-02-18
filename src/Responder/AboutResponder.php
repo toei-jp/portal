@@ -27,4 +27,16 @@ class AboutResponder extends BaseResponder
     {
         return $this->view->render($response, 'about/faq.html.twig', $data->all());
     }
+    
+    /**
+     * law
+     *
+     * @param Response   $response
+     * @param Collection $data
+     * @return Response
+     */
+    public function law(Response $response, Collection $data)
+    {
+        return $this->view->render($response, 'about/law.html.twig', $data->all());
+    }
 }
