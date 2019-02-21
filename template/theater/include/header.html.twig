@@ -1,3 +1,4 @@
 {% extends "include/header.html.twig" %}
 
 {% block logo_text %}{{ theater.getNameJa() }} TOEI{% endblock %}
+{% block logo_link %}{{ path_for('theater', { name: theater.getName() }) }}{% endblock %}
