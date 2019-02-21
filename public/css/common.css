@@ -231,7 +231,7 @@ a:hover {
 
 /* 文字サイズ */
 .text-xx-large {
-    font-size: 28px; 
+    font-size: 25px; 
 }
 .text-large {
     font-size: 20px;
@@ -263,7 +263,7 @@ a:hover {
 }
 
 .header-inner img {
-    width: 80px;
+    width: 64px;
 }
 .header-inner li img {
     width: 30px;
