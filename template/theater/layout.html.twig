@@ -41,9 +41,8 @@
     {% include 'include/menu_sp.html.twig' with {
         theaters: theaters,
     } only %}
-    {% include 'theater/include/navbar.html.twig' with {
-        theater: theater,
-    } only %}
+    
+    {% block navbar %}{% endblock %}
     
     <div class="contents">
         {% block contents %}{% endblock %}

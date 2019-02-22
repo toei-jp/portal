@@ -15,6 +15,13 @@
 <script src="/js/theater/top.js"></script>
 {% endblock %}
 
+{% block navbar %}
+{% include 'theater/include/navbar.html.twig' with {
+    theater: theater,
+    active: 'top',
+} only %}
+{% endblock %}
+
 {% block contents %}
 {% include 'include/slide.html.twig' with {
     mainBanners: mainBanners
