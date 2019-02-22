@@ -33,7 +33,11 @@
 </head>
 
 <body class="text-ultra-dark-gray">
-    {% block header %}{% endblock %}
+    {% include 'theater/include/header.html.twig' with {
+        theaters: theaters,
+        theater: theater,
+    } only %}
+    
     {% include 'include/menu_sp.html.twig' with {
         theaters: theaters,
     } only %}
