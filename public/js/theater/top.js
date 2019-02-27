@@ -560,7 +560,7 @@ function selectPerformances(event) {
         return;
     }
     if (toei.WAITER_SERVER_URL === '') {
-        location.href = toei.TICKET_SITE_URL + '/#/purchase/transaction/' + screeningEvent.id + '/' + data.token;
+        location.href = toei.TICKET_SITE_URL + '/#/purchase/transaction/' + screeningEvent.id;
         return;
     }
     getPassport()
