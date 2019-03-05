@@ -122,7 +122,7 @@ function getCredentials() {
  * @param {string} accessToken 
  */
 function createOptions(accessToken) {
-    const option = {
+    var option = {
         domain: '',
         clientId: '',
         redirectUri: '',
@@ -337,7 +337,7 @@ function screeningEventToFilm() {
     var screeningEvents = toei.screeningEvents;
     var films = [];
     screeningEvents.forEach(function (screeningEvent) {
-        const registered = films.find(function (film) {
+        var registered = films.find(function (film) {
             return (film.info !== undefined
                 && film.info.superEvent.id === screeningEvent.superEvent.id);
         });
@@ -356,8 +356,8 @@ function screeningEventToFilm() {
             || film2.info.workPerformed.datePublished === undefined) {
             return 0;
         }
-        const unixA = moment(film1.info.workPerformed.datePublished).unix();
-        const unixB = moment(film2.info.workPerformed.datePublished).unix();
+        var unixA = moment(film1.info.workPerformed.datePublished).unix();
+        var unixB = moment(film2.info.workPerformed.datePublished).unix();
         if (unixA > unixB) {
             return -1;
         }
@@ -392,19 +392,24 @@ function createFilmDom(film) {
         </div>\
         <div class="d-flex align-items-center mb-3">\
         '+ (function () {
-            if (info.workPerformed.contentRating !== undefined) {
+            if (info.workPerformed.contentRating !== undefined
+                && info.workPerformed.contentRating !== null) {
                 return '<a href="http://www.eirin.jp/see/index.html" target="_blank" class="px-3 py-1 bg-ultra-dark-gray text-small text-white text-small text-center mr-2">' + info.workPerformed.contentRating + '</a>'
             }
             return '';
         })() + '\
         '+ (function () {
-            if (info.superEvent.dubLanguage) {
+            if (info.superEvent.dubLanguage !== undefined
+                && info.superEvent.dubLanguage !== null
+                && info.superEvent.dubLanguage !== '') {
                 return '<div class="px-3 py-1 bg-ultra-dark-gray text-small text-white text-small text-center mr-2">吹替版</div>'
             }
             return '';
         })() + '\
         '+ (function () {
-            if (info.superEvent.subtitleLanguage) {
+            if (info.superEvent.subtitleLanguage
+                && info.superEvent.subtitleLanguage !== null
+                && info.superEvent.subtitleLanguage !== '') {
                 return '<div class="px-3 py-1 bg-ultra-dark-gray text-small text-white text-small text-center mr-2">字幕版</div>'
             }
             return '';
