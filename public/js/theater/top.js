@@ -46,31 +46,39 @@ var toei = {
     movieTheater: undefined
 };
 $(function () {
+    init();
+    getMovieTheater()
+        .then(function (movieTheaters) {
+            var findResult = movieTheaters.find(function (theater) {
+                return (theater.location.branchCode === toei.THEATER_CODE);
+            });
+            if (findResult === undefined) {
+                alert('劇場が見つかりません');
+                return;
+            }
+            toei.movieTheater = findResult;
+            createSchedule();
+            createPreSchedule();
+        }).catch(function (error) {
+            alert('劇場一覧取得エラー');
+        });
+});
+
+$(document).on('click', '.schedule-slider .swiper-slide a', selectDate);
+$(document).on('click', '.pre-schedule-slider .swiper-slide a', selectDate);
+$(document).on('click', '.change-schedule-button button', changeScheduleType);
+$(document).on('click', '.performances li a', selectPerformances);
+
+/**
+ * 初期化
+ */
+function init() {
     toei.API_ENDPOINT = $('input[name=API_ENDPOINT]').val();
     toei.THEATER_CODE = $('input[name=THEATER_CODE]').val();
     toei.WAITER_SERVER_URL = $('input[name=WAITER_SERVER_URL]').val();
     toei.TICKET_SITE_URL = $('input[name=TICKET_SITE_URL]').val();
     toei.PROJECT_ID = $('input[name=PROJECT_ID]').val();
-    getMovieTheater().then(function (movieTheaters) {
-        var findResult = movieTheaters.find(function (theater) {
-            return (theater.location.branchCode === toei.THEATER_CODE);
-        });
-        if (findResult === undefined) {
-            alert('劇場が見つかりません');
-            return;
-        }
-        toei.movieTheater = findResult;
-        createSchedule();
-        createPreSchedule();
-    }).catch(function (error) {
-        alert('劇場一覧取得エラー');
-    });
-});
-
-$(document).on('click', '.schedule-slider .swiper-slide a', selectDate);
-$(document).on('click', '.pre-schedule-slider .swiper-slide a', selectDate);
-$(document).on('click', '.change-schedule-button a', changeScheduleType);
-$(document).on('click', '.performances li a', selectPerformances);
+}
 
 /**
  * スケジュールスライダー作成
@@ -266,24 +274,45 @@ function selectDate(event) {
         return;
     }
     var date = $(this).attr('data-date');
+    var now = moment().toDate();
     var today = moment(moment().format('YYYYMMDD')).toISOString();
     var activeClass = 'bg-orange text-white';
     var defaultClass = 'bg-yellow text-ultra-dark-gray'
     $('.schedule-slider .swiper-slide .bg-orange').removeClass(activeClass).addClass(defaultClass);
     $(this).removeClass(defaultClass).addClass(activeClass);
     $('.target-date').text(moment(date).format('YYYY/MM/DD(ddd)'));
-    var params = {
-        eventStatuses: ['EventScheduled'],
-        superEvent: {
-            locationBranchCodes: toei.THEATER_CODE
-        },
-        startFrom: date,
-        startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toISOString(),
-        offers: {
-            availableFrom: today,
-            availableThrough: today
-        }
-    };
+    $('.change-schedule-button button').prop('disabled', true);
+    if (toei.isDisplayPreSchedule) {
+        // 先行販売
+        var params = {
+            eventStatuses: ['EventScheduled'],
+            superEvent: {
+                locationBranchCodes: toei.THEATER_CODE
+            },
+            startFrom: date,
+            startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toISOString(),
+            offers: {
+                validFrom: now,
+                validThrough: now,
+                availableFrom: now,
+                availableThrough: now
+            }
+        };
+    } else {
+        // 通常
+        var params = {
+            eventStatuses: ['EventScheduled'],
+            superEvent: {
+                locationBranchCodes: toei.THEATER_CODE
+            },
+            startFrom: date,
+            startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toISOString(),
+            offers: {
+                availableFrom: today,
+                availableThrough: today
+            }
+        };
+    }
     getScreeningEvent(params)
         .then(function (screeningEvents) {
             toei.screeningEvents = screeningEvents;
@@ -293,9 +322,11 @@ function selectDate(event) {
                 domList.push(createFilmDom(film));
             });
             $('.films').html(domList.join('\n'));
+            $('.change-schedule-button button').prop('disabled', false);
         }).catch(function (error) {
             alert('上映作品取得エラー');
-        });;
+            $('.change-schedule-button button').prop('disabled', false);
+        });
 }
 
 
@@ -388,8 +419,8 @@ function createFilmDom(film) {
             });
             return performances.join('\n');
         })() + '\
-        </ul >\
-    </li > ';
+        </ul>\
+    </li> ';
 
     return dom;
 }
@@ -517,8 +548,7 @@ function createPreScheduleSlider() {
 /**
  * スケジュール切り替え
  */
-function changeScheduleType(event) {
-    event.preventDefault();
+function changeScheduleType() {
     var sliderClassName = 'd-none';
     var scheduleSlider = $('.schedule-slider');
     var preScheduleSlider = $('.pre-schedule-slider');
