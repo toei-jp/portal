@@ -43,7 +43,11 @@ var toei = {
     /**
      * 劇場
      */
-    movieTheater: undefined
+    movieTheater: undefined,
+    /**
+     * 認証情報
+     */
+    credentials: undefined
 };
 $(function () {
     init();
@@ -93,12 +97,8 @@ function createScheduleSlider() {
             prevEl: '.schedule-slider .swiper-button-prev',
         },
         breakpoints: {
-            320: {
-                slidesPerView: 2.5
-            },
-            767: {
-                slidesPerView: 3.5
-            }
+            320: { slidesPerView: 2.5 },
+            767: { slidesPerView: 3.5 }
         }
     };
     return new Swiper('.schedule-slider .swiper-container', options);
@@ -114,7 +114,22 @@ function getCredentials() {
         type: 'POST',
         timeout: 10000
     };
-    return $.ajax(options);
+    var deferred = new $.Deferred;
+    if (toei.credentials === undefined
+        || moment(toei.credentials.expired).unix() < moment().unix()) {
+        $.ajax(options).then(function (credentials) {
+            toei.credentials = {
+                accessToken: credentials.data.access_token,
+                expired: moment().add(credentials.data.expires_in, 'second').add(-5, 'minutes').toISOString()
+            };
+            deferred.resolve(toei.credentials.accessToken);
+        }).catch(function (error) {
+            deferred.reject(error);
+        });
+    } else {
+        deferred.resolve(toei.credentials.accessToken);
+    }
+    return deferred.promise();
 }
 
 /**
@@ -148,8 +163,7 @@ function createOptions(accessToken) {
 function getMovieTheater() {
     var deferred = new $.Deferred;
     getCredentials()
-        .then(function (credentials) {
-            var accessToken = credentials.data.access_token;
+        .then(function (accessToken) {
             var options = createOptions(accessToken);
             var organizationService = new cinerino.service.Organization(options);
             return organizationService.searchMovieTheaters();
@@ -171,8 +185,7 @@ function getScreeningEvent(params) {
     var deferred = new $.Deferred;
     toei.isRequest = true;
     getCredentials()
-        .then(function (credentials) {
-            var accessToken = credentials.data.access_token;
+        .then(function (accessToken) {
             var options = createOptions(accessToken);
             var eventService = new cinerino.service.Event(options);
             return eventService.searchScreeningEvents(params)
@@ -539,12 +552,8 @@ function createPreScheduleSlider() {
             prevEl: '.pre-schedule-slider .swiper-button-prev',
         },
         breakpoints: {
-            320: {
-                slidesPerView: 2.5
-            },
-            767: {
-                slidesPerView: 3.5
-            }
+            320: { slidesPerView: 2.5 },
+            767: { slidesPerView: 3.5 }
         }
     };
     return new Swiper('.pre-schedule-slider .swiper-container', options);
@@ -611,7 +620,6 @@ function selectPerformances(event) {
                 location.href = toei.TICKET_SITE_URL + '/#/error';
             }
         });
-
 }
 
 /**
