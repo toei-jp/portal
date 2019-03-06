@@ -23,5 +23,5 @@ $ docker-compose up
 ### PHP CodeSniffer
 
 ```sh
-vendor/bin/phpcs --standard=phpcs.xml
+$ composer phpcs
 ```
