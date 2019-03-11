@@ -463,26 +463,22 @@ function createPerformanceDom(performance) {
     var status = (function () {
         if (isNotOnlineSale) {
             return '<div>窓口</div>';
-        }
-        if (isNotStartSale) {
+        } else if (isNotStartSale) {
             return '<div>販売期間外</div>';
-        }
-        if (isEndSale) {
+        } else if (isEndSale) {
             return '<div>販売終了</div>';
-        }
-        if (performance.remainingAttendeeCapacity === undefined
-            || performance.remainingAttendeeCapacity === 0) {
+        } else if (performance.remainingAttendeeCapacity === undefined
+            || performance.maximumAttendeeCapacity === undefined) {
+            return '<div>販売期間外</div>';
+        } else if (performance.remainingAttendeeCapacity === 0) {
             return '<div>完売</div>';
-        }
-        if (performance.remainingAttendeeCapacity <= 10) {
+        }else if (Math.round(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
             return '<div class="status-image"><img class="w-100" src="/images/icon/status_warning.svg"></div>\
             <div class="text-yellow">購入</div>';
-        }
-        if (performance.remainingAttendeeCapacity > 10) {
+        } else {
             return '<div class="status-image"><img class="w-100" src="/images/icon/status_success.svg"></div>\
             <div class="text-blue">購入</div>';
         }
-        return '';
     })();
     var dom = '<li class="my-2">\
         <a class="mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="#" data-id="' + performance.id + '">\
