@@ -209,7 +209,7 @@ function createSchedule() {
     var params = {
         eventStatuses: ['EventScheduled'],
         superEvent: {
-            locationBranchCodes: toei.THEATER_CODE
+            locationBranchCodes: [toei.THEATER_CODE]
         },
         startFrom: today,
         startThrough: moment(moment().add(10, 'day').format('YYYYMMDD')).toISOString(),
@@ -300,7 +300,7 @@ function selectDate(event) {
         var params = {
             eventStatuses: ['EventScheduled'],
             superEvent: {
-                locationBranchCodes: toei.THEATER_CODE
+                locationBranchCodes: [toei.THEATER_CODE]
             },
             startFrom: date,
             startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toISOString(),
@@ -316,7 +316,7 @@ function selectDate(event) {
         var params = {
             eventStatuses: ['EventScheduled'],
             superEvent: {
-                locationBranchCodes: toei.THEATER_CODE
+                locationBranchCodes: [toei.THEATER_CODE]
             },
             startFrom: date,
             startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toISOString(),
@@ -507,7 +507,7 @@ function createPreSchedule() {
     var params = {
         eventStatuses: ['EventScheduled'],
         superEvent: {
-            locationBranchCodes: toei.THEATER_CODE
+            locationBranchCodes: [toei.THEATER_CODE]
         },
         startFrom: moment(today).add(3, 'days').toDate(),
         offers: {
