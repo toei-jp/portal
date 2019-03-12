@@ -5,6 +5,12 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
+  # Maintenance Rule
+  # RewriteCond %{REQUEST_FILENAME} !-f
+  
+  # 全体メンテナンス
+  # RewriteRule ^(.*)$ maintenance.php [L]
+  
   # Application Rule
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
