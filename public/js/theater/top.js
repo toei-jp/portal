@@ -472,7 +472,7 @@ function createPerformanceDom(performance) {
             return '<div>販売期間外</div>';
         } else if (performance.remainingAttendeeCapacity === 0) {
             return '<div>完売</div>';
-        }else if (Math.round(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
+        }else if (Math.floor(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
             return '<div class="status-image"><img class="w-100" src="/images/icon/status_warning.svg"></div>\
             <div class="text-yellow">購入</div>';
         } else {
