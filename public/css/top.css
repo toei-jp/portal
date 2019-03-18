@@ -1,0 +1,112 @@
+
+/* 劇場選択 */
+h2 img {
+    width: 16px;
+}
+
+.theater {
+    border-radius: 4px;
+    max-height: 120px;
+    width: 100%;
+}
+.theater .next-button img {
+    width: 40px;
+}
+.theater .place img {
+    width: 80px; 
+}
+
+
+@media (max-width: 767.98px) {
+    .theater {
+        min-width: 100%;
+        max-height: 78px;
+    }
+    .theater .next-button img {
+        width:30px;
+    }
+    .theater .place img {
+        width: 50px; 
+    }
+}
+
+/* 上映中作品 */
+
+.screening-work li .image,
+.scheduled-work li .image {
+    padding-top: 67%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.screening-work.swiper-container,
+.scheduled-work.swiper-container {
+    overflow: visible !important;
+}
+.screening-work .swiper-button-next,
+.screening-work .swiper-button-prev,
+.scheduled-work .swiper-button-next,
+.scheduled-work .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+    background-image: url(/images/icon/slider_arrow2.svg);
+    background-size: 30px;
+    margin-top: -15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+
+.screening-work .swiper-button-next,
+.scheduled-work .swiper-button-next {
+    right: -15px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.screening-work .swiper-button-prev,
+.scheduled-work .swiper-button-prev {
+    left: -15px;
+}
+
+/* .now-showing .swiper-button-next, 
+.now-showing .swiper-button-prev {
+    top: 35% !important;
+}
+
+.coming-soon .swiper-button-next, 
+.coming-soon .swiper-button-prev {
+    top: 32% !important;
+} */
+.now-showing .swiper-button-disabled,
+.coming-soon .swiper-button-disabled {
+    display: none !important;
+}
+
+/* バナー */
+.banner {
+    max-width: 940px;
+}
+
+/* その他映画館一覧 */
+.other-cinema {
+    max-width: 800px;
+}
+.other-cinema li {
+    width: 25%;
+}
+
+@media (max-width: 767.98px) {
+    .other-cinema li {
+        width: 50%;
+    }
+    .other-cinema li:nth-child(odd) {
+        padding-right: 9px;
+    }
+    .other-cinema li:nth-child(even) {
+        padding-left: 9px;
+    }
+    .other-cinema li:nth-child(1){
+        margin-bottom: 10px;
+    }
+}

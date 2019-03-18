@@ -1,0 +1,42 @@
+
+p {
+    margin: 0;
+}
+.thumbnail {
+    width: 40%;
+}
+.image {
+    padding-top: 67%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.advance-ticket .info {
+    width: 60%;
+}
+.advance-ticket li {
+    line-height: 1.6;
+}
+.advance-ticket dt {
+    font-weight: normal;
+    width: 30%;
+}
+.advance-ticket dd {
+    width: 70%;
+}
+.advance-ticket dl:first-child {
+    margin-top: -1.5rem !important;
+}
+
+
+@media (max-width: 767.98px) {
+    .advance-ticket .thumbnail {
+        width: auto;
+    }
+    .advance-ticket .info {
+        width: auto;
+    }
+    .advance-ticket dl:last-child {
+        margin-bottom: 1.5rem;
+    }
+}

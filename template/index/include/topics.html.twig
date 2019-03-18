@@ -1,0 +1,42 @@
+{% if shibuyaTopics|length > 0 or marunouchiTopics|length > 0 %}
+<div class="py-5">
+    <div class="base-width mx-auto px-3">
+        <h2 class="d-flex text-large mb-4 align-items-center justify-content-center">
+            <img class="mr-2" src="/images/portal-top/icon_top_07.svg"><strong>トピックス</strong>
+        </h2>
+    
+    {% if marunouchiTopics|length > 0 %}
+        <h3 class="font-weight-bold text-center mb-2">{{ marunouchi.getNameJa() }} TOEI</h3>
+        <div class="py-2">
+            <ul class="border-top border-dark-gold topics mb-4">
+
+            {% for news in marunouchiTopics %}
+                {% include "index/include/topics_row.html.twig" with {
+                    news: news,
+                    theater: marunouchi,
+                } only %}
+            {% endfor %}
+            
+            </ul>
+        </div>
+    {% endif %}
+    
+    {% if shibuyaTopics|length > 0 %}
+        <h3 class="font-weight-bold text-center mb-2">{{ shibuya.getNameJa() }} TOEI</h3>
+        <div class="py-2">
+            <ul class="border-top border-dark-gold topics mb-4">
+                
+            {% for news in shibuyaTopics %}
+                {% include "index/include/topics_row.html.twig" with {
+                    news: news,
+                    theater: shibuya,
+                } only %}
+            {% endfor %}
+                
+            </ul>
+        </div>
+    {% endif %}
+    
+    </div>
+</div>
+{% endif %}

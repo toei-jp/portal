@@ -1,0 +1,38 @@
+{% extends "theater/layout.html.twig" %}
+
+{% block title %}劇場トップ・上映スケジュール | {{ parent() }}{% endblock %}
+
+{% block description %}{{ theater.getNameJa() }}TOEIの劇場サイトトップページです。上映スケジュール、トピックス、料金案内、前売券情報、施設案内、交通アクセスのご案内など。{% endblock %}
+
+{% block keywords %}{{ parent()}},予約,前売券{% endblock %}
+
+{% block css %}
+<link href="/css/theater/top.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+<script src="/js/cinerino.js"></script>
+<script src="/js/theater/top.js"></script>
+{% endblock %}
+
+{% block navbar %}
+{% include 'theater/include/navbar.html.twig' with {
+    theater: theater,
+    active: 'top',
+} only %}
+{% endblock %}
+
+{% block contents %}
+{% include 'include/slide.html.twig' with {
+    mainBanners: mainBanners
+} only %}
+
+{% include "theater/include/index/topics.html.twig" with {
+    topics: topics,
+    theater: theater,
+} only %}
+
+{% include 'theater/include/index/schedule.html.twig' with {
+    theater: theater,
+} only %}
+{% endblock %}

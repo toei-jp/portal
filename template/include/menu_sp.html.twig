@@ -1,0 +1,21 @@
+<div class="d-md-none d-none bg-black sp-menu">
+    <ul class="px-3 py-5">
+        <li class="border-top border-bottom border-super-dark-gray">
+            <a class="d-block text-white p-3" href="{{ path_for('homepage') }}">ポータルトップ</a>
+        </li>
+        <li class="border-bottom border-super-dark-gray">
+            <a class="d-block text-white p-3" href="{{ path_for('schedule_showing') }}">上映中作品</a>
+        </li>
+        <li class="border-bottom border-super-dark-gray">
+            <a class="d-block text-white p-3" href="{{ path_for('schedule_soon') }}">上映予定作品</a>
+        </li>
+    {% for theater in theaters %}
+        <li class="border-bottom border-super-dark-gray">
+            <a class="d-block text-white p-3" href="{{ path_for('theater', { name: theater.getName() }) }}">{{ theater.getNameJa() }} TOEI</a>
+        </li>
+    {% endfor %}
+        <li class="border-bottom border-super-dark-gray">
+            <a class="d-block text-white p-3" href="{{ path_for('faq') }}">よくあるご質問</a>
+        </li>
+    </ul>
+</div>

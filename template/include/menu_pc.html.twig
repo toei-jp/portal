@@ -1,0 +1,36 @@
+<div class="d-md-flex align-items-center d-none header-menu">
+    <ul class="d-flex align-items-center pr-1">
+        <li class="pl-2 pr-3 py-2 text-center">
+            <a class="text-white d-block" href="{{ path_for('homepage') }}">
+                <img class="header-icon" src="/images/header/icon_top_00.svg">
+                <div class="text-x-small">TOP</div>
+            </a>
+        </li>
+        <li class="px-2 py-2 text-center">
+            <a class="text-white d-block" href="{{ path_for('schedule_showing') }}">
+                <img class="header-icon" src="/images/header/icon_top_01.svg">
+                <div class="text-x-small">上映中作品</div>
+            </a>
+        </li>
+        <li class="px-2 py-2 text-center">
+            <a class="text-white d-block" href="{{ path_for('schedule_soon') }}">
+                <img class="header-icon" src="/images/header/icon_top_02.svg">
+                <div class="text-x-small">上映予定作品</div>
+            </a>
+        </li>
+    {% for theater in theaters %}
+        <li class="px-2 py-2 text-center">
+            <a class="text-white d-block" href="{{ path_for('theater', { name: theater.getName() }) }}">
+                <img class="header-icon" src="/images/header/icon_top_03.svg">
+                <div class="text-x-small">{{ theater.getNameJa() }} TOEI</div>
+            </a>
+        </li>
+    {% endfor %}
+        <li class="px-2 py-2 text-center">           
+            <a class="text-white d-block" href="{{ path_for('faq') }}">
+                <img class="header-icon" src="/images/header/icon_top_04.svg">
+                <div class="text-x-small">よくあるご質問</div>
+            </a>
+        </li>
+    </ul>
+</div>

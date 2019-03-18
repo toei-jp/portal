@@ -1,0 +1,50 @@
+{% extends "theater/layout.html.twig" %}
+
+{% block title %}料金案内 | {{ parent() }}{% endblock %}
+
+{% block description %}{{ theater.getNameJa() }}の料金案内ページです。一般や学生・幼児・シニアなどの通常鑑賞料金やお得に映画が観れるサービスデイ・割引料金のご案内など{% endblock %}
+
+{% block keywords %}{{ parent()}},サービスデイ,料金,障がい者,割引,レディース,3D,一般,大学生,高校生,中学生,小学生,夫婦,シニア{% endblock %}
+
+{% block css %}
+<link href="/css/theater/price.css" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+{% include 'theater/include/navbar.html.twig' with {
+    theater: theater,
+    active: 'price',
+} only %}
+{% endblock %}
+
+{% block contents %}
+<div class="py-3">
+    <div class="base-width mx-auto px-3">
+        <ul class="breadcrumb-list text-small">
+            <li>
+                <a class="text-light-blue" href="{{ path_for('homepage') }}">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a class="text-light-blue" href="{{ path_for('theater', { name: theater.getName() }) }}">
+                    <span>{{ theater.getNameJa() }}ホーム</span>
+                </a>
+            </li>
+            <li>
+                <span>料金案内</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="py-4 text-ultra-dark-gray">
+    <div class="base-width mx-auto px-3">
+        <h2 class="text-large text-center mb-4"><strong>料金案内</strong></h2>
+        
+        {% include 'theater/price/include/' ~ theater.getName() ~ '.html.twig' with {
+            theater: theater,
+        } only %}
+    </div>
+</div>
+{% endblock %}

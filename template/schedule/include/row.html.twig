@@ -1,0 +1,13 @@
+<div id="{{ schedule.getId() }}" class="item">
+    {% include "schedule/include/row_title_pc.html.twig" with {
+        type: type,
+        schedule: schedule,
+        theaters: theaters,
+    } only %}
+    
+    {% include "schedule/include/row_title_sp.html.twig" with {
+        type: type,
+        schedule: schedule,
+        theaters: theaters,
+    } only %}
+</div>

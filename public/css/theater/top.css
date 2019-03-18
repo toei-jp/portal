@@ -1,0 +1,115 @@
+h2 img {
+    width: 16px;
+}
+
+.change-schedule-button {
+    width: 300px;
+    max-width: 100%;
+}
+
+.schedule-slider .swiper-slide,
+.pre-schedule-slider .swiper-slide {
+    background-color: #FFF;
+}
+
+.schedule-slider .swiper-slide a,
+.pre-schedule-slider .swiper-slide a {
+    position: relative;
+    padding-top: 87.5%;
+}
+
+.schedule-slider .swiper-slide a .position-absolute,
+.pre-schedule-slider .swiper-slide a .position-absolute {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.schedule-slider .swiper-slide a::after,
+.pre-schedule-slider .swiper-slide a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000;
+    opacity: 0.1;
+}
+
+.schedule-slider .swiper-button-next,
+.schedule-slider .swiper-button-prev,
+.pre-schedule-slider .swiper-button-next,
+.pre-schedule-slider .swiper-button-prev {
+    width: 27px;
+    height: 27px;
+    background-image: url(/images/icon/slider_arrow2.svg);
+    background-size: 27px;
+    margin-top: -13px;
+}
+
+.schedule-slider .swiper-button-next,
+.pre-schedule-slider .swiper-button-next {
+    right: -38px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.schedule-slider .swiper-button-prev,
+.pre-schedule-slider .swiper-button-prev {
+    left: -38px;
+}
+
+.films > li {
+    position: relative;
+}
+
+.films > li::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 88px 88px;
+    border-color: transparent transparent #000 transparent;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+}
+
+.performances {
+    margin: -0.25rem;
+    position: relative;
+    z-index: 10;
+}
+.performances li {
+    width: 20%;
+}
+
+.performances li .status {
+    height: 30px;
+}
+.performances li .status-image {
+    width: 30px;
+    height: 30px;
+}
+
+@media (max-width: 767.98px) {
+    .schedule-slider .swiper-slide a,
+    .pre-schedule-slider .swiper-slide a {
+        padding-top: 88.8%;
+    }
+    .performances {
+        margin: -0.5rem 0;
+    }
+    .performances li {
+        width: auto;
+    }
+    .performances li .screen {
+        width: 100px;
+    }
+    .performances li .status {
+        width: 80px;
+    }
+}

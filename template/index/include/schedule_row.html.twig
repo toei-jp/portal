@@ -1,0 +1,31 @@
+{% set title = schedule.getTitle() %}
+<li class="swiper-slide pl-md-0 pl-3">
+    {% set routeName = 'schedule_' ~ type %}
+    <a class="d-block mb-4" href="{{ path_for(routeName) }}#{{ schedule.getId() }}">
+        <div class="border border-super-light-gray image mb-2" style="background-image: url({{ file_url(title.getImage()) }})"></div>
+    {% if type == 'soon' %}
+        <p class="text-small text-ultra-dark-gray mb-2">{{ schedule.getStartDate()|date('Y/m/d') }}公開</p>
+    {% endif %}
+        <p class="text-small text-ultra-dark-gray">{{ title.getName() }}</p>
+    </a>
+    
+    <div class="d-flex text-center">
+    {% for theater in theaters %}
+        {% set isShowing = false %}{# ループ前に宣言する #}
+                    
+        {% for showingTehater in schedule.getShowingTheaters %}
+            {% if showingTehater.getTheater().getId() == theater.getId() %}
+                {% set isShowing = true %}
+            {% endif %}
+        {% endfor %}
+        
+        {% if isShowing %}
+        <div class="w-50 mr-1">
+            <a class="d-block text-x-small py-2 text-white bg-ultra-dark-gray" href="{{ path_for('theater', { name: theater.getName() }) }}">{{ theater.getNameJa() }}</a>
+        </div>
+        {% else %}
+        <div class="bg-light-gray w-50 ml-1 py-2 text-x-small text-white">{{ theater.getNameJa() }}</div>
+        {% endif %}
+    {% endfor %}
+    </div>
+</li>

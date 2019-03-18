@@ -1,0 +1,86 @@
+{% set title = schedule.getTitle() %}
+<div class="d-md-none border-bottom border-light-gold py-5">
+{% if type == 'soon' %}
+    <div class="mb-3">{{ schedule.getStartDate()|date('Y/m/d') }} 公開</div>
+{% endif %}
+
+    <p class="text-large mb-3">{{ title.getName() }}<br>{{ title.getSubTitle() }}</p>
+    
+    <div class="d-flex text-center mb-3 text-small">
+{% for theater in theaters %}
+    {% set isShowing = false %}{# ループ前に宣言する #}
+                    
+    {% for showingTehater in schedule.getShowingTheaters %}
+        {% if showingTehater.getTheater().getId() == theater.getId() %}
+            {% set isShowing = true %}
+        {% endif %}
+    {% endfor %}
+        
+    {% if isShowing %}
+        <div class="w-50 mr-1">
+            <a class="d-block text-white bg-ultra-dark-gray py-2" href="{{ path_for('theater', { name: theater.getName() }) }}">{{ theater.getNameJa() }}</a>
+        </div>
+    {% else %}
+        <div class="w-50 ml-1">
+            <div class="bg-super-light-gray text-white py-2">{{ theater.getNameJa() }}</div>
+        </div>
+    {% endif %}
+{% endfor %}
+    </div>
+    
+    <div class="thumbnail mb-3">
+        <div class="border border-super-light-gray image mb-2" style="background-image: url({{ file_url(title.getImage()) }});"></div>
+        <p class="text-x-small text-gray mb-0">{{ title.getCredit() }}</p>
+    </div>
+    <div class="info sp-info d-none">
+        <div class="d-flex align-items-center text-x-small text-white pr-2 mb-3">
+        {% set ratingText = title_rating_text(title.getRating()) %}
+        {% if ratingText %}
+            <div class="py-1 px-3 bg-super-dark-gray border-right border-white">{{ ratingText }}</div>
+        {% endif %}
+            
+    {% for showingFormat in schedule.getShowingFormats() %}
+        {% set voiceText = showing_format_voice_text(showingFormat.getVoice()) %}
+        {% if voiceText %}
+            <div class="py-1 px-3 bg-super-dark-gray border-right border-white">{{ voiceText }}</div>
+        {% endif %}
+    {% endfor %}
+        </div>
+        
+        <p class="mb-3">
+        {% if type == 'showing' %}
+            &lt;上映期間&gt;<br>
+            {{ schedule.getStartDate()|date('m/d') }} ～<br>
+            <br>
+        {% endif %}
+            &lt;監督&gt;<br>
+            {{ title.getDirector() }}<br>
+            <br>
+            &lt;出演&gt;<br>
+            {{ title.getCast() }}<br>
+            <br>
+            &lt;ストーリー&gt;<br>
+            {{ title.getIntroduction()|nl2br }}<br>
+            <br>
+            &lt;株主優待&gt;<br>
+            {{ schedule.getRemark()|nl2br }}
+        </p>
+
+    {% if title.getOfficialSite() %}
+        <div class="text-center mb-4"><a class="text-light-blue another-tab" href="{{ title.getOfficialSite() }}" target="_blank">公式サイト</a></div>
+    {% endif %}
+    </div>
+    
+    <div class="d-md-none d-flex justify-content-center">
+        <div class="open-button">
+            <a href="#" class="d-inline-block text-small text-ultra-dark-gray text-center border border-ultra-dark-gray text-center rounded p-2">
+                全て表示する +
+            </a>
+        </div>
+        <div class="close-button d-none">
+            <a href="#" class="d-inline-block text-small text-ultra-dark-gray text-center border border-ultra-dark-gray text-center rounded p-2">
+                閉じる -
+            </a>
+        </div>
+    </div>
+</div>

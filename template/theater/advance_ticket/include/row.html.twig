@@ -1,0 +1,54 @@
+{% set advanceSale = advanceTicket.getAdvanceSale() %}
+{% set title = advanceSale.getTitle() %}
+<div class="item mb-5">
+    <div class="d-md-flex py-4">
+
+        <div class="info pl-md-5 order-2">
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>作品名</dt>
+                <dd>{{ title.getName() }}</dd>
+            </dl>
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>公開予定日</dt>
+                <dd>
+                    {% if advanceSale.getPublishingExpectedDateText() %}
+                        {{ advanceSale.getPublishingExpectedDateText() }}
+                    {% elseif advanceSale.getPublishingExpectedDate() %}
+                        {{ advanceSale.getPublishingExpectedDate()|date('Y/m/d') }}
+                    {% endif %}
+                </dd>
+            </dl>
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>発売日</dt>
+                <dd>
+                    {% if advanceTicket.getReleaseDtText() %}
+                        {{ advanceTicket.getReleaseDtText() }}
+                    {% else %}
+                        {{ advanceTicket.getReleaseDt()|date('Y/m/d') }}
+                    {% endif %}
+                </dd>
+            </dl>
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>前売</dt>
+                <dd>{{ advanceTicket.getPriceText() }}</dd>
+            </dl>
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>チケット</dt>
+                <dd>{{ at_type_label(advanceTicket.getType()) }}</dd>
+            </dl>
+            {% set giftName = advanceTicket.getSpecialGift() ~ at_special_gift_stock_label(advanceTicket.getSpecialGiftStock()) %}
+            <dl class="d-flex border-bottom border-ultra-light-gray py-4">
+                <dt>特典</dt>
+                <dd>{{ giftName|nl2br }}</dd>
+            </dl>
+        </div>
+        {% set specialGiftImage = '/images/theater-advance-ticket/noimage.png' %}
+        {% if advanceTicket.getSpecialGiftImage() %}
+            {% set specialGiftImage = file_url(advanceTicket.getSpecialGiftImage()) %}
+        {% endif %}
+        
+        <div class="thumbnail order-1">
+            <div class="border border-super-light-gray image mb-2" style="background-image: url({{ specialGiftImage }});"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+
+.image {
+    padding-top: 67%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.item-width {
+    max-width: 600px;
+}
+.contents p {
+    line-height: 1.6;
+}
+.prev-link {
+    text-align: center;
+}
+.prev-link a,
+.prev-link button {
+    font-size: 14px;
+    color: #595757;
+    position: relative;
+    cursor: pointer;
+}
+.prev-black {
+    background-image: url(/images/icon/icon_prev_black.svg);
+    background-size: 16px;
+    width: 23px;
+    height: 18px;
+    background-repeat: no-repeat;
+}
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@media (max-width: 767.98px) {
+    .thumbnail {
+        width: auto;
+    }
+    .info {
+        width: auto;
+    }
+
+}

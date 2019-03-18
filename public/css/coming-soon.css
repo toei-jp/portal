@@ -1,0 +1,24 @@
+
+.thumbnail {
+    width: 40%;
+}
+.image {
+    padding-top: 67%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.info {
+    width: 60%;
+}
+
+
+@media (max-width: 767.98px) {
+    .thumbnail {
+        width: auto;
+    }
+    .info {
+        width: auto;
+    }
+}
