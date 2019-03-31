@@ -34,11 +34,6 @@
 {% set floorGuideUrl = path_for('theater_floor_guide', { name: theater.getName() }) %}
 {% set accessUrl = path_for('theater_access', { name: theater.getName() }) %}
 
-{% if theater.getId() == '1' %}
-    {% set theaterCode = '001' %}
-{% elseif theater.getId() == '2' %}
-    {% set theaterCode = '002' %}
-{% endif %}
 <div class="sub-header border-super-light-orange border-bottom border-dark-gold d-md-block d-none">
     <div class="sub-header-inner base-width mx-auto">
         <ul class="d-flex align-items-center text-s-small text-center">
@@ -48,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ mp_ticket_site_url() }}/inquiry/login?theater={{ theaterCode }}" target="_blank">
+                <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ mp_ticket_site_url() }}/inquiry/login?theater={{ theater.getMasterCode() }}" target="_blank">
                     <span class="border-left border-dark-gold py-2">QRコード発行</span>
                 </a>
             </li>
@@ -91,7 +86,7 @@
                     </a>
                 </li>
                 <li class="swiper-slide">
-                    <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ mp_ticket_site_url() }}/inquiry/login?theater={{ theaterCode }}" target="_blank">
+                    <a class="d-flex align-items-center text-ultra-dark-gray" href="{{ mp_ticket_site_url() }}/inquiry/login?theater={{ theater.getMasterCode() }}" target="_blank">
                         <span class="border-left border-dark-gold py-2">QRコード発行</span>
                     </a>
                 </li>
