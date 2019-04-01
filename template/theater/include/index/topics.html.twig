@@ -12,12 +12,14 @@
                     id: news.getId()
                 }) %}
                 <li class="border-bottom border-dark-gold">
-                    <a class="d-block d-md-flex align-items-center justify-content-between text-ultra-dark-gray py-3 pl-3 pr-5 pr-md-3"
+                    <a class="d-block d-md-flex align-items-center text-ultra-dark-gray py-3 pl-3 pr-5 pr-md-3"
                         href="{{ detailLink }}">
-                        <div class="mb-2 mb-md-0">{{ news.getStartDt()|date('y/m/d') }}</div>
-                        <p class="mb-0">{{ news.getHeadline() }}</p>
+                        <div class="mb-2 mb-md-0">
+                            <div class="theater_topic_detail_date">{{ news.getStartDt()|date('y/m/d') }}</div>
+                        </div>
+                        <p class="mb-0 mr-md-auto">{{ news.getHeadline() }}</p>
                         <div class="text-light-blue text-right d-none d-md-block">
-                            <span class="arrow-blue">さらに詳しく</span>
+                            <div class="arrow-blue theater_topic_detail_more">さらに詳しく</div>
                         </div>
                     </a>
                 </li>

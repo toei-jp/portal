@@ -227,8 +227,13 @@ function createSchedule() {
             });
             $('.schedule-slider .swiper-wrapper').append(domList.join('\n'));
             toei.scheduleSlider = createScheduleSlider();
-            var today = moment(moment().format('YYYYMMDD')).toISOString();
-            $('.schedule-slider .swiper-slide a[data-date="' + today + '"]').trigger('click');
+            var target = dates.find(function (d) {
+                return (d.data !== undefined);
+            });
+            if (target === undefined) {
+                return;
+            }
+            $('.schedule-slider .swiper-slide a[data-date="' + target.date + '"]').trigger('click');
         }).catch(function (error) {
             alert('上映作品取得エラー');
         });
@@ -291,7 +296,12 @@ function selectDate(event) {
     var today = moment(moment().format('YYYYMMDD')).toISOString();
     var activeClass = 'bg-orange text-white';
     var defaultClass = 'bg-yellow text-ultra-dark-gray'
-    $('.schedule-slider .swiper-slide .bg-orange').removeClass(activeClass).addClass(defaultClass);
+    $('.schedule-slider .swiper-slide .bg-orange')
+        .removeClass(activeClass)
+        .addClass(defaultClass);
+    $('.pre-schedule-slider .swiper-slide .bg-orange')
+        .removeClass(activeClass)
+        .addClass(defaultClass);
     $(this).removeClass(defaultClass).addClass(activeClass);
     $('.target-date').text(moment(date).format('YYYY/MM/DD(ddd)'));
     $('.change-schedule-button button').prop('disabled', true);
@@ -472,7 +482,7 @@ function createPerformanceDom(performance) {
             return '<div>販売期間外</div>';
         } else if (performance.remainingAttendeeCapacity === 0) {
             return '<div>完売</div>';
-        }else if (Math.floor(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
+        } else if (Math.floor(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
             return '<div class="status-image"><img class="w-100" src="/images/icon/status_warning.svg"></div>\
             <div class="text-yellow">購入</div>';
         } else {
@@ -481,7 +491,7 @@ function createPerformanceDom(performance) {
         }
     })();
     var dom = '<li class="my-2">\
-        <a class="mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="#" data-id="' + performance.id + '">\
+        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="#" data-id="' + performance.id + '">\
             <div class="screen text-small mb-md-2 text-left text-md-center">' + performance.location.address.en + ' ' + performance.location.name.ja + '</div>\
             <div class="mx-auto"><strong class="text-x-large">' + moment(performance.startDate).format('HH:mm') + '</strong>-' + moment(performance.endDate).format('HH:mm') + '</div>\
             <hr class="d-none d-md-block my-2 border-0 ' + borderClassName + '">\
@@ -572,7 +582,17 @@ function changeScheduleType() {
         toei.scheduleSlider.update();
         preScheduleButton.removeClass('d-none').addClass('d-block');
         scheduleButton.removeClass('d-block').addClass('d-none');
-        scheduleSlider.find('.swiper-slide:first-child a').trigger('click');
+        var target;
+        scheduleSlider.find('.swiper-slide').each(function(i, e) {
+            if (target === undefined && $(e).find('.bg-yellow').length > 0) {
+                target = $(e);
+                return;
+            }
+        });
+        if (target === undefined) {
+            return;
+        }
+        target.find('a').trigger('click');
     } else {
         // 先行スケジュール表示へ
         scheduleSlider.addClass(sliderClassName);
