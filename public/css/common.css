@@ -399,15 +399,19 @@ footer a {
 }
 
 /* トッピクス */
-
-
 .topics li a div:first-child {
     width: 100px;
 }
-
 .topics li a div:last-child {
     width: 150px;
 }
+.theater_topic_detail_date {
+    width: 100px;
+}
+.theater_topic_detail_more {
+    width: 135px;
+}
+
 
 @media (max-width: 767.98px) {
     /* トッピクス */
@@ -472,3 +476,5 @@ footer a {
     background-position: 100% center;
     background-size: 12px 12px;
 }
+
+/* トピック */
