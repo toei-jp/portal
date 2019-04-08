@@ -53,17 +53,29 @@
             {{ schedule.getStartDate()|date('m/d') }} ～<br>
             <br>
         {% endif %}
+        
+        {% if title.getDirector() %}
             &lt;監督&gt;<br>
             {{ title.getDirector() }}<br>
             <br>
+        {% endif %}
+        
+        {% if title.getCast() %}
             &lt;出演&gt;<br>
             {{ title.getCast() }}<br>
             <br>
+        {% endif %}
+        
+        {% if title.getIntroduction() %}
             &lt;ストーリー&gt;<br>
             {{ title.getIntroduction()|nl2br }}<br>
             <br>
+        {% endif %}
+        
+        {% if schedule.getRemark() %}
             &lt;株主優待&gt;<br>
             {{ schedule.getRemark()|nl2br }}
+        {% endif %}
         </p>
 
     {% if title.getOfficialSite() %}
