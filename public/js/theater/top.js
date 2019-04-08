@@ -471,9 +471,7 @@ function createPerformanceDom(performance) {
     var boxClassName = (isSale) ? 'bg-white text-ultra-dark-gray' : 'bg-super-dark-gray text-super-light-gray not-event';
     var borderClassName = (isSale) ? 'bg-ultra-light-gray' : 'bg-white';
     var status = (function () {
-        if (isNotOnlineSale) {
-            return '<div>窓口</div>';
-        } else if (isNotStartSale) {
+        if (isNotStartSale) {
             return '<div>販売期間外</div>';
         } else if (isEndSale) {
             return '<div>販売終了</div>';
@@ -482,6 +480,14 @@ function createPerformanceDom(performance) {
             return '<div>販売期間外</div>';
         } else if (performance.remainingAttendeeCapacity === 0) {
             return '<div>完売</div>';
+        } else if (isNotOnlineSale) {
+            if (Math.floor(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
+                return '<div class="status-image"><img class="w-100" src="/images/icon/status_warning_window.svg"></div>\
+                <div>窓口</div>';
+            } else {
+                return '<div class="status-image"><img class="w-100" src="/images/icon/status_success_window.svg"></div>\
+                <div>窓口</div>';
+            }
         } else if (Math.floor(performance.remainingAttendeeCapacity / performance.maximumAttendeeCapacity * 100) < 30) {
             return '<div class="status-image"><img class="w-100" src="/images/icon/status_warning.svg"></div>\
             <div class="text-yellow">購入</div>';
@@ -583,7 +589,7 @@ function changeScheduleType() {
         preScheduleButton.removeClass('d-none').addClass('d-block');
         scheduleButton.removeClass('d-block').addClass('d-none');
         var target;
-        scheduleSlider.find('.swiper-slide').each(function(i, e) {
+        scheduleSlider.find('.swiper-slide').each(function (i, e) {
             if (target === undefined && $(e).find('.bg-yellow').length > 0) {
                 target = $(e);
                 return;
