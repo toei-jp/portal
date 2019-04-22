@@ -233,6 +233,11 @@ function createSchedule() {
             if (target === undefined) {
                 return;
             }
+            var selectedDate = sessionStorage.getItem('selectedDate');
+            if ($('.schedule-slider .swiper-slide a[data-date="' + selectedDate + '"]').length > 0) {
+                $('.schedule-slider .swiper-slide a[data-date="' + selectedDate + '"]').trigger('click');
+                return;
+            }
             $('.schedule-slider .swiper-slide a[data-date="' + target.date + '"]').trigger('click');
         }).catch(function (error) {
             alert('上映作品取得エラー');
@@ -338,6 +343,7 @@ function selectDate(event) {
     }
     getScreeningEvent(params)
         .then(function (screeningEvents) {
+            sessionStorage.setItem('selectedDate', date);
             toei.screeningEvents = screeningEvents;
             var films = screeningEventToFilm();
             var domList = [];
@@ -498,7 +504,14 @@ function createPerformanceDom(performance) {
     })();
     var dom = '<li class="my-2">\
         <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="#" data-id="' + performance.id + '">\
-            <div class="screen text-small mb-md-2 text-left text-md-center">' + performance.location.address.en + ' ' + performance.location.name.ja + '</div>\
+            <div class="screen text-small mb-md-2 text-left text-md-center">\
+            '+ (function () {
+            if (performance.location.address !== undefined) {
+                return performance.location.address.en + ' ' + performance.location.name.ja
+            }
+            return performance.location.name.ja;
+            })() + '\
+            </div>\
             <div class="mx-auto"><strong class="text-x-large">' + moment(performance.startDate).format('HH:mm') + '</strong>-' + moment(performance.endDate).format('HH:mm') + '</div>\
             <hr class="d-none d-md-block my-2 border-0 ' + borderClassName + '">\
             <div class="status d-flex justify-content-around align-items-center">\
