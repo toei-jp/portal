@@ -8,6 +8,7 @@
 namespace Toei\Portal\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 use Toei\Portal\ORM\Entity\MainBanner;
 

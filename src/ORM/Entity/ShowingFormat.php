@@ -71,28 +71,6 @@ class ShowingFormat extends AbstractEntity
      */
     protected $voice;
     
-    
-    /**
-     * return system list
-     *
-     * @return array
-     */
-    public static function getSystemList()
-    {
-        return self::$systemList;
-    }
-    
-    /**
-     * return voice list
-     *
-     * @return array
-     */
-    public static function getVoiceList()
-    {
-        return self::$voiceList;
-    }
-    
-    
     /**
      * construct
      *
