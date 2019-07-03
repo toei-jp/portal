@@ -21,6 +21,7 @@ use Toei\Portal\Responder\AbstractResponder as Responder;
  *
  * @property \Doctrine\ORM\EntityManager $em
  * @property \Monolog\Logger $logger
+ * @property array $settings
  * @property \Slim\Views\Twig $view
  */
 abstract class AbstractController
