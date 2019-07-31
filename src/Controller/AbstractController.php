@@ -19,9 +19,10 @@ use Toei\Portal\Responder\AbstractResponder as Responder;
 /**
  * Abstract controller
  *
- * @property \Doctrine\ORM\EntityManager $em
- * @property \Monolog\Logger $logger
- * @property \Slim\Views\Twig $view
+ * @property-read \Doctrine\ORM\EntityManager $em
+ * @property-read \Monolog\Logger $logger
+ * @property-read array $settings
+ * @property-read \Slim\Views\Twig $view
  */
 abstract class AbstractController
 {
