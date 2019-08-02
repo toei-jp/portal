@@ -71,7 +71,7 @@ $(function () {
 $(document).on('click', '.schedule-slider .swiper-slide a', selectDate);
 $(document).on('click', '.pre-schedule-slider .swiper-slide a', selectDate);
 $(document).on('click', '.change-schedule-button button', changeScheduleType);
-$(document).on('click', '.performances li a', selectPerformances);
+// $(document).on('click', '.performances li a', selectPerformances);
 
 /**
  * 初期化
@@ -503,14 +503,14 @@ function createPerformanceDom(performance) {
         }
     })();
     var dom = '<li class="my-2">\
-        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="#" data-id="' + performance.id + '">\
+        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="'+ toei.TICKET_SITE_URL + '?performanceId=' + performance.id +'" data-id="' + performance.id + '">\
             <div class="screen text-small mb-md-2 text-left text-md-center">\
             '+ (function () {
             if (performance.location.address !== undefined) {
                 return performance.location.address.en + ' ' + performance.location.name.ja
             }
             return performance.location.name.ja;
-            })() + '\
+        })() + '\
             </div>\
             <div class="mx-auto"><strong class="text-x-large">' + moment(performance.startDate).format('HH:mm') + '</strong>-' + moment(performance.endDate).format('HH:mm') + '</div>\
             <hr class="d-none d-md-block my-2 border-0 ' + borderClassName + '">\
@@ -624,8 +624,10 @@ function changeScheduleType() {
     }
 }
 
+
 /**
  * パフォーマンス選択
+ * @deprecated
  */
 function selectPerformances(event) {
     event.preventDefault();
