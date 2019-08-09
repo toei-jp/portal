@@ -165,8 +165,8 @@ function getMovieTheater() {
     getCredentials()
         .then(function (accessToken) {
             var options = createOptions(accessToken);
-            var organizationService = new cinerino.service.Organization(options);
-            return organizationService.searchMovieTheaters();
+            var sellerService = new cinerino.service.Seller(options);
+            return sellerService.search({});
         }).then(function (movieTheatersResult) {
             var movieTheaters = movieTheatersResult.data;
             deferred.resolve(movieTheaters);
