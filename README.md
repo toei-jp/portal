@@ -2,13 +2,34 @@
 
 東映ポータルサイト
 
+## システム要件
+
+- PHP: 7.2
+- MySQL: 5.7
+- Azure App Service (Windows)
+- Azure Blob Storage
+
+## EditorConfig
+
+[EditorConfig](https://editorconfig.org/) でコーディングスタイルを定義しています。
+
+利用しているエディタやIDEにプラグインをインストールしてください。
+
+[Download a Plugin](https://editorconfig.org/#download)
+
 ## Docker
 
 ローカル環境としてDockerが利用できます。
 
-※現状では開発環境としての利用のみを想定
+※ [Docker](https://www.docker.com/)をインストールしてください。
 
-web: http://localhost:8010/
+※ 現状では開発環境としての利用のみを想定してます。
+
+※ AzureはWindowsサーバですが、こちらはLinuxサーバです。
+
+※ データベース、ストレージについてはCMSアプリケーションのドキュメントを参照してください。
+
+web: https://localhost:8010/
 
 ### コマンド例
 
