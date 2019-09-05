@@ -7,6 +7,9 @@
 
 namespace Toei\Portal\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 use Psr\Container\ContainerInterface;
 
 use Toei\Portal\ORM\Entity\ShowingFormat;
@@ -14,7 +17,7 @@ use Toei\Portal\ORM\Entity\ShowingFormat;
 /**
  * ShowingFormat twig extension class
  */
-class ShowingFormatExtension extends \Twig_Extension
+class ShowingFormatExtension extends AbstractExtension
 {
     /**
      * construct
@@ -22,7 +25,7 @@ class ShowingFormatExtension extends \Twig_Extension
     public function __construct()
     {
     }
-    
+
     /**
      * get functions
      *
@@ -31,10 +34,10 @@ class ShowingFormatExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('showing_format_voice_text', [$this, 'getVoiceText']),
+            new TwigFunction('showing_format_voice_text', [$this, 'getVoiceText']),
         ];
     }
-    
+
     /**
      * return voice text
      *
@@ -48,7 +51,7 @@ class ShowingFormatExtension extends \Twig_Extension
         } elseif (ShowingFormat::VOICE_DUB === $voice) {
             return '吹替版';
         }
-        
+
         return '';
     }
 }
