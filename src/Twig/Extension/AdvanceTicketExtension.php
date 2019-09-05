@@ -41,7 +41,7 @@ class AdvanceTicketExtension extends AbstractExtension
      * return type label
      *
      * @param int $type
-     * @return string|null
+     * @return string
      */
     public function getTypeLabel(int $type)
     {
@@ -51,7 +51,7 @@ class AdvanceTicketExtension extends AbstractExtension
             return '紙券';
         }
 
-        throw null;
+        return '';
     }
 
     /**
