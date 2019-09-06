@@ -7,16 +7,19 @@
 
 namespace Toei\Portal\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 use Psr\Container\ContainerInterface;
 
 /**
  * MotionPicture twig extension class
  */
-class MotionPictureExtenstion extends \Twig_Extension
+class MotionPictureExtenstion extends AbstractExtension
 {
     /** @var array */
     protected $settings;
-    
+
     /**
      * construct
      *
@@ -26,7 +29,7 @@ class MotionPictureExtenstion extends \Twig_Extension
     {
         $this->settings = $container->get('settings')['mp'];
     }
-    
+
     /**
      * get functions
      *
@@ -35,13 +38,13 @@ class MotionPictureExtenstion extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('mp_api_endpoint', [$this, 'getApiEndpoint']),
-            new \Twig_Function('mp_waiter_server_url', [$this, 'getWaiterServerUrl']),
-            new \Twig_Function('mp_ticket_site_url', [$this, 'getTicketSiteUrl']),
-            new \Twig_Function('mp_project_id', [$this, 'getProjectId']),
+            new TwigFunction('mp_api_endpoint', [$this, 'getApiEndpoint']),
+            new TwigFunction('mp_waiter_server_url', [$this, 'getWaiterServerUrl']),
+            new TwigFunction('mp_ticket_site_url', [$this, 'getTicketSiteUrl']),
+            new TwigFunction('mp_project_id', [$this, 'getProjectId']),
         ];
     }
-    
+
     /**
      * return API endpoint
      *
@@ -51,7 +54,7 @@ class MotionPictureExtenstion extends \Twig_Extension
     {
         return $this->settings['api_endpoint'];
     }
-    
+
     /**
      * return waiter server URL
      *
@@ -61,7 +64,7 @@ class MotionPictureExtenstion extends \Twig_Extension
     {
         return $this->settings['waiter_server_url'];
     }
-    
+
     /**
      * return ticket site URL
      *
@@ -71,7 +74,7 @@ class MotionPictureExtenstion extends \Twig_Extension
     {
         return $this->settings['ticket_site_url'];
     }
-    
+
     /**
      * return project ID
      *

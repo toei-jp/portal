@@ -7,6 +7,9 @@
 
 namespace Toei\Portal\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 use Psr\Container\ContainerInterface;
 
 use Toei\Portal\ORM\Entity\Title;
@@ -14,7 +17,7 @@ use Toei\Portal\ORM\Entity\Title;
 /**
  * Title twig extension class
  */
-class TitleExtension extends \Twig_Extension
+class TitleExtension extends AbstractExtension
 {
     /**
      * construct
@@ -22,7 +25,7 @@ class TitleExtension extends \Twig_Extension
     public function __construct()
     {
     }
-    
+
     /**
      * get functions
      *
@@ -31,10 +34,10 @@ class TitleExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('title_rating_text', [$this, 'getRatingText']),
+            new TwigFunction('title_rating_text', [$this, 'getRatingText']),
         ];
     }
-    
+
     /**
      * return rating text
      *
@@ -52,7 +55,7 @@ class TitleExtension extends \Twig_Extension
         } elseif (Title::RATING_R18 === $rating) {
             return 'R18+';
         }
-        
+
         return '';
     }
 }

@@ -7,12 +7,15 @@
 
 namespace Toei\Portal\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 use Toei\Portal\ORM\Entity\AdvanceTicket;
 
 /**
  * AdvanceTicket twig extension class
  */
-class AdvanceTicketExtension extends \Twig_Extension
+class AdvanceTicketExtension extends AbstractExtension
 {
     /**
      * construct
@@ -20,7 +23,7 @@ class AdvanceTicketExtension extends \Twig_Extension
     public function __construct()
     {
     }
-    
+
     /**
      * get functions
      *
@@ -29,16 +32,16 @@ class AdvanceTicketExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('at_type_label', [$this, 'getTypeLabel']),
-            new \Twig_Function('at_special_gift_stock_label', [$this, 'getSpecialGiftStockLabel']),
+            new TwigFunction('at_type_label', [$this, 'getTypeLabel']),
+            new TwigFunction('at_special_gift_stock_label', [$this, 'getSpecialGiftStockLabel']),
         ];
     }
-    
+
     /**
      * return type label
      *
      * @param int $type
-     * @return string|null
+     * @return string
      */
     public function getTypeLabel(int $type)
     {
@@ -47,10 +50,10 @@ class AdvanceTicketExtension extends \Twig_Extension
         } elseif ($type === AdvanceTicket::TYPE_PAPER) {
             return '紙券';
         }
-        
-        throw null;
+
+        return '';
     }
-    
+
     /**
      * return special gift stock label
      *
@@ -66,7 +69,7 @@ class AdvanceTicketExtension extends \Twig_Extension
         } elseif ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN) {
             return '（特典終了）';
         }
-        
+
         return '';
     }
 }
