@@ -8,8 +8,7 @@
 namespace Toei\Portal\Responder\API;
 
 use Slim\Collection;
-
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Http\Response;
 
 /**
  * Auth responder
