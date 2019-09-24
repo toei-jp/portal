@@ -20,11 +20,10 @@ abstract class BaseController extends AbstractController
 {
     /** @var Entity\Theater[] */
     protected $theaters;
-    
+
     /**
      * return theaters
      *
-     * @param int $id
      * @return Entity\Theater[]
      */
     private function getTheaters()
@@ -33,7 +32,7 @@ abstract class BaseController extends AbstractController
             ->getRepository(Entity\Theater::class)
             ->findByActive();
     }
-    
+
     /**
      * pre execute
      *
@@ -47,7 +46,7 @@ abstract class BaseController extends AbstractController
         $this->theaters = $this->getTheaters();
         $this->data->set('theaters', $this->theaters);
     }
-    
+
     /**
      * post execute
      *
@@ -59,7 +58,7 @@ abstract class BaseController extends AbstractController
     protected function postExecute($request, $response, $args): void
     {
     }
-    
+
     /**
      * get responder
      *
@@ -69,7 +68,7 @@ abstract class BaseController extends AbstractController
     {
         $path = explode('\\', get_class($this));
         $name = str_replace('Controller', '', array_pop($path));
-        
+
         return Responder\BaseResponder::factory($name, $this->view);
     }
 }
