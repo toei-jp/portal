@@ -265,6 +265,27 @@ function screeningEventToDate(screeningEvents) {
 }
 
 /**
+ * 先行販売スケジュールから日付へ変換
+ */
+function preScreeningEventToDate(screeningEvents) {
+    var results = [];
+    screeningEvents.forEach(function (screeningEvent) {
+        var date = moment(moment(screeningEvent.startDate).format('YYYYMMDD')).toISOString();
+        if (results.find(function (result) { return (result.date === date); }) === undefined) {
+            results.push({ date: date });
+        }
+    });
+    results.forEach(function (result) {
+        var findResult = screeningEvents.find(function (screeningEvent) {
+            return moment(result.date).format('YYYYMMDD') === moment(screeningEvent.startDate).format('YYYYMMDD');
+        });
+        result.data = findResult;
+    });
+
+    return results;
+}
+
+/**
  * スケジュールHTML作成
  */
 function createDateDom(date) {
@@ -503,7 +524,7 @@ function createPerformanceDom(performance) {
         }
     })();
     var dom = '<li class="my-2">\
-        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="'+ toei.TICKET_SITE_URL + '?performanceId=' + performance.id +'" data-id="' + performance.id + '">\
+        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="' + toei.TICKET_SITE_URL + '?performanceId=' + performance.id + '" data-id="' + performance.id + '">\
             <div class="screen text-small mb-md-2 text-left text-md-center">\
             '+ (function () {
             if (performance.location.address !== undefined) {
@@ -544,7 +565,7 @@ function createPreSchedule() {
     };
     getScreeningEvent(params)
         .then(function (screeningEvents) {
-            var dates = screeningEventToDate(screeningEvents);
+            var dates = preScreeningEventToDate(screeningEvents);
             var filterResult = dates.filter(function (date) {
                 return date.data !== undefined;
             });
