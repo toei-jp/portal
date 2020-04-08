@@ -33,7 +33,10 @@ $container['view'] = function ($container) {
     $view->addExtension(new \Twig\Extensions\TextExtension());
 
     $view->addExtension(new \Toei\Portal\Twig\Extension\AdvanceTicketExtension());
-    $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension($container));
+    $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension(
+        $container->get('bc'),
+        $container->get('settings')['storage']['public_endpoint']
+    ));
     $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container));
     $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());
     $view->addExtension(new \Toei\Portal\Twig\Extension\TitleExtension());
@@ -122,14 +125,18 @@ $container['em'] = function ($container) {
 $container['bc'] = function ($container) {
     $settings = $container->get('settings')['storage'];
     $protocol = $settings['secure'] ? 'https' : 'http';
-    $connectionString = sprintf(
-        'DefaultEndpointsProtocol=%s;AccountName=%s;AccountKey=%s',
+    $connection = sprintf(
+        'DefaultEndpointsProtocol=%s;AccountName=%s;AccountKey=%s;',
         $protocol,
-        $settings['account']['name'],
-        $settings['account']['key']
+        $settings['account_name'],
+        $settings['account_key']
     );
 
-    return \MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlobService($connectionString);
+    if ($settings['blob_endpoint']) {
+        $connection .= sprintf('BlobEndpoint=%s;', $settings['blob_endpoint']);
+    }
+
+    return \MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlobService($connection);
 };
 
 $container['errorHandler'] = function ($container) {
