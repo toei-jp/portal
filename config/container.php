@@ -33,7 +33,10 @@ $container['view'] = function ($container) {
     $view->addExtension(new \Twig\Extensions\TextExtension());
 
     $view->addExtension(new \Toei\Portal\Twig\Extension\AdvanceTicketExtension());
-    $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension($container));
+    $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension(
+        $container->get('bc'),
+        $container->get('settings')['storage']['public_endpoint']
+    ));
     $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container));
     $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());
     $view->addExtension(new \Toei\Portal\Twig\Extension\TitleExtension());
