@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TheaterResponder.php
  *
@@ -8,7 +9,6 @@
 namespace Toei\Portal\Responder;
 
 use Slim\Collection;
-
 use Psr\Http\Message\ResponseInterface as Response;
 
 /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BaseController.php
  *
@@ -9,7 +10,6 @@ namespace Toei\Portal\Controller;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
-
 use Toei\Portal\ORM\Entity;
 use Toei\Portal\Responder;
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * News.php
  *
@@ -290,7 +291,7 @@ class News extends AbstractEntity
      *
      * @return Collection
      */
-    public function getPages() : Collection
+    public function getPages(): Collection
     {
         return $this->pages;
     }
@@ -300,7 +301,7 @@ class News extends AbstractEntity
      *
      * @return Collection
      */
-    public function getTheaters() : Collection
+    public function getTheaters(): Collection
     {
         return $this->theaters;
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AbstractController.php
  *
@@ -10,9 +11,7 @@ namespace Toei\Portal\Controller;
 use Slim\Collection;
 use Slim\Http\Request;
 use Slim\Http\Response;
-
 use Psr\Container\ContainerInterface;
-
 use Toei\Portal\Exception\RedirectException;
 use Toei\Portal\Responder\AbstractResponder as Responder;
 
@@ -156,7 +155,7 @@ abstract class AbstractController
         return $responder->$method($response, $this->data);
     }
 
-    abstract protected function getResponder() : Responder;
+    abstract protected function getResponder(): Responder;
 
     /**
      * call

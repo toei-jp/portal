@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Theater.php
  *
@@ -284,7 +285,7 @@ class Theater extends AbstractEntity
      *
      * @return Collection
      */
-    public function getCampaigns() : Collection
+    public function getCampaigns(): Collection
     {
         return $this->campaigns;
     }
