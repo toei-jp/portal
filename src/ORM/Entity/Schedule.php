@@ -48,7 +48,7 @@ class Schedule extends AbstractEntity
      * start_date
      *
      * @var \DateTime
-     * @ORM\Column(type="date", nullable=false, name="start_date")
+     * @ORM\Column(type="date", name="start_date")
      */
     protected $startDate;
 
@@ -56,7 +56,7 @@ class Schedule extends AbstractEntity
      * end_date
      *
      * @var \DateTime
-     * @ORM\Column(type="date", nullable=false, name="end_date")
+     * @ORM\Column(type="date", name="end_date")
      */
     protected $endDate;
 
@@ -64,7 +64,7 @@ class Schedule extends AbstractEntity
      * public_start_dt
      *
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false, name="public_start_dt")
+     * @ORM\Column(type="datetime", name="public_start_dt")
      */
     protected $publicStartDt;
 
@@ -72,7 +72,7 @@ class Schedule extends AbstractEntity
      * public_end_dt
      *
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false, name="public_end_dt")
+     * @ORM\Column(type="datetime", name="public_end_dt")
      */
     protected $publicEndDt;
 

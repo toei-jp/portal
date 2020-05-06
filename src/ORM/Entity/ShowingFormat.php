@@ -60,7 +60,7 @@ class ShowingFormat extends AbstractEntity
      * system
      *
      * @var int
-     * @ORM\Column(type="smallint", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(type="smallint", options={"unsigned"=true})
      */
     protected $system;
 
@@ -68,7 +68,7 @@ class ShowingFormat extends AbstractEntity
      * voice
      *
      * @var int
-     * @ORM\Column(type="smallint", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(type="smallint", options={"unsigned"=true})
      */
     protected $voice;
 
