@@ -79,7 +79,7 @@ class Schedule extends AbstractEntity
     /**
      * remark
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     protected $remark;
@@ -87,7 +87,7 @@ class Schedule extends AbstractEntity
     /**
      * showing_formats
      *
-     * @var Collection
+     * @var Collection<ShowingFormat>
      * @ORM\OneToMany(targetEntity="ShowingFormat", mappedBy="schedule", orphanRemoval=true, fetch="EAGER")
      */
     protected $showingFormats;
@@ -95,7 +95,7 @@ class Schedule extends AbstractEntity
     /**
      * showing_theaters
      *
-     * @var Collection
+     * @var Collection<ShowingTheater>
      * @ORM\OneToMany(targetEntity="ShowingTheater", mappedBy="schedule", orphanRemoval=true, fetch="EAGER")
      */
     protected $showingTheaters;
@@ -234,7 +234,7 @@ class Schedule extends AbstractEntity
     /**
      * get remark
      *
-     * @return string
+     * @return string|null
      */
     public function getRemark()
     {
@@ -244,11 +244,11 @@ class Schedule extends AbstractEntity
     /**
      * set remark
      *
-     * @param string $remark
+     * @param string|null $remark
      * @return void
      * @throws \LogicException
      */
-    public function setRemark(string $remark)
+    public function setRemark(?string $remark)
     {
         throw new \LogicException('Not allowed.');
     }

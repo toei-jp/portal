@@ -43,7 +43,7 @@ class Title extends AbstractEntity
     /**
      * image
      *
-     * @var File
+     * @var File|null
      * @ORM\OneToOne(targetEntity="File", fetch="EAGER")
      * @ORM\JoinColumn(name="image_file_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
      */
@@ -140,7 +140,7 @@ class Title extends AbstractEntity
     /**
      * rating
      *
-     * @var string|null
+     * @var int|null
      * @ORM\Column(type="smallint", nullable=true, options={"unsigned"=true})
      */
     protected $rating;
@@ -156,7 +156,7 @@ class Title extends AbstractEntity
     /**
      * campaigns
      *
-     * @var Collection
+     * @var Collection<Campaign>
      * @ORM\OneToMany(targetEntity="Campaign", mappedBy="title", indexBy="id")
      */
     protected $campaigns;

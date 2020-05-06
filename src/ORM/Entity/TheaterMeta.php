@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TheaterMeta extends AbstractEntity
 {
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -30,7 +30,7 @@ class TheaterMeta extends AbstractEntity
      * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
-    
+
     /**
      * theater
      *
@@ -39,15 +39,15 @@ class TheaterMeta extends AbstractEntity
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $theater;
-    
+
     /**
      * opening_hours
      *
-     * @var array|null
+     * @var array
      * @ORM\Column(type="json", name="opening_hours")
      */
     protected $openingHours;
-    
+
     /**
      * construct
      *
@@ -57,7 +57,7 @@ class TheaterMeta extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -67,7 +67,7 @@ class TheaterMeta extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get theater
      *
@@ -77,7 +77,7 @@ class TheaterMeta extends AbstractEntity
     {
         return $this->theater;
     }
-    
+
     /**
      * set theater
      *
@@ -89,7 +89,7 @@ class TheaterMeta extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get opening_hours
      *
@@ -98,16 +98,16 @@ class TheaterMeta extends AbstractEntity
     public function getOpeningHours()
     {
         $hours = [];
-        
+
         if (is_array($this->openingHours)) {
             foreach ($this->openingHours as $hour) {
                 $hours[] = TheaterOpeningHour::create($hour);
             }
         }
-        
+
         return $hours;
     }
-    
+
     /**
      * set opening_hours
      *

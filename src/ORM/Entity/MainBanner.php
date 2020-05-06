@@ -80,7 +80,7 @@ class MainBanner extends AbstractEntity
     /**
      * pages
      *
-     * @var Collection
+     * @var Collection<PageMainBanner>
      * @ORM\OneToMany(targetEntity="PageMainBanner", mappedBy="mainBanner")
      */
     protected $pages;
@@ -88,7 +88,7 @@ class MainBanner extends AbstractEntity
     /**
      * theaters
      *
-     * @var Collection
+     * @var Collection<TheaterMainBanner>
      * @ORM\OneToMany(targetEntity="TheaterMainBanner", mappedBy="mainBanner")
      */
     protected $theaters;

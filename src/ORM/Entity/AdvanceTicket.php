@@ -59,7 +59,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * release_dt_text
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="release_dt_text", nullable=true)
      */
     protected $releaseDtText;
@@ -83,7 +83,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * price_text
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="price_text", nullable=true)
      */
     protected $priceText;
@@ -91,7 +91,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * special_gift
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="special_gift", nullable=true)
      */
     protected $specialGift;
@@ -181,7 +181,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * get release_dt_text
      *
-     * @return string
+     * @return string|null
      */
     public function getReleaseDtText()
     {
@@ -191,11 +191,11 @@ class AdvanceTicket extends AbstractEntity
     /**
      * set release_dt_text
      *
-     * @param string $releaseDtText
+     * @param string|null $releaseDtText
      * @return void
      * @throws \LogicException
      */
-    public function setReleaseDtText(string $releaseDtText)
+    public function setReleaseDtText(?string $releaseDtText)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -259,7 +259,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * get price_text
      *
-     * @return string
+     * @return string|null
      */
     public function getPriceText()
     {
@@ -269,11 +269,11 @@ class AdvanceTicket extends AbstractEntity
     /**
      * set price_text
      *
-     * @param string $priceText
+     * @param string|null $priceText
      * @return void
      * @throws \LogicException
      */
-    public function setPriceText(string $priceText)
+    public function setPriceText(?string $priceText)
     {
         throw new \LogicException('Not allowed.');
     }
@@ -281,7 +281,7 @@ class AdvanceTicket extends AbstractEntity
     /**
      * get special_gift
      *
-     * @return string
+     * @return string|null
      */
     public function getSpecialGift()
     {
@@ -291,11 +291,11 @@ class AdvanceTicket extends AbstractEntity
     /**
      * set special_gift
      *
-     * @param string $specialGift
+     * @param string|null $specialGift
      * @return void
      * @throws \LogicException
      */
-    public function setSpecialGift(string $specialGift)
+    public function setSpecialGift(?string $specialGift)
     {
         throw new \LogicException('Not allowed.');
     }
