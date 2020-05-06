@@ -21,14 +21,14 @@ class AdvanceTicket extends AbstractEntity
 {
     use SoftDeleteTrait;
     use TimestampableTrait;
-    
-    const TYPE_MVTK  = 1;
-    const TYPE_PAPER = 2;
-    
-    const SPECIAL_GIFT_STOCK_IN     = 1;
-    const SPECIAL_GIFT_STOCK_FEW    = 2;
-    const SPECIAL_GIFT_STOCK_NOT_IN = 3;
-    
+
+    public const TYPE_MVTK  = 1;
+    public const TYPE_PAPER = 2;
+
+    public const SPECIAL_GIFT_STOCK_IN     = 1;
+    public const SPECIAL_GIFT_STOCK_FEW    = 2;
+    public const SPECIAL_GIFT_STOCK_NOT_IN = 3;
+
     /**
      * id
      *
@@ -38,7 +38,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * advance_sale
      *
@@ -47,7 +47,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\JoinColumn(name="advance_sale_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
      */
     protected $advanceSale;
-    
+
     /**
      * release_dt
      *
@@ -55,7 +55,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="datetime", name="release_dt")
      */
     protected $releaseDt;
-    
+
     /**
      * release_dt_text
      *
@@ -63,7 +63,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="string", name="release_dt_text", nullable=true)
      */
     protected $releaseDtText;
-    
+
     /**
      * is_sales_end
      *
@@ -71,7 +71,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="boolean", name="is_sales_end")
      */
     protected $isSalesEnd;
-    
+
     /**
      * type
      *
@@ -79,7 +79,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      */
     protected $type;
-    
+
     /**
      * price_text
      *
@@ -87,7 +87,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="string", name="price_text", nullable=true)
      */
     protected $priceText;
-    
+
     /**
      * special_gift
      *
@@ -95,7 +95,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="string", name="special_gift", nullable=true)
      */
     protected $specialGift;
-    
+
     /**
      * special_gift_stock
      *
@@ -103,7 +103,7 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\Column(type="smallint", name="special_gift_stock", nullable=true, options={"unsigned"=true})
      */
     protected $specialGiftStock;
-    
+
     /**
      * special_gift_image
      *
@@ -112,8 +112,8 @@ class AdvanceTicket extends AbstractEntity
      * @ORM\JoinColumn(name="special_gift_image", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
      */
     protected $specialGiftImage;
-    
-    
+
+
     /**
      * construct
      *
@@ -123,7 +123,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -133,7 +133,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get advance_sale
      *
@@ -143,7 +143,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->advanceSale;
     }
-    
+
     /**
      * set advance_sale
      *
@@ -155,7 +155,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get release_dt
      *
@@ -165,7 +165,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->releaseDt;
     }
-    
+
     /**
      * set release_dt
      *
@@ -177,7 +177,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get release_dt_text
      *
@@ -187,7 +187,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->releaseDtText;
     }
-    
+
     /**
      * set release_dt_text
      *
@@ -199,7 +199,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get is_sales_end
      *
@@ -209,7 +209,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->isSalesEnd;
     }
-    
+
     /**
      * is salse end
      *
@@ -221,7 +221,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->getIsSalesEnd();
     }
-    
+
     /**
      * set is_salse_end
      *
@@ -233,7 +233,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get type
      *
@@ -243,7 +243,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->type;
     }
-    
+
     /**
      * set type
      *
@@ -255,7 +255,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get price_text
      *
@@ -265,7 +265,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->priceText;
     }
-    
+
     /**
      * set price_text
      *
@@ -277,7 +277,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get special_gift
      *
@@ -287,7 +287,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->specialGift;
     }
-    
+
     /**
      * set special_gift
      *
@@ -299,7 +299,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get special_gift_stock
      *
@@ -309,7 +309,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->specialGiftStock;
     }
-    
+
     /**
      * is special gift stock
      *
@@ -320,7 +320,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->getSpecialGiftStock() === $stock;
     }
-    
+
     /**
      * 特典あり
      *
@@ -330,7 +330,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->isSpecialGiftStock(self::SPECIAL_GIFT_STOCK_IN);
     }
-    
+
     /**
      * 特典残り僅か
      *
@@ -340,7 +340,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->isSpecialGiftStock(self::SPECIAL_GIFT_STOCK_FEW);
     }
-    
+
     /**
      * 特典終了
      *
@@ -350,7 +350,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->isSpecialGiftStock(self::SPECIAL_GIFT_STOCK_NOT_IN);
     }
-    
+
     /**
      * set special_gift_stock
      *
@@ -362,7 +362,7 @@ class AdvanceTicket extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get special_gift_image
      *
@@ -372,7 +372,7 @@ class AdvanceTicket extends AbstractEntity
     {
         return $this->specialGiftImage;
     }
-    
+
     /**
      * set special_gift_image
      *

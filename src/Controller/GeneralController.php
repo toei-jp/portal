@@ -13,5 +13,5 @@ namespace Toei\Portal\Controller;
  */
 abstract class GeneralController extends BaseController
 {
-    const PAGE_ID = 1;
+    public const PAGE_ID = 1;
 }

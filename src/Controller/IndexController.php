@@ -15,9 +15,9 @@ use Toei\Portal\ORM\Entity;
  */
 class IndexController extends GeneralController
 {
-    const THEATER_SHIBUYA = 1;
-    const THEATER_MARUNOUCHI = 2;
-    
+    public const THEATER_SHIBUYA = 1;
+    public const THEATER_MARUNOUCHI = 2;
+
     /**
      * index action
      *
@@ -29,13 +29,13 @@ class IndexController extends GeneralController
     public function executeIndex($request, $response, $args)
     {
         $this->data->set('mainBanners', $this->getMainBanners());
-        
+
         $shibuya = null;
         $marunouchi = null;
-        
+
         foreach ($this->theaters as $theater) {
             /** @var Entity\Theater $theater */
-            
+
             if ($theater->getId() === self::THEATER_SHIBUYA) {
                 /** @var Entity\Theater $shibuya */
                 $shibuya = $theater;
@@ -44,20 +44,20 @@ class IndexController extends GeneralController
                 $marunouchi = $theater;
             }
         }
-        
+
         $this->data->set('shibuya', $shibuya);
         $this->data->set('marunouchi', $marunouchi);
-        
+
         $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
         $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
-        
+
         $this->data->set('showingSchedules', $this->getShowingSchedules());
-        
+
         $this->data->set('soonSchedules', $this->getSoonSchedules());
-        
+
         $this->data->set('campaigns', $this->getCampaigns(self::PAGE_ID));
     }
-    
+
     /**
      * return main_banners
      *
@@ -69,8 +69,8 @@ class IndexController extends GeneralController
             ->getRepository(Entity\MainBanner::class)
             ->findByPageId(self::PAGE_ID);
     }
-    
-    
+
+
     /**
      * return topics
      *
@@ -86,7 +86,7 @@ class IndexController extends GeneralController
             ->getRepository(Entity\News::class)
             ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 2);
     }
-    
+
     /**
      * return showing schedules
      *
@@ -98,7 +98,7 @@ class IndexController extends GeneralController
             ->getRepository(Entity\Schedule::class)
             ->findShowing();
     }
-    
+
     /**
      * return soon schedules
      *
@@ -110,7 +110,7 @@ class IndexController extends GeneralController
             ->getRepository(Entity\Schedule::class)
             ->findSoon();
     }
-    
+
     /**
      * return campaigns
      *
