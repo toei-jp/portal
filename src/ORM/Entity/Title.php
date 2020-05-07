@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title.php
  *
@@ -23,12 +24,12 @@ class Title extends AbstractEntity
     use SavedUserTrait;
     use SoftDeleteTrait;
     use TimestampableTrait;
-    
-    const RATING_G    = 1;
-    const RATING_PG12 = 2;
-    const RATING_R15  = 3;
-    const RATING_R18  = 4;
-    
+
+    public const RATING_G    = 1;
+    public const RATING_PG12 = 2;
+    public const RATING_R15  = 3;
+    public const RATING_R18  = 4;
+
     /**
      * id
      *
@@ -38,16 +39,16 @@ class Title extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * image
      *
-     * @var File
+     * @var File|null
      * @ORM\OneToOne(targetEntity="File", fetch="EAGER")
      * @ORM\JoinColumn(name="image_file_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
      */
     protected $image;
-    
+
     /**
      * chever_code
      *
@@ -55,7 +56,7 @@ class Title extends AbstractEntity
      * @ORM\Column(name="chever_code", type="string", length=100, unique=true, nullable=true)
      */
     protected $cheverCode;
-    
+
     /**
      * name
      *
@@ -63,7 +64,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string")
      */
     protected $name;
-    
+
     /**
      * name_kana
      *
@@ -71,7 +72,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", name="name_kana", nullable=true)
      */
     protected $nameKana;
-    
+
     /**
      * sub_title
      *
@@ -79,7 +80,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", name="sub_title", nullable=true)
      */
     protected $subTitle;
-    
+
     /**
      * credit
      *
@@ -87,7 +88,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", nullable=true)
      */
     protected $credit;
-    
+
     /**
      * catchcopy
      *
@@ -95,7 +96,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="text", nullable=true)
      */
     protected $catchcopy;
-    
+
     /**
      * introduction
      *
@@ -103,7 +104,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="text", nullable=true)
      */
     protected $introduction;
-    
+
     /**
      * director
      *
@@ -111,7 +112,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", nullable=true)
      */
     protected $director;
-    
+
     /**
      * cast
      *
@@ -119,7 +120,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", nullable=true)
      */
     protected $cast;
-    
+
     /**
      * publishing_expected_date
      *
@@ -127,7 +128,7 @@ class Title extends AbstractEntity
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
      */
     protected $publishingExpectedDate;
-    
+
     /**
      * official_site
      *
@@ -135,15 +136,15 @@ class Title extends AbstractEntity
      * @ORM\Column(type="string", name="official_site", nullable=true)
      */
     protected $officialSite;
-    
+
     /**
      * rating
      *
-     * @var string|null
+     * @var int|null
      * @ORM\Column(type="smallint", nullable=true, options={"unsigned"=true})
      */
     protected $rating;
-    
+
     /**
      * universal
      *
@@ -151,15 +152,15 @@ class Title extends AbstractEntity
      * @ORM\Column(type="json", nullable=true)
      */
     protected $universal;
-    
+
     /**
      * campaigns
      *
-     * @var Collection
+     * @var Collection<Campaign>
      * @ORM\OneToMany(targetEntity="Campaign", mappedBy="title", indexBy="id")
      */
     protected $campaigns;
-    
+
     /**
      * レイティング区分
      *
@@ -171,7 +172,7 @@ class Title extends AbstractEntity
         '3' => 'R15+',
         '4' => 'R18+',
     ];
-    
+
     /**
      * ユニバーサル区分
      *
@@ -181,8 +182,8 @@ class Title extends AbstractEntity
         '1' => '音声上映',
         '2' => '字幕上映',
     ];
-    
-    
+
+
     /**
      * construct
      *
@@ -192,7 +193,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -202,7 +203,7 @@ class Title extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get image
      *
@@ -212,7 +213,7 @@ class Title extends AbstractEntity
     {
         return $this->image;
     }
-    
+
     /**
      * set image
      *
@@ -224,7 +225,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get chever_code
      *
@@ -234,7 +235,7 @@ class Title extends AbstractEntity
     {
         return $this->cheverCode;
     }
-    
+
     /**
      * set chever_code
      *
@@ -246,7 +247,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get name
      *
@@ -256,7 +257,7 @@ class Title extends AbstractEntity
     {
         return $this->name;
     }
-    
+
     /**
      * set name
      *
@@ -268,7 +269,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get name_kana
      *
@@ -278,7 +279,7 @@ class Title extends AbstractEntity
     {
         return $this->nameKana;
     }
-    
+
     /**
      * set name_kana
      *
@@ -290,7 +291,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get sub_title
      *
@@ -300,7 +301,7 @@ class Title extends AbstractEntity
     {
         return $this->subTitle;
     }
-    
+
     /**
      * set sub_title
      *
@@ -312,7 +313,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * credit
      *
@@ -322,7 +323,7 @@ class Title extends AbstractEntity
     {
         return $this->credit;
     }
-    
+
     /**
      * set credit
      *
@@ -334,7 +335,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get catchcopy
      *
@@ -344,7 +345,7 @@ class Title extends AbstractEntity
     {
         return $this->catchcopy;
     }
-    
+
     /**
      * set catchcopy
      *
@@ -356,7 +357,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get introduction
      *
@@ -366,7 +367,7 @@ class Title extends AbstractEntity
     {
         return $this->introduction;
     }
-    
+
     /**
      * set introduction
      *
@@ -378,7 +379,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get director
      *
@@ -388,7 +389,7 @@ class Title extends AbstractEntity
     {
         return $this->director;
     }
-    
+
     /**
      * set director
      *
@@ -400,7 +401,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get cast
      *
@@ -410,7 +411,7 @@ class Title extends AbstractEntity
     {
         return $this->cast;
     }
-    
+
     /**
      * set cast
      *
@@ -422,7 +423,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get publishing_expected_date
      *
@@ -432,7 +433,7 @@ class Title extends AbstractEntity
     {
         return $this->publishingExpectedDate;
     }
-    
+
     /**
      * set publishing_dxpected_date
      *
@@ -444,7 +445,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get official_site
      *
@@ -454,7 +455,7 @@ class Title extends AbstractEntity
     {
         return $this->officialSite;
     }
-    
+
     /**
      * set official_site
      *
@@ -466,7 +467,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get rating
      *
@@ -476,7 +477,7 @@ class Title extends AbstractEntity
     {
         return $this->rating;
     }
-    
+
     /**
      * set rating
      *
@@ -488,7 +489,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get universal
      *
@@ -498,7 +499,7 @@ class Title extends AbstractEntity
     {
         return $this->universal;
     }
-    
+
     /**
      * get univarsal label
      *
@@ -509,16 +510,16 @@ class Title extends AbstractEntity
         $univarsal = $this->getUniversal();
         $types = self::getUniversalTypes();
         $labels = [];
-        
+
         foreach ($univarsal as $value) {
             if (isset($types[$value])) {
                 $labels[] = $types[$value];
             }
         }
-        
+
         return $labels;
     }
-    
+
     /**
      * set universal
      *
@@ -530,7 +531,7 @@ class Title extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get campaigns
      *
@@ -546,10 +547,10 @@ class Title extends AbstractEntity
             ->andWhere(Criteria::expr()->lte('startDt', new \DateTime('now')))
             ->andWhere(Criteria::expr()->gt('endDt', new \DateTime('now')))
             ->orderBy([ 'createdAt' => Criteria::ASC ]);
-            
+
         return $this->campaigns->matching($criteria);
     }
-    
+
     /**
      * get レイティング区分
      *
@@ -559,7 +560,7 @@ class Title extends AbstractEntity
     {
         return self::$ratingTypes;
     }
-    
+
     /**
      * get ユニバーサル区分
      *

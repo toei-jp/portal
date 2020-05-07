@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Campaign.php
  *
@@ -23,7 +24,7 @@ class Campaign extends AbstractEntity
     use SavedUserTrait;
     use SoftDeleteTrait;
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -33,7 +34,7 @@ class Campaign extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * title
      *
@@ -42,7 +43,7 @@ class Campaign extends AbstractEntity
      * @ORM\JoinColumn(name="title_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
      */
     protected $title;
-    
+
     /**
      * image
      *
@@ -51,7 +52,7 @@ class Campaign extends AbstractEntity
      * @ORM\JoinColumn(name="image_file_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
      */
     protected $image;
-    
+
     /**
      * name
      *
@@ -59,7 +60,7 @@ class Campaign extends AbstractEntity
      * @ORM\Column(type="string")
      */
     protected $name;
-    
+
     /**
      * start_dt
      *
@@ -67,7 +68,7 @@ class Campaign extends AbstractEntity
      * @ORM\Column(type="datetime", name="start_dt")
      */
     protected $startDt;
-    
+
     /**
      * end_dt
      *
@@ -75,7 +76,7 @@ class Campaign extends AbstractEntity
      * @ORM\Column(type="datetime", name="end_dt")
      */
     protected $endDt;
-    
+
     /**
      * url
      *
@@ -83,24 +84,24 @@ class Campaign extends AbstractEntity
      * @ORM\Column(type="string")
      */
     protected $url;
-    
+
     /**
      * pages
      *
-     * @var Collection
+     * @var Collection<PageCampaign>
      * @ORM\OneToMany(targetEntity="PageCampaign", mappedBy="campaign")
      */
     protected $pages;
-    
+
     /**
      * theaters
      *
-     * @var Collection
+     * @var Collection<TheaterCampaign>
      * @ORM\OneToMany(targetEntity="TheaterCampaign", mappedBy="campaign")
      */
     protected $theaters;
-    
-    
+
+
     /**
      * construct
      *
@@ -110,7 +111,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -120,7 +121,7 @@ class Campaign extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get title
      *
@@ -130,7 +131,7 @@ class Campaign extends AbstractEntity
     {
         return $this->title;
     }
-    
+
     /**
      * set title
      *
@@ -142,7 +143,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get image
      *
@@ -152,7 +153,7 @@ class Campaign extends AbstractEntity
     {
         return $this->image;
     }
-    
+
     /**
      * set image
      *
@@ -164,7 +165,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get name
      *
@@ -174,7 +175,7 @@ class Campaign extends AbstractEntity
     {
         return $this->name;
     }
-    
+
     /**
      * set name
      *
@@ -186,7 +187,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get start_dt
      *
@@ -196,7 +197,7 @@ class Campaign extends AbstractEntity
     {
         return $this->startDt;
     }
-    
+
     /**
      * set start_dt
      *
@@ -208,7 +209,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get end_dt
      *
@@ -218,7 +219,7 @@ class Campaign extends AbstractEntity
     {
         return $this->endDt;
     }
-    
+
     /**
      * set end_dt
      *
@@ -230,7 +231,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get url
      *
@@ -240,7 +241,7 @@ class Campaign extends AbstractEntity
     {
         return $this->url;
     }
-    
+
     /**
      * set url
      *
@@ -252,7 +253,7 @@ class Campaign extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get pages
      *
@@ -262,7 +263,7 @@ class Campaign extends AbstractEntity
     {
         return $this->pages;
     }
-    
+
     /**
      * get theaters
      *

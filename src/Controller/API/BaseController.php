@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BaseController.php
  *
@@ -9,7 +10,6 @@ namespace Toei\Portal\Controller\API;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
-
 use Toei\Portal\Controller\AbstractController;
 use Toei\Portal\Responder;
 use Toei\Portal\Responder\API as ApiResponder;
@@ -48,7 +48,7 @@ abstract class BaseController extends AbstractController
      *
      * @return Responder\AbstractResponder
      */
-    protected function getResponder() : Responder\AbstractResponder
+    protected function getResponder(): Responder\AbstractResponder
     {
         $path = explode('\\', get_class($this));
         $name = str_replace('Controller', '', array_pop($path));

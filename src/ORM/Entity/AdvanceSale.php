@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AdvanceSale.php
  *
@@ -24,7 +25,7 @@ class AdvanceSale extends AbstractEntity
     use SavedUserTrait;
     use SoftDeleteTrait;
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -34,25 +35,25 @@ class AdvanceSale extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * theater
      *
      * @var Theater
      * @ORM\ManyToOne(targetEntity="Theater")
-     * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", onDelete="RESTRICT")
+     * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
      */
     protected $theater;
-    
+
     /**
      * title
      *
      * @var Title
      * @ORM\ManyToOne(targetEntity="Title")
-     * @ORM\JoinColumn(name="title_id", referencedColumnName="id", onDelete="RESTRICT")
+     * @ORM\JoinColumn(name="title_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
      */
     protected $title;
-    
+
     /**
      * publishing_expected_date
      *
@@ -60,24 +61,24 @@ class AdvanceSale extends AbstractEntity
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
      */
     protected $publishingExpectedDate;
-    
+
     /**
      * publishing_expected_date_text
      *
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", name="publishing_expected_date_text", nullable=true)
      */
     protected $publishingExpectedDateText;
-    
+
     /**
      * advance_tickets
      *
-     * @var Collection
+     * @var Collection<AdvanceTicket>
      * @ORM\OneToMany(targetEntity="AdvanceTicket", mappedBy="advanceSale", indexBy="id")
      */
     protected $advanceTickets;
-    
-    
+
+
     /**
      * construct
      *
@@ -87,7 +88,7 @@ class AdvanceSale extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -97,7 +98,7 @@ class AdvanceSale extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get tehater
      *
@@ -107,7 +108,7 @@ class AdvanceSale extends AbstractEntity
     {
         return $this->theater;
     }
-    
+
     /**
      * set theater
      *
@@ -119,7 +120,7 @@ class AdvanceSale extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get title
      *
@@ -129,7 +130,7 @@ class AdvanceSale extends AbstractEntity
     {
         return $this->title;
     }
-    
+
     /**
      * set title
      *
@@ -141,7 +142,7 @@ class AdvanceSale extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get publishing_expected_date
      *
@@ -151,7 +152,7 @@ class AdvanceSale extends AbstractEntity
     {
         return $this->publishingExpectedDate;
     }
-    
+
     /**
      * set publishing_dxpected_date
      *
@@ -163,29 +164,29 @@ class AdvanceSale extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get publishing_expected_date_text
      *
-     * @return string
+     * @return string|null
      */
     public function getPublishingExpectedDateText()
     {
         return $this->publishingExpectedDateText;
     }
-    
+
     /**
      * set publishing_expected_date_text
      *
-     * @param string $publishingExpectedDateText
+     * @param string|null $publishingExpectedDateText
      * @return void
      * @throws \LogicException
      */
-    public function setPublishingExpectedDateText(string $publishingExpectedDateText)
+    public function setPublishingExpectedDateText(?string $publishingExpectedDateText)
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get advance_tickets
      *

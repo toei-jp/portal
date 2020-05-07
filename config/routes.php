@@ -1,4 +1,5 @@
 <?php
+
 /**
  * routes.php
  *
@@ -9,7 +10,6 @@ use Toei\Portal\Controller\AboutController;
 use Toei\Portal\Controller\IndexController;
 use Toei\Portal\Controller\TheaterController;
 use Toei\Portal\Controller\ScheduleController;
-
 use Toei\Portal\Controller\API\AuthController as AuthApiController;
 
 /** @var \Slim\App $app */

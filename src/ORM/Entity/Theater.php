@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Theater.php
  *
@@ -22,10 +23,10 @@ class Theater extends AbstractEntity
 {
     use SoftDeleteTrait;
     use TimestampableTrait;
-    
+
     /** @var array */
     protected static $areas = [];
-    
+
     /**
      * id
      *
@@ -35,7 +36,7 @@ class Theater extends AbstractEntity
      * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
-    
+
     /**
      * name
      *
@@ -43,7 +44,7 @@ class Theater extends AbstractEntity
      * @ORM\Column(type="string", unique=true)
      */
     protected $name;
-    
+
     /**
      * name_ja
      *
@@ -51,7 +52,7 @@ class Theater extends AbstractEntity
      * @ORM\Column(type="string", name="name_ja")
      */
     protected $nameJa;
-    
+
     /**
      * area
      *
@@ -59,7 +60,7 @@ class Theater extends AbstractEntity
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      */
     protected $area;
-    
+
     /**
      * master_code
      *
@@ -67,7 +68,7 @@ class Theater extends AbstractEntity
      * @ORM\Column(type="string", name="master_code", length=3, options={"fixed":true})
      */
     protected $masterCode;
-    
+
     /**
      * display_order
      *
@@ -75,50 +76,52 @@ class Theater extends AbstractEntity
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
      */
     protected $displayOrder;
-    
+
     /**
      * meta
      *
-     * @var TheaterMeta
+     * 設計の問題でnullを許容する形になってしまったが、nullにならないようデータで調整する。
+     *
+     * @var TheaterMeta|null
      * @ORM\OneToOne(targetEntity="TheaterMeta", mappedBy="theater")
      */
     protected $meta;
-    
+
     /**
      * admin_users
      *
-     * @var ArrayCollection
+     * @var Collection<AdminUser>
      * @ORM\OneToMany(targetEntity="AdminUser", mappedBy="theater")
      */
     protected $adminUsers;
-    
+
     /**
      * campaigns
      *
-     * @var Collection
+     * @var Collection<TheaterCampaign>
      * @ORM\OneToMany(targetEntity="TheaterCampaign", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     protected $campaigns;
-    
+
     /**
      * news_list
      *
-     * @var Collection
+     * @var Collection<TheaterNews>
      * @ORM\OneToMany(targetEntity="TheaterNews", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     protected $newsList;
-    
+
     /**
      * main_banners
      *
-     * @var Collection
+     * @var Collection<TheaterMainBanner>
      * @ORM\OneToMany(targetEntity="TheaterMainBanner", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     protected $mainBanners;
-    
+
     /**
      * return areas
      *
@@ -128,7 +131,7 @@ class Theater extends AbstractEntity
     {
         return self::$areas;
     }
-    
+
     /**
      * construct
      *
@@ -138,7 +141,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -148,7 +151,7 @@ class Theater extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get name
      *
@@ -158,7 +161,7 @@ class Theater extends AbstractEntity
     {
         return $this->name;
     }
-    
+
     /**
      * set name
      *
@@ -170,7 +173,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get name_ja
      *
@@ -180,7 +183,7 @@ class Theater extends AbstractEntity
     {
         return $this->nameJa;
     }
-    
+
     /**
      * set name_ja
      *
@@ -192,7 +195,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get area
      *
@@ -202,7 +205,7 @@ class Theater extends AbstractEntity
     {
         return $this->area;
     }
-    
+
     /**
      * set area
      *
@@ -214,7 +217,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get master_code
      *
@@ -224,7 +227,7 @@ class Theater extends AbstractEntity
     {
         return $this->masterCode;
     }
-    
+
     /**
      * set master_code
      *
@@ -236,7 +239,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get display_order
      *
@@ -246,7 +249,7 @@ class Theater extends AbstractEntity
     {
         return $this->displayOrder;
     }
-    
+
     /**
      * set display_order
      *
@@ -258,7 +261,7 @@ class Theater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get meta
      *
@@ -268,7 +271,7 @@ class Theater extends AbstractEntity
     {
         return $this->meta;
     }
-    
+
     /**
      * get admin_users
      *
@@ -278,17 +281,17 @@ class Theater extends AbstractEntity
     {
         return $this->adminUsers;
     }
-    
+
     /**
      * get campaigns
      *
      * @return Collection
      */
-    public function getCampaigns() : Collection
+    public function getCampaigns(): Collection
     {
         return $this->campaigns;
     }
-    
+
     /**
      * get news_list
      *
@@ -298,7 +301,7 @@ class Theater extends AbstractEntity
     {
         return $this->newsList;
     }
-    
+
     /**
      * get main_banners
      *
