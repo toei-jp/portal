@@ -467,8 +467,10 @@ function createPerformanceDom(performance) {
             <div class="text-blue">購入</div>';
         }
     })();
+    // var ticketSite = toei.TICKET_SITE_URL + '?performanceId=' + performance.id + '" data-id="' + performance.id;
+    var ticketSite = toei.TICKET_SITE_URL + '/projects/' + toei.PROJECT_ID + '/purchase/transaction/' + performance.id;
     var dom = '<li class="my-2">\
-        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="' + toei.TICKET_SITE_URL + '?performanceId=' + performance.id + '" data-id="' + performance.id + '">\
+        <a class="h-100 mx-md-1 d-flex align-items-center d-md-block rounded border border-ultra-light-gray text-center p-2 ' + boxClassName + '" href="' + ticketSite + '">\
             <div class="screen text-small mb-md-2 text-left text-md-center">\
             '+ (function () {
             if (performance.location.address !== undefined) {
