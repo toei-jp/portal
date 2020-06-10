@@ -22,7 +22,8 @@
         "monolog/monolog": "^2.1",
         "doctrine/orm": "2.6.*",
         "microsoft/azure-storage-blob": "^1.5",
-        "guzzlehttp/guzzle": "~6.3"
+        "guzzlehttp/guzzle": "~6.3",
+        "blue32a/monolog-azure-blob": "^0.2.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
