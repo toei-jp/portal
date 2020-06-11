@@ -10,7 +10,6 @@ namespace Toei\Portal\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Psr\Container\ContainerInterface;
 use Toei\Portal\ORM\Entity\Title;
 
 /**
