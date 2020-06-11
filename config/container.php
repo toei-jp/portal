@@ -38,7 +38,7 @@ $container['view'] = function ($container) {
         $container->get('bc'),
         $container->get('settings')['storage']['public_endpoint']
     ));
-    $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container));
+    $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container->get('settings')['mp']));
     $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());
     $view->addExtension(new \Toei\Portal\Twig\Extension\TitleExtension());
 
