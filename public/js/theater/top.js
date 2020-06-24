@@ -143,18 +143,47 @@ function createOptions(accessToken) {
  * 上映作品取得
  * @param {*} params
  */
-function getScreeningEvent(params) {
+function getScreeningEvent(params, sort) {
     var deferred = new $.Deferred;
     toei.isRequest = true;
+    var screeningEvents = [];
+    var screeningEventSeries = [];
     getCredentials()
         .then(function (accessToken) {
             var options = createOptions(accessToken);
             var eventService = new cinerino.service.Event(options);
-            return eventService.searchScreeningEvents(params)
-        }).then(function (screeningEventsResult) {
+            return eventService.search(params)
+        }).then(function (result) {
+            screeningEvents = result.data;
+            if (!sort) {
+                toei.isRequest = false;
+                deferred.resolve(screeningEvents);
+                return;
+            }
+            // 施設コンテンツ追加特性sortNumberでソート
+            return getCredentials();
+        }).then(function (accessToken) {
+            var options = createOptions(accessToken);
+            var eventService = new cinerino.service.Event(options);
+            var workPerformedIdentifiers = [];
+            screeningEvents.forEach(function (s) {
+                var _a;
+                if (((_a = s.workPerformed) === null || _a === void 0 ? void 0 : _a.identifier) === undefined
+                    || workPerformedIdentifiers.find(function (id) { var _a; return id === ((_a = s.workPerformed) === null || _a === void 0 ? void 0 : _a.identifier); }) !== undefined) {
+                    return;
+                }
+                workPerformedIdentifiers.push(s.workPerformed.identifier);
+            });
+            return eventService.search({
+                typeOf: 'ScreeningEventSeries',
+                location: { branchCodes: params.superEvent.locationBranchCodes },
+                workPerformed: { identifiers: workPerformedIdentifiers }
+            })
+        }).then(function (result) {
+            screeningEventSeries = result.data;
+            var sortResult = sortScreeningEvents(screeningEvents, screeningEventSeries);
             toei.isRequest = false;
-            var screeningEvents = screeningEventsResult.data;
-            deferred.resolve(screeningEvents);
+            deferred.resolve(sortResult);
         }).catch(function (error) {
             toei.isRequest = false;
             console.error(error);
@@ -170,10 +199,9 @@ function createSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toDate();
     var now = moment().toDate();
     var params = {
+        typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
-        superEvent: {
-            locationBranchCodes: [toei.THEATER_CODE]
-        },
+        superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
         startFrom: today,
         startThrough: moment(moment().add(10, 'day').format('YYYYMMDD')).toDate(),
         offers: {
@@ -181,7 +209,7 @@ function createSchedule() {
             availableThrough: now
         }
     };
-    getScreeningEvent(params)
+    getScreeningEvent(params, false)
         .then(function (screeningEvents) {
             var dates = screeningEventToDate(screeningEvents);
             var domList = [];
@@ -295,6 +323,7 @@ function selectDate(event) {
     $('.target-date').text(moment(date).format('YYYY/MM/DD(ddd)'));
     $('.change-schedule-button button').prop('disabled', true);
     var params = {
+        typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
         startFrom: date,
@@ -306,7 +335,7 @@ function selectDate(event) {
             validThrough: (toei.isDisplayPreSchedule) ? now : undefined,
         }
     };
-    getScreeningEvent(params)
+    getScreeningEvent(params, true)
         .then(function (screeningEvents) {
             sessionStorage.setItem('selectedDate', date);
             toei.screeningEvents = screeningEvents;
@@ -345,21 +374,7 @@ function screeningEventToFilm() {
         }
     });
 
-    return films.sort(function (film1, film2) {
-        if (film1.info.workPerformed.datePublished === undefined
-            || film2.info.workPerformed.datePublished === undefined) {
-            return 0;
-        }
-        var unixA = moment(film1.info.workPerformed.datePublished).unix();
-        var unixB = moment(film2.info.workPerformed.datePublished).unix();
-        if (unixA > unixB) {
-            return -1;
-        }
-        if (unixA < unixB) {
-            return 1;
-        }
-        return 0;
-    });
+    return films;
 }
 
 /**
@@ -497,6 +512,7 @@ function createPreSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toDate();
     var now = moment().toDate();
     var params = {
+        typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
         startFrom: moment(today).add(3, 'days').toDate(),
@@ -507,7 +523,7 @@ function createPreSchedule() {
             availableThrough: now
         }
     };
-    getScreeningEvent(params)
+    getScreeningEvent(params, false)
         .then(function (screeningEvents) {
             var dates = preScreeningEventToDate(screeningEvents);
             var filterResult = dates.filter(function (date) {
@@ -587,4 +603,33 @@ function changeScheduleType() {
         preScheduleButton.removeClass('d-block').addClass('d-none');
         preScheduleSlider.find('.swiper-slide:first-child a').trigger('click');
     }
+}
+
+/**
+ * スケジュールをソート
+ */
+function sortScreeningEvents(screeningEvents, screeningEventSeries) {
+    var sortResult = screeningEvents.sort(function (a, b) {
+        var _a, _b, _c, _d, _e, _f;
+        var KEY_NAME = 'sortNumber';
+        var sortNumberA = (_c = (_b = (_a = screeningEventSeries
+            .find(function (s) { return s.id === a.superEvent.id; })) === null || _a === void 0 ? void 0 : _a.additionalProperty) === null || _b === void 0 ? void 0 : _b.find(function (p) { return p.name === KEY_NAME; })) === null || _c === void 0 ? void 0 : _c.value;
+        var sortNumberB = (_f = (_e = (_d = screeningEventSeries
+            .find(function (s) { return s.id === b.superEvent.id; })) === null || _d === void 0 ? void 0 : _d.additionalProperty) === null || _e === void 0 ? void 0 : _e.find(function (p) { return p.name === KEY_NAME; })) === null || _f === void 0 ? void 0 : _f.value;
+        if (sortNumberA === undefined) {
+            return 1;
+        }
+        if (sortNumberB === undefined) {
+            return -1;
+        }
+        if (Number(sortNumberA) > Number(sortNumberB)) {
+            return -1;
+        }
+        if (Number(sortNumberA) < Number(sortNumberB)) {
+            return 1;
+        }
+        return 0;
+    });
+
+    return sortResult;
 }
