@@ -135,7 +135,8 @@ function createOptions(accessToken) {
 
     return {
         endpoint: toei.API_ENDPOINT,
-        auth: auth
+        auth: auth,
+        project: { id: toei.PROJECT_ID }
     }
 }
 
