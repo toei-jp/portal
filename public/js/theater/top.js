@@ -149,10 +149,13 @@ function getScreeningEvent(params, sort) {
     toei.isRequest = true;
     var screeningEvents = [];
     var screeningEventSeries = [];
+    var options;
+    var eventService;
     getCredentials()
         .then(function (accessToken) {
-            var options = createOptions(accessToken);
-            var eventService = new cinerino.service.Event(options);
+            options = createOptions(accessToken);
+            eventService = new cinerino.service.Event(options);
+            // TODO 100件制限
             return eventService.search(params)
         }).then(function (result) {
             screeningEvents = result.data;
@@ -162,10 +165,6 @@ function getScreeningEvent(params, sort) {
                 return;
             }
             // 施設コンテンツ追加特性sortNumberでソート
-            return getCredentials();
-        }).then(function (accessToken) {
-            var options = createOptions(accessToken);
-            var eventService = new cinerino.service.Event(options);
             var workPerformedIdentifiers = [];
             screeningEvents.forEach(function (s) {
                 var _a;
@@ -175,16 +174,20 @@ function getScreeningEvent(params, sort) {
                 }
                 workPerformedIdentifiers.push(s.workPerformed.identifier);
             });
-            return eventService.search({
+            eventService.search({
                 typeOf: 'ScreeningEventSeries',
                 location: { branchCodes: params.superEvent.locationBranchCodes },
                 workPerformed: { identifiers: workPerformedIdentifiers }
-            })
-        }).then(function (result) {
-            screeningEventSeries = result.data;
-            var sortResult = sortScreeningEvents(screeningEvents, screeningEventSeries);
-            toei.isRequest = false;
-            deferred.resolve(sortResult);
+            }).then(function (result2) {
+                screeningEventSeries = result2.data;
+                var sortResult = sortScreeningEvents(screeningEvents, screeningEventSeries);
+                toei.isRequest = false;
+                deferred.resolve(sortResult);
+            }).catch(function (error2) {
+                toei.isRequest = false;
+                console.error(error2);
+                deferred.reject(error2);
+            });
         }).catch(function (error) {
             toei.isRequest = false;
             console.error(error);
