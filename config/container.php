@@ -141,17 +141,23 @@ $container['bc'] = function ($container) {
 };
 
 $container['errorHandler'] = function ($container) {
-    return new \Toei\Portal\Application\Handlers\Error($container);
+    return new \Toei\Portal\Application\Handlers\Error(
+        $container->get('logger'),
+        $container->get('settings')['displayErrorDetails']
+    );
 };
 
 $container['phpErrorHandler'] = function ($container) {
-    return new \Toei\Portal\Application\Handlers\PhpError($container);
+    return new \Toei\Portal\Application\Handlers\PhpError(
+        $container->get('logger'),
+        $container->get('settings')['displayErrorDetails']
+    );
 };
 
 $container['notFoundHandler'] = function ($container) {
-    return new \Toei\Portal\Application\Handlers\NotFound($container);
+    return new \Toei\Portal\Application\Handlers\NotFound();
 };
 
 $container['notAllowedHandler'] = function ($container) {
-    return new \Toei\Portal\Application\Handlers\NotAllowed($container);
+    return new \Toei\Portal\Application\Handlers\NotAllowed();
 };
