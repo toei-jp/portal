@@ -17,13 +17,13 @@
         "php": "~7.3",
         "slim/slim" : "^3.12",
         "slim/twig-view": "^2.5",
-        "twig/extensions": "^1.5",
         "vlucas/phpdotenv": "^3.6",
         "monolog/monolog": "^2.1",
         "doctrine/orm": "^2.7",
         "microsoft/azure-storage-blob": "^1.5",
         "guzzlehttp/guzzle": "^6.5",
-        "blue32a/monolog-azure-blob": "^0.2.0"
+        "blue32a/monolog-azure-blob": "^0.2.0",
+        "twig/string-extra": "^3.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",

@@ -31,7 +31,7 @@ $container['view'] = function ($container) {
 
     // add Extension
     $view->addExtension(new \Twig\Extension\DebugExtension());
-    $view->addExtension(new \Twig\Extensions\TextExtension());
+    $view->addExtension(new \Twig\Extra\String\StringExtension());
 
     $view->addExtension(new \Toei\Portal\Twig\Extension\AdvanceTicketExtension());
     $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension(
