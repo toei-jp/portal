@@ -101,7 +101,6 @@ class Campaign extends AbstractEntity
      */
     protected $theaters;
 
-
     /**
      * construct
      *

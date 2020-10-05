@@ -100,7 +100,6 @@ class Schedule extends AbstractEntity
      */
     protected $showingTheaters;
 
-
     /**
      * construct
      *

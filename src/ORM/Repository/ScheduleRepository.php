@@ -29,10 +29,10 @@ class ScheduleRepository extends EntityRepository
             ->where('s.isDeleted = false')
             ->andWhere('s.publicStartDt <= CURRENT_TIMESTAMP()')
             ->andWhere('s.publicEndDt > CURRENT_TIMESTAMP()');
-        
+
         return $qb;
     }
-    
+
     /**
      * return showing query
      *
@@ -41,14 +41,14 @@ class ScheduleRepository extends EntityRepository
     protected function getShowingQuery()
     {
         $qb = $this->getActiveQuery();
-        
+
         $qb
             ->andWhere('s.startDate <= CURRENT_DATE()')
             ->orderBy('s.startDate', 'DESC');
-        
+
         return $qb;
     }
-    
+
     /**
      * find showing
      *
@@ -57,10 +57,10 @@ class ScheduleRepository extends EntityRepository
     public function findShowing()
     {
         $qb = $this->getShowingQuery();
-        
+
         return $qb->getQuery()->getResult();
     }
-    
+
     /**
      * return soon query
      *
@@ -69,14 +69,14 @@ class ScheduleRepository extends EntityRepository
     protected function getSoonQuery()
     {
         $qb = $this->getActiveQuery();
-        
+
         $qb
             ->andWhere('s.startDate > CURRENT_DATE()')
             ->orderBy('s.startDate', 'ASC');
-        
+
         return $qb;
     }
-    
+
     /**
      * find soon
      *
@@ -85,7 +85,7 @@ class ScheduleRepository extends EntityRepository
     public function findSoon()
     {
         $qb = $this->getSoonQuery();
-        
+
         return $qb->getQuery()->getResult();
     }
 }

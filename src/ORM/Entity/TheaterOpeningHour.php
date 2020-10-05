@@ -47,7 +47,6 @@ class TheaterOpeningHour extends AbstractEntity
      */
     protected $time;
 
-
     /**
      * create
      *

@@ -24,12 +24,12 @@ $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedu
 
 $app->group('/theaters/{name}/', function () {
     $this->get('', TheaterController::class . ':index')->setName('theater');
-    
+
     $this->group('topics/', function () {
         $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
         $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
-    
+
     $this->get('prices/', TheaterController::class . ':price')->setName('theater_price');
     $this->get('advance_tickets/', TheaterController::class . ':advanceTicket')->setName('theater_advance_ticket');
     $this->get('floor_guide/', TheaterController::class . ':floorGuide')->setName('theater_floor_guide');

@@ -18,7 +18,7 @@ class TheaterController extends BaseController
 {
     /**@var Entity\Theater $theater */
     protected $theater;
-    
+
     /**
      * find by entity
      *
@@ -31,7 +31,7 @@ class TheaterController extends BaseController
             ->getRepository(Entity\Theater::class)
             ->findOneByName($name);
     }
-    
+
     /**
      * pre execute
      *
@@ -42,22 +42,22 @@ class TheaterController extends BaseController
      */
     protected function preExecute($request, $response, $args): void
     {
-        if (!isset($args['name']) || empty($args['name'])) {
+        if (! isset($args['name']) || empty($args['name'])) {
             throw new NotFoundException($request, $response);
         }
-        
-        $theaterName = $args['name'];
+
+        $theaterName   = $args['name'];
         $this->theater = $this->getTheater($theaterName);
-        
+
         if (is_null($this->theater)) {
             throw new NotFoundException($request, $response);
         }
-        
+
         $this->data->set('theater', $this->theater);
-        
+
         parent::preExecute($request, $response, $args);
     }
-    
+
     /**
      * index action
      *
@@ -69,10 +69,10 @@ class TheaterController extends BaseController
     public function executeIndex($request, $response, $args)
     {
         $this->data->set('mainBanners', $this->getMainBanners($this->theater));
-        
+
         $this->data->set('topics', $this->getTopics($this->theater, 3));
     }
-    
+
     /**
      * return main_banners
      *
@@ -85,7 +85,7 @@ class TheaterController extends BaseController
             ->getRepository(Entity\MainBanner::class)
             ->findByTheaterId($theater->getId());
     }
-    
+
     /**
      * return topics
      *
@@ -99,7 +99,7 @@ class TheaterController extends BaseController
             ->getRepository(Entity\News::class)
             ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], $limit);
     }
-    
+
     /**
      * topic list action
      *
@@ -112,7 +112,7 @@ class TheaterController extends BaseController
     {
         $this->data->set('topics', $this->getTopics($this->theater));
     }
-    
+
     /**
      * topic detail action
      *
@@ -123,15 +123,15 @@ class TheaterController extends BaseController
      */
     public function executeTopicDetail($request, $response, $args)
     {
-        if (!isset($args['id']) || empty($args['id'])) {
+        if (! isset($args['id']) || empty($args['id'])) {
             throw new NotFoundException($request, $response);
         }
-        
+
         $id = (int) $args['id'];
-        
+
         $this->data->set('news', $this->getTopic($id));
     }
-    
+
     /**
      * return topic
      *
@@ -144,7 +144,7 @@ class TheaterController extends BaseController
             ->getRepository(Entity\News::class)
             ->findOneById($id);
     }
-    
+
     /**
      * advance ticket action
      *
@@ -157,7 +157,7 @@ class TheaterController extends BaseController
     {
         $this->data->set('advanceTicketList', $this->getAdvanceTicketList($this->theater));
     }
-    
+
     /**
      * return advance ticket list
      *
@@ -170,7 +170,7 @@ class TheaterController extends BaseController
             ->getRepository(Entity\AdvanceTicket::class)
             ->findByTheater($theater->getId());
     }
-    
+
     /**
      * price action
      *
@@ -182,7 +182,7 @@ class TheaterController extends BaseController
     public function executePrice($request, $response, $args)
     {
     }
-    
+
     /**
      * floor guide action
      *
@@ -194,7 +194,7 @@ class TheaterController extends BaseController
     public function executeFloorGuide($request, $response, $args)
     {
     }
-    
+
     /**
      * access action
      *

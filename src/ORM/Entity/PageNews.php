@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 class PageNews extends AbstractEntity
 {
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -30,7 +30,7 @@ class PageNews extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * news
      *
@@ -39,7 +39,7 @@ class PageNews extends AbstractEntity
      * @ORM\JoinColumn(name="news_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $news;
-    
+
     /**
      * page
      *
@@ -48,7 +48,7 @@ class PageNews extends AbstractEntity
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $page;
-    
+
     /**
      * display_order
      *
@@ -56,8 +56,7 @@ class PageNews extends AbstractEntity
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
      */
     protected $displayOrder;
-    
-    
+
     /**
      * construct
      *
@@ -67,7 +66,7 @@ class PageNews extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -77,7 +76,7 @@ class PageNews extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get news
      *
@@ -87,7 +86,7 @@ class PageNews extends AbstractEntity
     {
         return $this->news;
     }
-    
+
     /**
      * set news
      *
@@ -99,7 +98,7 @@ class PageNews extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * page
      *
@@ -109,7 +108,7 @@ class PageNews extends AbstractEntity
     {
         return $this->page;
     }
-    
+
     /**
      * set page
      *
@@ -121,7 +120,7 @@ class PageNews extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get display_order
      *
@@ -131,7 +130,7 @@ class PageNews extends AbstractEntity
     {
         return $this->displayOrder;
     }
-    
+
     /**
      * set display_order
      *

@@ -34,8 +34,8 @@ class ShowingFormat extends AbstractEntity
     public const SYSTEM_NONE     = 99;
 
     public const VOICE_SUBTITLE = 1;
-    public const VOICE_DUB = 2;
-    public const VOICE_NONE = 3;
+    public const VOICE_DUB      = 2;
+    public const VOICE_NONE     = 3;
 
     /**
      * id

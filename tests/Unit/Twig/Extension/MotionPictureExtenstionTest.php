@@ -47,12 +47,10 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     public function testConstruct()
     {
         $targetMock = $this->createTargetMock();
-        $settings = [
-            'foo' => 'bar',
-        ];
+        $settings   = ['foo' => 'bar'];
 
         // execute constructor
-        $targetRef = $this->createTargetReflection();
+        $targetRef      = $this->createTargetReflection();
         $constructorRef = $targetRef->getConstructor();
         $constructorRef->invoke($targetMock, $settings);
 
@@ -75,11 +73,9 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
-        $settings = [
-            'api_endpoint' => 'example.com/api',
-        ];
+        $settings = ['api_endpoint' => 'example.com/api'];
 
-        $targetRef = $this->createTargetReflection();
+        $targetRef           = $this->createTargetReflection();
         $settingsPropertyRef = $targetRef->getProperty('settings');
         $settingsPropertyRef->setAccessible(true);
         $settingsPropertyRef->setValue($targetMock, $settings);
@@ -97,11 +93,10 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
-        $settings = [
-            'waiter_server_url' => 'https://example.com/waiter',
-        ];
+        $settings = ['waiter_server_url' => 'https://example.com/waiter'];
 
         $targetRef = $this->createTargetReflection();
+
         $settingsPropertyRef = $targetRef->getProperty('settings');
         $settingsPropertyRef->setAccessible(true);
         $settingsPropertyRef->setValue($targetMock, $settings);
@@ -119,11 +114,10 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
-        $settings = [
-            'ticket_site_url' => 'https://example.com/ticket',
-        ];
+        $settings = ['ticket_site_url' => 'https://example.com/ticket'];
 
         $targetRef = $this->createTargetReflection();
+
         $settingsPropertyRef = $targetRef->getProperty('settings');
         $settingsPropertyRef->setAccessible(true);
         $settingsPropertyRef->setValue($targetMock, $settings);
@@ -141,11 +135,10 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
-        $settings = [
-            'project_id' => 'aaabbbccc',
-        ];
+        $settings = ['project_id' => 'aaabbbccc'];
 
         $targetRef = $this->createTargetReflection();
+
         $settingsPropertyRef = $targetRef->getProperty('settings');
         $settingsPropertyRef->setAccessible(true);
         $settingsPropertyRef->setValue($targetMock, $settings);

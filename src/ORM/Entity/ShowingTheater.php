@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ShowingTheater extends AbstractEntity
 {
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -30,7 +30,7 @@ class ShowingTheater extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * schedule
      *
@@ -39,7 +39,7 @@ class ShowingTheater extends AbstractEntity
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $schedule;
-    
+
     /**
      * theater
      *
@@ -48,8 +48,7 @@ class ShowingTheater extends AbstractEntity
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $theater;
-    
-    
+
     /**
      * construct
      *
@@ -59,7 +58,7 @@ class ShowingTheater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -69,7 +68,7 @@ class ShowingTheater extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get schedule
      *
@@ -79,7 +78,7 @@ class ShowingTheater extends AbstractEntity
     {
         return $this->schedule;
     }
-    
+
     /**
      * set schedule
      *
@@ -91,7 +90,7 @@ class ShowingTheater extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get theater
      *
@@ -101,7 +100,7 @@ class ShowingTheater extends AbstractEntity
     {
         return $this->theater;
     }
-    
+
     /**
      * set theater
      *

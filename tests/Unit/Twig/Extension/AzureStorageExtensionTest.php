@@ -58,12 +58,13 @@ final class AzureStorageExtensionTest extends BaseTestCase
      */
     public function testConstruct()
     {
-        $targetMock = $this->createTargetMock();
+        $targetMock        = $this->createTargetMock();
         $blobRestProxyMock = $this->crateBlobRestProxyMock();
-        $publicEndpoint = 'http://example.com';
+        $publicEndpoint    = 'http://example.com';
+
+        $targetRef = $this->createTargetReflection();
 
         // execute constructor
-        $targetRef = $this->createTargetReflection();
         $constructorRef = $targetRef->getConstructor();
         $constructorRef->invoke($targetMock, $blobRestProxyMock, $publicEndpoint);
 
@@ -104,7 +105,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
         $publicEndpointPropertyRef->setValue($targetMock, $publicEndpoint);
 
         $container = 'test';
-        $blob = 'sample.txt';
+        $blob      = 'sample.txt';
 
         // execute
         $result = $targetMock->blobUrl($container, $blob);
@@ -122,8 +123,8 @@ final class AzureStorageExtensionTest extends BaseTestCase
     public function testBlobUrlDoNotHasPublicEndpoint()
     {
         $container = 'test';
-        $blob = 'sample.txt';
-        $url = 'http://storage.example.com/' . $container . '/' . $blob;
+        $blob      = 'sample.txt';
+        $url       = 'http://storage.example.com/' . $container . '/' . $blob;
 
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
@@ -159,8 +160,8 @@ final class AzureStorageExtensionTest extends BaseTestCase
     public function testFileUrl()
     {
         $container = File::getBlobContainer();
-        $blob = 'sample.txt';
-        $url = 'http://storage.example.com/' . $container . '/' . $blob;
+        $blob      = 'sample.txt';
+        $url       = 'http://storage.example.com/' . $container . '/' . $blob;
 
         /** @var \Mockery\MockInterface|\Mockery\LegacyMockInterface|File $fileMock */
         $fileMock = Mockery::mock(File::class);

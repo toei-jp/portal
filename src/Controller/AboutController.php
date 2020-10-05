@@ -26,7 +26,7 @@ class AboutController extends GeneralController
     public function executeFaq($request, $response, $args)
     {
     }
-    
+
     /**
      * law action
      *
