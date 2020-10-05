@@ -27,7 +27,7 @@ class ScheduleController extends GeneralController
     {
         $this->data->set('schedules', $this->getShowingSchedules());
     }
-    
+
     /**
      * return showing schedules
      *
@@ -39,7 +39,7 @@ class ScheduleController extends GeneralController
             ->getRepository(Entity\Schedule::class)
             ->findShowing();
     }
-    
+
     /**
      * soon action
      *
@@ -52,7 +52,7 @@ class ScheduleController extends GeneralController
     {
         $this->data->set('schedules', $this->getSoonSchedules());
     }
-    
+
     /**
      * return soon schedules
      *

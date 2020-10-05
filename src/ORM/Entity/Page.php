@@ -77,7 +77,6 @@ class Page extends AbstractEntity
      */
     protected $mainBanners;
 
-
     /**
      * construct
      *

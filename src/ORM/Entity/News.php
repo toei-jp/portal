@@ -111,7 +111,6 @@ class News extends AbstractEntity
      */
     protected $theaters;
 
-
     /**
      * construct
      *

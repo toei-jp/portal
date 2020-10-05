@@ -27,7 +27,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/index.html.twig', $data->all());
     }
-    
+
     /**
      * topic list
      *
@@ -39,7 +39,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/topic/list.html.twig', $data->all());
     }
-    
+
     /**
      * topic detail
      *
@@ -51,7 +51,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/topic/detail.html.twig', $data->all());
     }
-    
+
     /**
      * advance ticket
      *
@@ -63,7 +63,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/advance_ticket/index.html.twig', $data->all());
     }
-    
+
     /**
      * price
      *
@@ -75,7 +75,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/price/index.html.twig', $data->all());
     }
-    
+
     /**
      * floor guide
      *
@@ -87,7 +87,7 @@ class TheaterResponder extends BaseResponder
     {
         return $this->view->render($response, 'theater/floor_guide/index.html.twig', $data->all());
     }
-    
+
     /**
      * access
      *

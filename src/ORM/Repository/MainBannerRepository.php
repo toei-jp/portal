@@ -27,10 +27,10 @@ class MainBannerRepository extends EntityRepository
         $qb = $this->createQueryBuilder('mb');
         $qb
             ->where('mb.isDeleted = false');
-        
+
         return $qb;
     }
-    
+
     /**
      * find by page_id
      *
@@ -45,10 +45,10 @@ class MainBannerRepository extends EntityRepository
             ->andWhere('pmb.page = :page_id')
             ->setParameter('page_id', $pageId)
             ->orderBy('pmb.displayOrder', 'ASC');
-        
+
         return $qb->getQuery()->getResult();
     }
-    
+
     /**
      * find by theater_id
      *
@@ -63,7 +63,7 @@ class MainBannerRepository extends EntityRepository
             ->andWhere('tmb.theater = :theater_id')
             ->setParameter('theater_id', $theaterId)
             ->orderBy('tmb.displayOrder', 'ASC');
-        
+
         return $qb->getQuery()->getResult();
     }
 }

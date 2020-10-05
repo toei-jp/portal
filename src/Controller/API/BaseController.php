@@ -30,7 +30,7 @@ abstract class BaseController extends AbstractController
     protected function preExecute($request, $response, $args): void
     {
     }
-    
+
     /**
      * post execute
      *
@@ -42,7 +42,7 @@ abstract class BaseController extends AbstractController
     protected function postExecute($request, $response, $args): void
     {
     }
-    
+
     /**
      * get responder
      *
@@ -52,7 +52,7 @@ abstract class BaseController extends AbstractController
     {
         $path = explode('\\', get_class($this));
         $name = str_replace('Controller', '', array_pop($path));
-        
+
         return ApiResponder\BaseResponder::factory($name);
     }
 }

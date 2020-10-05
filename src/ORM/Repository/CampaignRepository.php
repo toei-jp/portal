@@ -31,10 +31,10 @@ class CampaignRepository extends EntityRepository
                 $qb->expr()->lte('c.startDt', 'CURRENT_TIMESTAMP()'),
                 $qb->expr()->gt('c.endDt', 'CURRENT_TIMESTAMP()')
             ));
-        
+
         return $qb;
     }
-    
+
     /**
      * find by page
      *
@@ -44,13 +44,13 @@ class CampaignRepository extends EntityRepository
     public function findByPage(int $pageId)
     {
         $qb = $this->getActiveQuery();
-        
+
         $qb
             ->join('c.pages', 'pc')
             ->andWhere('pc.page = :page_id')
             ->setParameter('page_id', $pageId)
             ->orderBy('pc.displayOrder', 'ASC');
-        
+
         return $qb->getQuery()->getResult();
     }
 }

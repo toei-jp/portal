@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 class File extends AbstractEntity
 {
     use TimestampableTrait;
-    
+
     /**
      * id
      *
@@ -32,7 +32,7 @@ class File extends AbstractEntity
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /**
      * name
      *
@@ -40,7 +40,7 @@ class File extends AbstractEntity
      * @ORM\Column(type="string", unique=true)
      */
     protected $name;
-    
+
     /**
      * original_name
      *
@@ -48,7 +48,7 @@ class File extends AbstractEntity
      * @ORM\Column(type="string", name="original_name")
      */
     protected $originalName;
-    
+
     /**
      * mime_type
      *
@@ -56,7 +56,7 @@ class File extends AbstractEntity
      * @ORM\Column(type="string", name="mime_type")
      */
     protected $mimeType;
-    
+
     /**
      * size
      *
@@ -64,15 +64,14 @@ class File extends AbstractEntity
      * @ORM\Column(type="integer", options={"unsigned"=true})
      */
     protected $size;
-    
+
     /**
      * blob container name
      *
      * @var string
      */
     protected static $blobContainer = 'file';
-    
-    
+
     /**
      * construct
      *
@@ -82,7 +81,7 @@ class File extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get id
      *
@@ -92,7 +91,7 @@ class File extends AbstractEntity
     {
         return $this->id;
     }
-    
+
     /**
      * get name
      *
@@ -102,7 +101,7 @@ class File extends AbstractEntity
     {
         return $this->name;
     }
-    
+
     /**
      * set name
      *
@@ -114,7 +113,7 @@ class File extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get original_name
      *
@@ -124,7 +123,7 @@ class File extends AbstractEntity
     {
         return $this->originalName;
     }
-    
+
     /**
      * set original_name
      *
@@ -136,7 +135,7 @@ class File extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get mime_type
      *
@@ -146,7 +145,7 @@ class File extends AbstractEntity
     {
         return $this->mimeType;
     }
-    
+
     /**
      * set mime_type
      *
@@ -158,7 +157,7 @@ class File extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get size
      *
@@ -168,7 +167,7 @@ class File extends AbstractEntity
     {
         return $this->size;
     }
-    
+
     /**
      * set size
      *
@@ -180,7 +179,7 @@ class File extends AbstractEntity
     {
         throw new \LogicException('Not allowed.');
     }
-    
+
     /**
      * get blob container
      *

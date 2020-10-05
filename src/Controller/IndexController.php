@@ -15,7 +15,7 @@ use Toei\Portal\ORM\Entity;
  */
 class IndexController extends GeneralController
 {
-    public const THEATER_SHIBUYA = 1;
+    public const THEATER_SHIBUYA    = 1;
     public const THEATER_MARUNOUCHI = 2;
 
     /**
@@ -30,7 +30,7 @@ class IndexController extends GeneralController
     {
         $this->data->set('mainBanners', $this->getMainBanners());
 
-        $shibuya = null;
+        $shibuya    = null;
         $marunouchi = null;
 
         foreach ($this->theaters as $theater) {
@@ -69,7 +69,6 @@ class IndexController extends GeneralController
             ->getRepository(Entity\MainBanner::class)
             ->findByPageId(self::PAGE_ID);
     }
-
 
     /**
      * return topics

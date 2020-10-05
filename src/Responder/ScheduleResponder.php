@@ -27,7 +27,7 @@ class ScheduleResponder extends BaseResponder
     {
         return $this->view->render($response, 'schedule/showing.html.twig', $data->all());
     }
-    
+
     /**
      * soon
      *

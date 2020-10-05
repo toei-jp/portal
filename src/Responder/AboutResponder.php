@@ -27,7 +27,7 @@ class AboutResponder extends BaseResponder
     {
         return $this->view->render($response, 'about/faq.html.twig', $data->all());
     }
-    
+
     /**
      * law
      *

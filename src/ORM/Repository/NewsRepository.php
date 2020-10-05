@@ -31,10 +31,10 @@ class NewsRepository extends EntityRepository
                 $qb->expr()->lte('n.startDt', 'CURRENT_TIMESTAMP()'),
                 $qb->expr()->gt('n.endDt', 'CURRENT_TIMESTAMP()')
             ));
-        
+
         return $qb;
     }
-    
+
     /**
      * find one by id
      *
@@ -47,10 +47,10 @@ class NewsRepository extends EntityRepository
         $qb
             ->andWhere('n.id = :id')
             ->setParameter('id', $id);
-            
+
         return $qb->getQuery()->getOneOrNullResult();
     }
-    
+
     /**
      * find by theater
      *
@@ -67,17 +67,17 @@ class NewsRepository extends EntityRepository
             ->andWhere('pt.theater = :theater_id')
             ->setParameter('theater_id', $theaterId)
             ->orderBy('pt.displayOrder', 'ASC');
-        
+
         if ($category) {
             $qb
                 ->andWhere('n.category IN (:category)')
                 ->setParameter('category', $category);
         }
-        
+
         if ($limit) {
             $qb->setMaxResults($limit);
         }
-        
+
         return $qb->getQuery()->getResult();
     }
 }

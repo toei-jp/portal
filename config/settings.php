@@ -10,7 +10,7 @@
 
 $settings = [];
 
-$settings['displayErrorDetails'] = APP_DEBUG;
+$settings['displayErrorDetails']    = APP_DEBUG;
 $settings['addContentLengthHeader'] = false;
 
 // view
@@ -24,9 +24,7 @@ $settings['view'] = [
 
 // logger
 $getLoggerSetting = function () {
-    $settings = [
-        'name' => 'app',
-    ];
+    $settings = ['name' => 'app'];
 
     if (APP_DEBUG) {
         $settings['chrome_php'] = [
@@ -90,6 +88,7 @@ $getDoctrineSetting = function () {
     if (getenv('MYSQLCONNSTR_SSL') === 'true') {
         // https://docs.microsoft.com/ja-jp/azure/mysql/howto-configure-ssl
         $cafile = APP_ROOT . '/cert/BaltimoreCyberTrustRoot.crt.pem';
+
         $settings['connection']['driverOptions'][PDO::MYSQL_ATTR_SSL_CA] = $cafile;
     }
 
@@ -105,14 +104,15 @@ $getStorageSettings = function () {
         'account_key' => getenv('CUSTOMCONNSTR_STORAGE_KEY'),
     ];
 
-    $secure = getenv('CUSTOMCONNSTR_STORAGE_SECURE');
-    $settings['secure'] = ($secure === 'false') ? false : true;
+    $settings['secure'] = (getenv('CUSTOMCONNSTR_STORAGE_SECURE') === 'false')
+        ? false
+        : true;
 
-    $blobEndpoint = getenv('CUSTOMCONNSTR_STORAGE_BLOB_ENDPOINT');
-    $settings['blob_endpoint'] = ($blobEndpoint) ?: null;
+    $settings['blob_endpoint'] = (getenv('CUSTOMCONNSTR_STORAGE_BLOB_ENDPOINT'))
+        ?: null;
 
-    $publicEndpoint = getenv('CUSTOMCONNSTR_STORAGE_PUBLIC_ENDOPOINT');
-    $settings['public_endpoint'] = ($publicEndpoint) ?: null;
+    $settings['public_endpoint'] = (getenv('CUSTOMCONNSTR_STORAGE_PUBLIC_ENDOPOINT'))
+        ?: null;
 
     return $settings;
 };
