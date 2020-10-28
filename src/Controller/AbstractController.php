@@ -74,7 +74,7 @@ abstract class AbstractController
             $this->logger->debug('Run preExecute().');
             $this->preExecute($request, $response, $args);
 
-            $this->logger->debug('Run {method}().', [ 'method' => $actionMethod ]);
+            $this->logger->debug('Run {method}().', ['method' => $actionMethod]);
 
             /** @var string|null */
             $method = $this->$actionMethod($request, $response, $args);
@@ -167,7 +167,7 @@ abstract class AbstractController
      */
     public function __call($name, $argments)
     {
-        $this->logger->debug('Call "{name}" action.', [ 'name' => $name ]);
+        $this->logger->debug('Call "{name}" action.', ['name' => $name]);
 
         $actionMethod = 'execute' . ucfirst($name);
 

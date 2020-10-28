@@ -97,7 +97,7 @@ class TheaterController extends BaseController
     {
         return $this->em
             ->getRepository(Entity\News::class)
-            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], $limit);
+            ->findByTheater($theater->getId(), [Entity\News::CATEGORY_TOPICS], $limit);
     }
 
     /**

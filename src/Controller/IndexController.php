@@ -83,7 +83,7 @@ class IndexController extends GeneralController
     {
         return $this->em
             ->getRepository(Entity\News::class)
-            ->findByTheater($theater->getId(), [ Entity\News::CATEGORY_TOPICS ], 2);
+            ->findByTheater($theater->getId(), [Entity\News::CATEGORY_TOPICS], 2);
     }
 
     /**
