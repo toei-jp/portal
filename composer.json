@@ -2,6 +2,7 @@
     "name": "toei-jp/portal",
     "description": "Toei Portal Frontend",
     "type": "project",
+    "license": "proprietary",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
