@@ -2,8 +2,6 @@
 
 /**
  * ShowingFormatExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 declare(strict_types=1);
@@ -33,6 +31,7 @@ final class ShowingFormatExtensionTest extends BaseTestCase
      * test getVoiceText
      *
      * @test
+     *
      * @return void
      */
     public function testGetVoiceText()

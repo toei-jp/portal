@@ -2,8 +2,6 @@
 
 /**
  * News.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -30,84 +28,94 @@ class News extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * title
      *
-     * @var Title|null
      * @ORM\ManyToOne(targetEntity="Title")
      * @ORM\JoinColumn(name="title_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
+     *
+     * @var Title|null
      */
     protected $title;
 
     /**
      * image
      *
-     * @var File
      * @ORM\OneToOne(targetEntity="File", fetch="EAGER")
      * @ORM\JoinColumn(name="image_file_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
+     *
+     * @var File
      */
     protected $image;
 
     /**
      * category
      *
-     * @var int
      * @ORM\Column(type="smallint", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $category;
 
     /**
      * headline
      *
-     * @var string
      * @ORM\Column(type="string")
+     *
+     * @var string
      */
     protected $headline;
 
     /**
      * body
      *
-     * @var string
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     protected $body;
 
     /**
      * start_dt
      *
-     * @var \DateTime
      * @ORM\Column(type="datetime", name="start_dt")
+     *
+     * @var \DateTime
      */
     protected $startDt;
 
     /**
      * end_dt
      *
-     * @var \DateTime
      * @ORM\Column(type="datetime", name="end_dt")
+     *
+     * @var \DateTime
      */
     protected $endDt;
 
     /**
      * pages
      *
-     * @var Collection<PageNews>
      * @ORM\OneToMany(targetEntity="PageNews", mappedBy="news")
+     *
+     * @var Collection<PageNews>
      */
     protected $pages;
 
     /**
      * theaters
      *
-     * @var Collection<TheaterNews>
      * @ORM\OneToMany(targetEntity="TheaterNews", mappedBy="news")
+     *
+     * @var Collection<TheaterNews>
      */
     protected $theaters;
 
@@ -146,6 +154,7 @@ class News extends AbstractEntity
      *
      * @param Title|null $title
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTitle($title)
@@ -168,6 +177,7 @@ class News extends AbstractEntity
      *
      * @param File $image
      * @return void
+     *
      * @throws \LogicException
      */
     public function setImage(File $image)
@@ -190,6 +200,7 @@ class News extends AbstractEntity
      *
      * @param int $category
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCategory(int $category)
@@ -212,6 +223,7 @@ class News extends AbstractEntity
      *
      * @param string $headline
      * @return void
+     *
      * @throws \LogicException
      */
     public function setHeadline(string $headline)
@@ -234,6 +246,7 @@ class News extends AbstractEntity
      *
      * @param string $body
      * @return void
+     *
      * @throws \LogicException
      */
     public function setBody(string $body)
@@ -256,6 +269,7 @@ class News extends AbstractEntity
      *
      * @param \DateTime|string $startDt
      * @return void
+     *
      * @throws \LogicException
      */
     public function setStartDt($startDt)
@@ -278,6 +292,7 @@ class News extends AbstractEntity
      *
      * @param \DateTime|string $endDt
      * @return void
+     *
      * @throws \LogicException
      */
     public function setEndDt($endDt)

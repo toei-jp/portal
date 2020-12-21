@@ -2,8 +2,6 @@
 
 /**
  * AdminUser.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -25,51 +23,57 @@ class AdminUser extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * name
      *
-     * @var string
      * @ORM\Column(type="string", unique=true)
+     *
+     * @var string
      */
     protected $name;
 
     /**
      * display_name
      *
-     * @var string
      * @ORM\Column(type="string", name="display_name")
+     *
+     * @var string
      */
     protected $displayName;
 
     /**
      * password
      *
-     * @var string
      * @ORM\Column(type="string", length=60, options={"fixed":true})
+     *
+     * @var string
      */
     protected $password;
 
     /**
      * group
      *
-     * @var int
      * @ORM\Column(type="smallint", name="`group`", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $group;
 
     /**
      * theater
      *
-     * @var Theater|null
      * @ORM\ManyToOne(targetEntity="Theater", inversedBy="adminUsers")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
+     *
+     * @var Theater|null
      */
     protected $theater;
 
@@ -108,6 +112,7 @@ class AdminUser extends AbstractEntity
      *
      * @param string $name
      * @return void
+     *
      * @throws \LogicException
      */
     public function setName(string $name)
@@ -130,6 +135,7 @@ class AdminUser extends AbstractEntity
      *
      * @param string $displayName
      * @return void
+     *
      * @throws \LogicException
      */
     public function setDisplayName(string $displayName)
@@ -152,6 +158,7 @@ class AdminUser extends AbstractEntity
      *
      * @param string $password
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPassword(string $password)
@@ -174,6 +181,7 @@ class AdminUser extends AbstractEntity
      *
      * @param int $group
      * @return void
+     *
      * @throws \LogicException
      */
     public function setGroup(int $group)
@@ -196,6 +204,7 @@ class AdminUser extends AbstractEntity
      *
      * @param Theater $theater
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTheater(Theater $theater)

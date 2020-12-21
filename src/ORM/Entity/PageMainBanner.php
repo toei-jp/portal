@@ -2,8 +2,6 @@
 
 /**
  * PageMainBanner.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -24,36 +22,40 @@ class PageMainBanner extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * main_banner
      *
-     * @var MainBanner
      * @ORM\ManyToOne(targetEntity="MainBanner")
      * @ORM\JoinColumn(name="main_banner_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var MainBanner
      */
     protected $mainBanner;
 
     /**
      * page
      *
-     * @var Page
      * @ORM\ManyToOne(targetEntity="Page", inversedBy="newsList")
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Page
      */
     protected $page;
 
     /**
      * display_order
      *
-     * @var int
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $displayOrder;
 
@@ -92,6 +94,7 @@ class PageMainBanner extends AbstractEntity
      *
      * @param MainBanner $mainBanner
      * @return void
+     *
      * @throws \LogicException
      */
     public function setMainBanner(MainBanner $mainBanner)
@@ -114,6 +117,7 @@ class PageMainBanner extends AbstractEntity
      *
      * @param Page $page
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPage(Page $page)
@@ -136,6 +140,7 @@ class PageMainBanner extends AbstractEntity
      *
      * @param int $displayOrder
      * @return void
+     *
      * @throws \LogicException
      */
     public function setDisplayOrder(int $displayOrder)

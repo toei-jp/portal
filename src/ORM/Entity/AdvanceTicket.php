@@ -2,8 +2,6 @@
 
 /**
  * AdvanceTicket.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -32,84 +30,94 @@ class AdvanceTicket extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * advance_sale
      *
-     * @var AdvanceSale
      * @ORM\ManyToOne(targetEntity="AdvanceSale")
      * @ORM\JoinColumn(name="advance_sale_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
+     *
+     * @var AdvanceSale
      */
     protected $advanceSale;
 
     /**
      * release_dt
      *
-     * @var \DateTime
      * @ORM\Column(type="datetime", name="release_dt")
+     *
+     * @var \DateTime
      */
     protected $releaseDt;
 
     /**
      * release_dt_text
      *
-     * @var string|null
      * @ORM\Column(type="string", name="release_dt_text", nullable=true)
+     *
+     * @var string|null
      */
     protected $releaseDtText;
 
     /**
      * is_sales_end
      *
-     * @var bool
      * @ORM\Column(type="boolean", name="is_sales_end", options={"default":false})
+     *
+     * @var bool
      */
     protected $isSalesEnd;
 
     /**
      * type
      *
-     * @var int
      * @ORM\Column(type="smallint", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $type;
 
     /**
      * price_text
      *
-     * @var string|null
      * @ORM\Column(type="string", name="price_text", nullable=true)
+     *
+     * @var string|null
      */
     protected $priceText;
 
     /**
      * special_gift
      *
-     * @var string|null
      * @ORM\Column(type="string", name="special_gift", nullable=true)
+     *
+     * @var string|null
      */
     protected $specialGift;
 
     /**
      * special_gift_stock
      *
-     * @var int|null
      * @ORM\Column(type="smallint", name="special_gift_stock", nullable=true, options={"unsigned"=true})
+     *
+     * @var int|null
      */
     protected $specialGiftStock;
 
     /**
      * special_gift_image
      *
-     * @var File|null
      * @ORM\OneToOne(targetEntity="File")
      * @ORM\JoinColumn(name="special_gift_image", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
+     *
+     * @var File|null
      */
     protected $specialGiftImage;
 
@@ -148,6 +156,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param AdvanceSale $advanceSale
      * @return void
+     *
      * @throws \LogicException
      */
     public function setAdvanceSale(AdvanceSale $advanceSale)
@@ -170,6 +179,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param \DateTime|string $releaseDt
      * @return void
+     *
      * @throws \LogicException
      */
     public function setReleaseDt($releaseDt)
@@ -192,6 +202,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param string|null $releaseDtText
      * @return void
+     *
      * @throws \LogicException
      */
     public function setReleaseDtText(?string $releaseDtText)
@@ -226,6 +237,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param bool $isSalesEnd
      * @return void
+     *
      * @throws \LogicException
      */
     public function setIsSalesEnd(bool $isSalesEnd)
@@ -248,6 +260,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param int $type
      * @return void
+     *
      * @throws \LogicException
      */
     public function setType(int $type)
@@ -270,6 +283,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param string|null $priceText
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPriceText(?string $priceText)
@@ -292,6 +306,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param string|null $specialGift
      * @return void
+     *
      * @throws \LogicException
      */
     public function setSpecialGift(?string $specialGift)
@@ -355,6 +370,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param int|null $specialGiftStock
      * @return void
+     *
      * @throws \LogicException
      */
     public function setSpecialGiftStock($specialGiftStock)
@@ -377,6 +393,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @param File|null $specialGiftImage
      * @return void
+     *
      * @throws \LogicException
      */
     public function setSpecialGiftImage($specialGiftImage)

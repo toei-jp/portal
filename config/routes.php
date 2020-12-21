@@ -2,8 +2,6 @@
 
 /**
  * routes.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 use Toei\Portal\Controller\AboutController;
@@ -12,7 +10,9 @@ use Toei\Portal\Controller\TheaterController;
 use Toei\Portal\Controller\ScheduleController;
 use Toei\Portal\Controller\API\AuthController as AuthApiController;
 
+// phpcs:disable SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration
 /** @var \Slim\App $app */
+// phpcs:enable
 
 $app->get('/', IndexController::class . ':index')->setName('homepage');
 

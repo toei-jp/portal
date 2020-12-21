@@ -2,8 +2,6 @@
 
 /**
  * AzureBlobStorageHandler.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\Logger\Handler;

@@ -2,8 +2,6 @@
 
 /**
  * AzureStorageExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 declare(strict_types=1);
@@ -54,6 +52,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
      * test construct
      *
      * @test
+     *
      * @return void
      */
     public function testConstruct()
@@ -89,6 +88,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
      * test blobUrl has publicEndpoint
      *
      * @test
+     *
      * @return void
      */
     public function testBlobUrlHasPublicEndpoint()
@@ -118,6 +118,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
      * test blobUrl do not has publicEndpoint
      *
      * @test
+     *
      * @return void
      */
     public function testBlobUrlDoNotHasPublicEndpoint()
@@ -155,6 +156,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
      * test fileUrl
      *
      * @test
+     *
      * @return void
      */
     public function testFileUrl()

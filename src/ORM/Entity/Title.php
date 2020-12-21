@@ -2,8 +2,6 @@
 
 /**
  * Title.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -33,131 +31,147 @@ class Title extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * image
      *
-     * @var File|null
      * @ORM\OneToOne(targetEntity="File", fetch="EAGER")
      * @ORM\JoinColumn(name="image_file_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
+     *
+     * @var File|null
      */
     protected $image;
 
     /**
      * chever_code
      *
-     * @var string|null
      * @ORM\Column(name="chever_code", type="string", length=100, unique=true, nullable=true)
+     *
+     * @var string|null
      */
     protected $cheverCode;
 
     /**
      * name
      *
-     * @var string
      * @ORM\Column(type="string")
+     *
+     * @var string
      */
     protected $name;
 
     /**
      * name_kana
      *
-     * @var string|null
      * @ORM\Column(type="string", name="name_kana", nullable=true)
+     *
+     * @var string|null
      */
     protected $nameKana;
 
     /**
      * sub_title
      *
-     * @var string|null
      * @ORM\Column(type="string", name="sub_title", nullable=true)
+     *
+     * @var string|null
      */
     protected $subTitle;
 
     /**
      * credit
      *
-     * @var string|null
      * @ORM\Column(type="string", nullable=true)
+     *
+     * @var string|null
      */
     protected $credit;
 
     /**
      * catchcopy
      *
-     * @var string|null
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     protected $catchcopy;
 
     /**
      * introduction
      *
-     * @var string|null
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     protected $introduction;
 
     /**
      * director
      *
-     * @var string|null
      * @ORM\Column(type="string", nullable=true)
+     *
+     * @var string|null
      */
     protected $director;
 
     /**
      * cast
      *
-     * @var string|null
      * @ORM\Column(type="string", nullable=true)
+     *
+     * @var string|null
      */
     protected $cast;
 
     /**
      * publishing_expected_date
      *
-     * @var \DateTime|null
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
+     *
+     * @var \DateTime|null
      */
     protected $publishingExpectedDate;
 
     /**
      * official_site
      *
-     * @var string|null
      * @ORM\Column(type="string", name="official_site", nullable=true)
+     *
+     * @var string|null
      */
     protected $officialSite;
 
     /**
      * rating
      *
-     * @var int|null
      * @ORM\Column(type="smallint", nullable=true, options={"unsigned"=true})
+     *
+     * @var int|null
      */
     protected $rating;
 
     /**
      * universal
      *
-     * @var array|null
      * @ORM\Column(type="json", nullable=true)
+     *
+     * @var array|null
      */
     protected $universal;
 
     /**
      * campaigns
      *
-     * @var Collection<Campaign>
      * @ORM\OneToMany(targetEntity="Campaign", mappedBy="title", indexBy="id")
+     *
+     * @var Collection<Campaign>
      */
     protected $campaigns;
 
@@ -218,6 +232,7 @@ class Title extends AbstractEntity
      *
      * @param File|null $image
      * @return void
+     *
      * @throws \LogicException
      */
     public function setImage($image)
@@ -240,6 +255,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $cheverCode
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCheverCode(?string $cheverCode)
@@ -262,6 +278,7 @@ class Title extends AbstractEntity
      *
      * @param string $name
      * @return void
+     *
      * @throws \LogicException
      */
     public function setName(string $name)
@@ -284,6 +301,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $nameKana
      * @return void
+     *
      * @throws \LogicException
      */
     public function setNameKana(?string $nameKana)
@@ -306,6 +324,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $subTitle
      * @return void
+     *
      * @throws \LogicException
      */
     public function setSubTitle(?string $subTitle)
@@ -328,6 +347,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $credit
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCredit(?string $credit)
@@ -350,6 +370,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $catchcopy
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCatchcopy(?string $catchcopy)
@@ -372,6 +393,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $introduction
      * @return void
+     *
      * @throws \LogicException
      */
     public function setIntroduction(?string $introduction)
@@ -394,6 +416,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $director
      * @return void
+     *
      * @throws \LogicException
      */
     public function setDirector(?string $director)
@@ -416,6 +439,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $cast
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCast(?string $cast)
@@ -438,6 +462,7 @@ class Title extends AbstractEntity
      *
      * @param \DateTime|string|null $publishingExpectedDate
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPublishingExpectedDate($publishingExpectedDate)
@@ -460,6 +485,7 @@ class Title extends AbstractEntity
      *
      * @param string|null $officialSite
      * @return void
+     *
      * @throws \LogicException
      */
     public function setOfficialSite(?string $officialSite)
@@ -482,6 +508,7 @@ class Title extends AbstractEntity
      *
      * @param int|null $rating
      * @return void
+     *
      * @throws \LogicException
      */
     public function setRating(?int $rating)
@@ -524,6 +551,7 @@ class Title extends AbstractEntity
      *
      * @param array|null $universal
      * @return void
+     *
      * @throws \LogicException
      */
     public function setUniversal(?array $universal)

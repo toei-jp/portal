@@ -2,8 +2,6 @@
 
 /**
  * AdvanceSale.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 namespace Toei\Portal\ORM\Entity;
@@ -29,52 +27,58 @@ class AdvanceSale extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * theater
      *
-     * @var Theater
      * @ORM\ManyToOne(targetEntity="Theater")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
+     *
+     * @var Theater
      */
     protected $theater;
 
     /**
      * title
      *
-     * @var Title
      * @ORM\ManyToOne(targetEntity="Title")
      * @ORM\JoinColumn(name="title_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
+     *
+     * @var Title
      */
     protected $title;
 
     /**
      * publishing_expected_date
      *
-     * @var \DateTime|null
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
+     *
+     * @var \DateTime|null
      */
     protected $publishingExpectedDate;
 
     /**
      * publishing_expected_date_text
      *
-     * @var string|null
      * @ORM\Column(type="string", name="publishing_expected_date_text", nullable=true)
+     *
+     * @var string|null
      */
     protected $publishingExpectedDateText;
 
     /**
      * advance_tickets
      *
-     * @var Collection<AdvanceTicket>
      * @ORM\OneToMany(targetEntity="AdvanceTicket", mappedBy="advanceSale", indexBy="id")
+     *
+     * @var Collection<AdvanceTicket>
      */
     protected $advanceTickets;
 
@@ -113,6 +117,7 @@ class AdvanceSale extends AbstractEntity
      *
      * @param Theater $theater
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTheater(Theater $theater)
@@ -135,6 +140,7 @@ class AdvanceSale extends AbstractEntity
      *
      * @param Title $title
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTitle(Title $title)
@@ -157,6 +163,7 @@ class AdvanceSale extends AbstractEntity
      *
      * @param \DateTime|string|null $publishingExpectedDate
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPublishingExpectedDate($publishingExpectedDate)
@@ -179,6 +186,7 @@ class AdvanceSale extends AbstractEntity
      *
      * @param string|null $publishingExpectedDateText
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPublishingExpectedDateText(?string $publishingExpectedDateText)

@@ -2,8 +2,6 @@
 
 /**
  * TitleExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
 declare(strict_types=1);
@@ -33,6 +31,7 @@ final class TitleExtensionTest extends BaseTestCase
      * test getRatingText
      *
      * @test
+     *
      * @return void
      */
     public function testGetRatingText()
