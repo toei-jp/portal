@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Error.php
- */
-
 namespace Toei\Portal\Application\Handlers;
 
 use Monolog\Logger;

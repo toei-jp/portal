@@ -1,9 +1,5 @@
 <?php
 
-/**
- * AbstractEntity.php
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 /**

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * TitleExtension.php
- */
-
 namespace Toei\Portal\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;

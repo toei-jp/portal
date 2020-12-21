@@ -1,9 +1,5 @@
 <?php
 
-/**
- * AdvanceTicketExtension.php
- */
-
 namespace Toei\Portal\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;

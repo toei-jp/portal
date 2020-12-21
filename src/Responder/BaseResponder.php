@@ -1,9 +1,5 @@
 <?php
 
-/**
- * BaseResponder.php
- */
-
 namespace Toei\Portal\Responder;
 
 use Slim\Views\Twig;

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * BaseResponder.php
- */
-
 namespace Toei\Portal\Responder\API;
 
 use Toei\Portal\Responder\AbstractResponder;

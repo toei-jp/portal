@@ -1,9 +1,5 @@
 <?php
 
-/**
- * MainBanner.php
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * ScheduleResponder.php
- */
-
 namespace Toei\Portal\Responder;
 
 use Slim\Collection;

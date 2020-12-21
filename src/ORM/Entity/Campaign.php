@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Campaign.php
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;

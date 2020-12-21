@@ -1,9 +1,5 @@
 <?php
 
-/**
- * TimestampableTrait.php
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 /**

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * AdvanceTicketRepository.php
- */
-
 namespace Toei\Portal\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository;

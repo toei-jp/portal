@@ -1,9 +1,5 @@
 <?php
 
-/**
- * AbstractController.php
- */
-
 namespace Toei\Portal\Controller;
 
 use Slim\Collection;

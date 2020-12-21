@@ -1,9 +1,5 @@
 <?php
 
-/**
- * ScheduleController.php
- */
-
 namespace Toei\Portal\Controller;
 
 use Toei\Portal\ORM\Entity;

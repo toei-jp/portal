@@ -1,9 +1,5 @@
 <?php
 
-/**
- * GeneralController.php
- */
-
 namespace Toei\Portal\Controller;
 
 /**

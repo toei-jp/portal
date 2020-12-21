@@ -1,9 +1,5 @@
 <?php
 
-/**
- * NotFound.php
- */
-
 namespace Toei\Portal\Application\Handlers;
 
 use Slim\Handlers\NotFound as BaseHandler;

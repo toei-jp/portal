@@ -1,9 +1,5 @@
 <?php
 
-/**
- * TheaterOpeningHour.php
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 /**
