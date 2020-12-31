@@ -1,11 +1,5 @@
 <?php
 
-/**
- * AdvanceTicketExtension.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;

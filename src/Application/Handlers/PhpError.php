@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Error.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Application\Handlers;
 
 use Monolog\Logger;

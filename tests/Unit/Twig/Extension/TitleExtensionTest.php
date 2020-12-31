@@ -1,11 +1,5 @@
 <?php
 
-/**
- * TitleExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
@@ -33,6 +27,7 @@ final class TitleExtensionTest extends BaseTestCase
      * test getRatingText
      *
      * @test
+     *
      * @return void
      */
     public function testGetRatingText()

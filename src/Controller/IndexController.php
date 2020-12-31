@@ -1,11 +1,5 @@
 <?php
 
-/**
- * IndexController.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Controller;
 
 use Toei\Portal\ORM\Entity;
@@ -75,9 +69,10 @@ class IndexController extends GeneralController
      *
      * 劇場に設定されたものを取得する TOEI-137
      *
+     * @link https://m-p.backlog.jp/view/TOEI-137
+     *
      * @param Entity\Theater $theater
      * @return Entity\News[]
-     * @link https://m-p.backlog.jp/view/TOEI-137
      */
     protected function getTopics(Entity\Theater $theater)
     {

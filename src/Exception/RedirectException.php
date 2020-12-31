@@ -1,11 +1,5 @@
 <?php
 
-/**
- * RedirectException.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Exception;
 
 use Psr\Http\Message\UriInterface;

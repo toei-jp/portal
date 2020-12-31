@@ -1,11 +1,5 @@
 <?php
 
-/**
- * AuthResponder.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Responder\API;
 
 use Slim\Collection;

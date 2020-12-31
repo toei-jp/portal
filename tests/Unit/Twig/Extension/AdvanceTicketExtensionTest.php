@@ -1,11 +1,5 @@
 <?php
 
-/**
- * AdvanceTicketExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
@@ -33,6 +27,7 @@ final class AdvanceTicketExtensionTest extends BaseTestCase
      * test getTypeLabel
      *
      * @test
+     *
      * @return void
      */
     public function testGetTypeLabel()
@@ -49,6 +44,7 @@ final class AdvanceTicketExtensionTest extends BaseTestCase
      * test getSpecialGiftStockLabel
      *
      * @test
+     *
      * @return void
      */
     public function testGetSpecialGiftStockLabel()

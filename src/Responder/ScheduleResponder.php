@@ -1,11 +1,5 @@
 <?php
 
-/**
- * ScheduleResponder.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Responder;
 
 use Slim\Collection;

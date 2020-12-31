@@ -1,11 +1,5 @@
 <?php
 
-/**
- * PageNews.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -24,36 +18,40 @@ class PageNews extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * news
      *
-     * @var News
      * @ORM\ManyToOne(targetEntity="News", inversedBy="pages")
      * @ORM\JoinColumn(name="news_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var News
      */
     protected $news;
 
     /**
      * page
      *
-     * @var Page
      * @ORM\ManyToOne(targetEntity="Page", inversedBy="newsList")
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Page
      */
     protected $page;
 
     /**
      * display_order
      *
-     * @var int
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $displayOrder;
 
@@ -92,6 +90,7 @@ class PageNews extends AbstractEntity
      *
      * @param News $news
      * @return void
+     *
      * @throws \LogicException
      */
     public function setNews(News $news)
@@ -114,6 +113,7 @@ class PageNews extends AbstractEntity
      *
      * @param Page $page
      * @return void
+     *
      * @throws \LogicException
      */
     public function setPage(Page $page)
@@ -136,6 +136,7 @@ class PageNews extends AbstractEntity
      *
      * @param int $displayOrder
      * @return void
+     *
      * @throws \LogicException
      */
     public function setDisplayOrder(int $displayOrder)

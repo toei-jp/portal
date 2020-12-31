@@ -1,11 +1,5 @@
 <?php
 
-/**
- * ShowingFormatExtensionTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
@@ -33,6 +27,7 @@ final class ShowingFormatExtensionTest extends BaseTestCase
      * test getVoiceText
      *
      * @test
+     *
      * @return void
      */
     public function testGetVoiceText()

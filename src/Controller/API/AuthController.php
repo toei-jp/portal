@@ -1,11 +1,5 @@
 <?php
 
-/**
- * AuthController.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Controller\API;
 
 use GuzzleHttp\Client as HttpClient;

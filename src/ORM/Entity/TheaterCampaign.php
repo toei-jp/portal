@@ -1,11 +1,5 @@
 <?php
 
-/**
- * TheaterCampaign.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -24,36 +18,40 @@ class TheaterCampaign extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * campaign
      *
-     * @var Campaign
      * @ORM\ManyToOne(targetEntity="Campaign")
      * @ORM\JoinColumn(name="campaign_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Campaign
      */
     protected $campaign;
 
     /**
      * theater
      *
-     * @var Theater
      * @ORM\ManyToOne(targetEntity="Theater", inversedBy="theaters")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Theater
      */
     protected $theater;
 
     /**
      * display_order
      *
-     * @var int
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
+     *
+     * @var int
      */
     protected $displayOrder;
 
@@ -92,6 +90,7 @@ class TheaterCampaign extends AbstractEntity
      *
      * @param Campaign $campaign
      * @return void
+     *
      * @throws \LogicException
      */
     public function setCampaign(Campaign $campaign)
@@ -114,6 +113,7 @@ class TheaterCampaign extends AbstractEntity
      *
      * @param Theater $theater
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTheater(Theater $theater)
@@ -136,6 +136,7 @@ class TheaterCampaign extends AbstractEntity
      *
      * @param int $displayOrder
      * @return void
+     *
      * @throws \LogicException
      */
     public function setDisplayOrder(int $displayOrder)

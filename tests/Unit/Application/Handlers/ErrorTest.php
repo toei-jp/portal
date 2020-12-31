@@ -1,11 +1,5 @@
 <?php
 
-/**
- * ErrorTest.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 declare(strict_types=1);
 
 namespace Tests\Unit\Application\Handlers;
@@ -51,6 +45,7 @@ final class ErrorTest extends TestCase
      * test construct
      *
      * @test
+     *
      * @return void
      */
     public function testConstruct()
@@ -111,6 +106,7 @@ final class ErrorTest extends TestCase
      * test log
      *
      * @test
+     *
      * @return void
      */
     public function testLog()

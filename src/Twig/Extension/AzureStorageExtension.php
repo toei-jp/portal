@@ -1,11 +1,5 @@
 <?php
 
-/**
- * AzureStorageExtension.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Twig\Extension;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;

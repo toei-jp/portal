@@ -1,11 +1,5 @@
 <?php
 
-/**
- * ShowingTheater.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -24,28 +18,31 @@ class ShowingTheater extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * schedule
      *
-     * @var Schedule
      * @ORM\ManyToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Schedule
      */
     protected $schedule;
 
     /**
      * theater
      *
-     * @var Theater
      * @ORM\ManyToOne(targetEntity="Theater")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @var Theater
      */
     protected $theater;
 
@@ -84,6 +81,7 @@ class ShowingTheater extends AbstractEntity
      *
      * @param Schedule $schedule
      * @return void
+     *
      * @throws \LogicException
      */
     public function setSchedule(Schedule $schedule)
@@ -106,6 +104,7 @@ class ShowingTheater extends AbstractEntity
      *
      * @param Theater $theater
      * @return void
+     *
      * @throws \LogicException
      */
     public function setTheater(Theater $theater)

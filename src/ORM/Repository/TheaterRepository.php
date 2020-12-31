@@ -1,11 +1,5 @@
 <?php
 
-/**
- * TheaterRepository.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository;

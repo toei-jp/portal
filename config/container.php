@@ -6,10 +6,12 @@
  * AbstractControllerのphpdoc更新を推奨。
  *
  * @see Toei\PortalAdmin\Controller\AbstractController\__call()
- * @author Atsushi Okui <okui@motionpicture.jp>
  */
 
+// phpcs:disable SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration
 /** @var \Slim\App $app */
+// phpcs:enable
+
 $container = $app->getContainer();
 
 /**
@@ -97,6 +99,7 @@ $container['em'] = function ($container) {
 
     /**
      * 第５引数について、他のアノテーションとの競合を避けるためSimpleAnnotationReaderは使用しない。
+     *
      * @Entity => @ORM\Entity などとしておく。
      */
     $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
@@ -121,6 +124,7 @@ $container['em'] = function ($container) {
  * Azure Blob Storage Client
  *
  * @link https://github.com/Azure/azure-storage-php/tree/master/azure-storage-blob
+ *
  * @return \MicrosoftAzure\Storage\Blob\BlobRestProxy
  */
 $container['bc'] = function ($container) {

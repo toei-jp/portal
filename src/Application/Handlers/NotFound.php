@@ -1,11 +1,5 @@
 <?php
 
-/**
- * NotFound.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Application\Handlers;
 
 use Slim\Handlers\NotFound as BaseHandler;

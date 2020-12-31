@@ -1,11 +1,5 @@
 <?php
 
-/**
- * BaseResponder.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Responder\API;
 
 use Toei\Portal\Responder\AbstractResponder;

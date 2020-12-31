@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Page.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -27,53 +21,59 @@ class Page extends AbstractEntity
     /**
      * id
      *
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * name
      *
-     * @var string
      * @ORM\Column(type="string", unique=true)
+     *
+     * @var string
      */
     protected $name;
 
     /**
      * name_ja
      *
-     * @var string
      * @ORM\Column(type="string", name="name_ja")
+     *
+     * @var string
      */
     protected $nameJa;
 
     /**
      * campaigns
      *
-     * @var Collection<PageCampaign>
      * @ORM\OneToMany(targetEntity="PageCampaign", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
+     *
+     * @var Collection<PageCampaign>
      */
     protected $campaigns;
 
     /**
      * news_list
      *
-     * @var Collection<PageNews>
      * @ORM\OneToMany(targetEntity="PageNews", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
+     *
+     * @var Collection<PageNews>
      */
     protected $newsList;
 
     /**
      * main_banners
      *
-     * @var Collection<PageMainBanner>
      * @ORM\OneToMany(targetEntity="PageMainBanner", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
+     *
+     * @var Collection<PageMainBanner>
      */
     protected $mainBanners;
 
@@ -112,6 +112,7 @@ class Page extends AbstractEntity
      *
      * @param string $name
      * @return void
+     *
      * @throws \LogicException
      */
     public function setName(string $name)
@@ -134,6 +135,7 @@ class Page extends AbstractEntity
      *
      * @param string $nameJa
      * @return void
+     *
      * @throws \LogicException
      */
     public function setNameJa(string $nameJa)

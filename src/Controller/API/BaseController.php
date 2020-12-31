@@ -1,11 +1,5 @@
 <?php
 
-/**
- * BaseController.php
- *
- * @author Atsushi Okui <okui@motionpicture.jp>
- */
-
 namespace Toei\Portal\Controller\API;
 
 use Psr\Container\ContainerInterface;
