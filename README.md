@@ -33,7 +33,7 @@
 
 web: https://localhost:8010/
 
-### コマンド例
+### docker-compose コマンド例
 
 コンテナを作成し、起動する。
 
@@ -41,7 +41,13 @@ web: https://localhost:8010/
 $ docker-compose up
 ```
 
-## その他
+## アプリケーション コマンド
+
+```sh
+$ php bin/console help
+```
+
+## その他 コマンド
 
 ### PHP Lint
 
