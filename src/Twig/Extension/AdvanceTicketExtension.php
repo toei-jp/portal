@@ -39,13 +39,16 @@ class AdvanceTicketExtension extends AbstractExtension
      */
     public function getTypeLabel(int $type)
     {
-        if ($type === AdvanceTicket::TYPE_MVTK) {
-            return 'ムビチケ';
-        } elseif ($type === AdvanceTicket::TYPE_PAPER) {
-            return '紙券';
-        }
+        switch ($type) {
+            case AdvanceTicket::TYPE_MVTK:
+                return 'ムビチケ';
 
-        return '';
+            case AdvanceTicket::TYPE_PAPER:
+                return '紙券';
+
+            default:
+                return '';
+        }
     }
 
     /**
@@ -56,14 +59,18 @@ class AdvanceTicketExtension extends AbstractExtension
      */
     public function getSpecialGiftStockLabel(?int $specialGiftStock)
     {
-        if ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_IN) {
-            return '（有り）';
-        } elseif ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_FEW) {
-            return '（残り僅か）';
-        } elseif ($specialGiftStock === AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN) {
-            return '（特典終了）';
-        }
+        switch ($specialGiftStock) {
+            case AdvanceTicket::SPECIAL_GIFT_STOCK_IN:
+                return '（有り）';
 
-        return '';
+            case AdvanceTicket::SPECIAL_GIFT_STOCK_FEW:
+                return '（残り僅か）';
+
+            case AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN:
+                return '（特典終了）';
+
+            default:
+                return '';
+        }
     }
 }

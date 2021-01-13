@@ -38,12 +38,15 @@ class ShowingFormatExtension extends AbstractExtension
      */
     public function getVoiceText(int $voice)
     {
-        if (ShowingFormat::VOICE_SUBTITLE === $voice) {
-            return '字幕版';
-        } elseif (ShowingFormat::VOICE_DUB === $voice) {
-            return '吹替版';
-        }
+        switch ($voice) {
+            case ShowingFormat::VOICE_SUBTITLE:
+                return '字幕版';
 
-        return '';
+            case ShowingFormat::VOICE_DUB:
+                return '吹替版';
+
+            default:
+                return '';
+        }
     }
 }

@@ -38,16 +38,21 @@ class TitleExtension extends AbstractExtension
      */
     public function getRatingText(int $rating)
     {
-        if (Title::RATING_G === $rating) {
-            return 'G';
-        } elseif (Title::RATING_PG12 === $rating) {
-            return 'PG12';
-        } elseif (Title::RATING_R15 === $rating) {
-            return 'R15+';
-        } elseif (Title::RATING_R18 === $rating) {
-            return 'R18+';
-        }
+        switch ($rating) {
+            case Title::RATING_G:
+                return 'G';
 
-        return '';
+            case Title::RATING_PG12:
+                return 'PG12';
+
+            case Title::RATING_R15:
+                return 'R15+';
+
+            case Title::RATING_R18:
+                return 'R18+';
+
+            default:
+                return '';
+        }
     }
 }
