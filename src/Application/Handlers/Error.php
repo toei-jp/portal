@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\Application\Handlers;
+namespace App\Application\Handlers;
 
 use Monolog\Logger;
 use Slim\Handlers\Error as BaseHandler;

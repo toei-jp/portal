@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\ORM\Entity;
+namespace App\ORM\Entity;
 
 /**
  * Timestampable trait

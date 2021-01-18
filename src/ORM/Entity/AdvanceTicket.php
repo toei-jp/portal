@@ -1,13 +1,13 @@
 <?php
 
-namespace Toei\Portal\ORM\Entity;
+namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AdvanceTicket entity class
  *
- * @ORM\Entity(readOnly=true, repositoryClass="Toei\Portal\ORM\Repository\AdvanceTicketRepository")
+ * @ORM\Entity(readOnly=true, repositoryClass="App\ORM\Repository\AdvanceTicketRepository")
  * @ORM\Table(name="advance_ticket", options={"collate"="utf8mb4_general_ci"})
  * @ORM\HasLifecycleCallbacks
  */

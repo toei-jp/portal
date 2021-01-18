@@ -1,8 +1,8 @@
 <?php
 
-namespace Toei\Portal\Responder\API;
+namespace App\Responder\API;
 
-use Toei\Portal\Responder\AbstractResponder;
+use App\Responder\AbstractResponder;
 
 /**
  * Base responder

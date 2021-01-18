@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\ORM\Entity;
+namespace App\ORM\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;

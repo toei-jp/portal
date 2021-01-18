@@ -5,7 +5,7 @@
  *
  * AbstractControllerのphpdoc更新を推奨。
  *
- * @see Toei\PortalAdmin\Controller\AbstractController\__call()
+ * @see App\Controller\AbstractController\__call()
  */
 
 // phpcs:disable SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration
@@ -35,14 +35,14 @@ $container['view'] = static function ($container) {
     $view->addExtension(new \Twig\Extension\DebugExtension());
     $view->addExtension(new \Twig\Extra\String\StringExtension());
 
-    $view->addExtension(new \Toei\Portal\Twig\Extension\AdvanceTicketExtension());
-    $view->addExtension(new \Toei\Portal\Twig\Extension\AzureStorageExtension(
+    $view->addExtension(new \App\Twig\Extension\AdvanceTicketExtension());
+    $view->addExtension(new \App\Twig\Extension\AzureStorageExtension(
         $container->get('bc'),
         $container->get('settings')['storage']['public_endpoint']
     ));
-    $view->addExtension(new \Toei\Portal\Twig\Extension\MotionPictureExtenstion($container->get('settings')['mp']));
-    $view->addExtension(new \Toei\Portal\Twig\Extension\ShowingFormatExtension());
-    $view->addExtension(new \Toei\Portal\Twig\Extension\TitleExtension());
+    $view->addExtension(new \App\Twig\Extension\MotionPictureExtenstion($container->get('settings')['mp']));
+    $view->addExtension(new \App\Twig\Extension\ShowingFormatExtension());
+    $view->addExtension(new \App\Twig\Extension\TitleExtension());
 
     return $view;
 };
@@ -73,7 +73,7 @@ $container['logger'] = static function ($container) {
     }
 
     $azureBlobStorageSettings = $settings['azure_blob_storage'];
-    $azureBlobStorageHandler  = new Toei\Portal\Logger\Handler\AzureBlobStorageHandler(
+    $azureBlobStorageHandler  = new \App\Logger\Handler\AzureBlobStorageHandler(
         $container->get('bc'),
         $azureBlobStorageSettings['container'],
         $azureBlobStorageSettings['blob'],
@@ -111,10 +111,10 @@ $container['em'] = static function ($container) {
     );
 
     $config->setProxyDir(APP_ROOT . '/src/ORM/Proxy');
-    $config->setProxyNamespace('Toei\Portal\ORM\Proxy');
+    $config->setProxyNamespace('App\ORM\Proxy');
     $config->setAutoGenerateProxyClasses($settings['dev_mode']);
 
-    $logger = new \Toei\Portal\Logger\DbalLogger($container->get('logger'));
+    $logger = new \App\Logger\DbalLogger($container->get('logger'));
     $config->setSQLLogger($logger);
 
     return \Doctrine\ORM\EntityManager::create($settings['connection'], $config);
@@ -145,23 +145,23 @@ $container['bc'] = static function ($container) {
 };
 
 $container['errorHandler'] = static function ($container) {
-    return new \Toei\Portal\Application\Handlers\Error(
+    return new \App\Application\Handlers\Error(
         $container->get('logger'),
         $container->get('settings')['displayErrorDetails']
     );
 };
 
 $container['phpErrorHandler'] = static function ($container) {
-    return new \Toei\Portal\Application\Handlers\PhpError(
+    return new \App\Application\Handlers\PhpError(
         $container->get('logger'),
         $container->get('settings')['displayErrorDetails']
     );
 };
 
 $container['notFoundHandler'] = static function ($container) {
-    return new \Toei\Portal\Application\Handlers\NotFound();
+    return new \App\Application\Handlers\NotFound();
 };
 
 $container['notAllowedHandler'] = static function ($container) {
-    return new \Toei\Portal\Application\Handlers\NotAllowed();
+    return new \App\Application\Handlers\NotAllowed();
 };

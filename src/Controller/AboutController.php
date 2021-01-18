@@ -1,8 +1,8 @@
 <?php
 
-namespace Toei\Portal\Controller;
+namespace App\Controller;
 
-use Toei\Portal\ORM\Entity;
+use App\ORM\Entity;
 
 /**
  * About controller

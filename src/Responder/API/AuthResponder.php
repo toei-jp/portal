@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\Responder\API;
+namespace App\Responder\API;
 
 use Slim\Collection;
 use Slim\Http\Response;

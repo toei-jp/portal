@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\ORM\Entity;
+namespace App\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * News entity class
  *
- * @ORM\Entity(readOnly=true, repositoryClass="Toei\Portal\ORM\Repository\NewsRepository")
+ * @ORM\Entity(readOnly=true, repositoryClass="App\ORM\Repository\NewsRepository")
  * @ORM\Table(name="news", options={"collate"="utf8mb4_general_ci"})
  * @ORM\HasLifecycleCallbacks
  */

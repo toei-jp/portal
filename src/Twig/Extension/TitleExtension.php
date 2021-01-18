@@ -1,10 +1,10 @@
 <?php
 
-namespace Toei\Portal\Twig\Extension;
+namespace App\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Toei\Portal\ORM\Entity\Title;
+use App\ORM\Entity\Title;
 
 /**
  * Title twig extension class

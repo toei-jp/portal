@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Twig\Extension;
 
 use Mockery;
-use Toei\Portal\ORM\Entity\AdvanceTicket;
-use Toei\Portal\Twig\Extension\AdvanceTicketExtension;
+use App\ORM\Entity\AdvanceTicket;
+use App\Twig\Extension\AdvanceTicketExtension;
 
 /**
  * AdvanceTicket extension test

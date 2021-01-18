@@ -1,10 +1,10 @@
 <?php
 
-namespace Toei\Portal\Twig\Extension;
+namespace App\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Toei\Portal\ORM\Entity\AdvanceTicket;
+use App\ORM\Entity\AdvanceTicket;
 
 /**
  * AdvanceTicket twig extension class

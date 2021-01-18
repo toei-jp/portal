@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Twig\Extension;
 
 use Mockery;
-use Toei\Portal\ORM\Entity\ShowingFormat;
-use Toei\Portal\Twig\Extension\ShowingFormatExtension;
+use App\ORM\Entity\ShowingFormat;
+use App\Twig\Extension\ShowingFormatExtension;
 
 /**
  * ShowingFormat extension test

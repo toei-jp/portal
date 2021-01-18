@@ -1,12 +1,12 @@
 <?php
 
-namespace Toei\Portal\Controller\API;
+namespace App\Controller\API;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
-use Toei\Portal\Controller\AbstractController;
-use Toei\Portal\Responder;
-use Toei\Portal\Responder\API as ApiResponder;
+use App\Controller\AbstractController;
+use App\Responder;
+use App\Responder\API as ApiResponder;
 
 /**
  * Base controller

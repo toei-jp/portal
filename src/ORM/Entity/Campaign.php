@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\ORM\Entity;
+namespace App\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Campaign entity class
  *
- * @ORM\Entity(readOnly=true, repositoryClass="Toei\Portal\ORM\Repository\CampaignRepository")
+ * @ORM\Entity(readOnly=true, repositoryClass="App\ORM\Repository\CampaignRepository")
  * @ORM\Table(name="campaign", options={"collate"="utf8mb4_general_ci"})
  * @ORM\HasLifecycleCallbacks
  */
