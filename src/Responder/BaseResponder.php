@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\Responder;
+namespace App\Responder;
 
 use Slim\Views\Twig;
 

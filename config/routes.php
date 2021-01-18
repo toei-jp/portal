@@ -4,11 +4,11 @@
  * routes.php
  */
 
-use Toei\Portal\Controller\AboutController;
-use Toei\Portal\Controller\IndexController;
-use Toei\Portal\Controller\TheaterController;
-use Toei\Portal\Controller\ScheduleController;
-use Toei\Portal\Controller\API\AuthController as AuthApiController;
+use App\Controller\AboutController;
+use App\Controller\IndexController;
+use App\Controller\TheaterController;
+use App\Controller\ScheduleController;
+use App\Controller\API\AuthController as AuthApiController;
 
 // phpcs:disable SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration
 /** @var \Slim\App $app */

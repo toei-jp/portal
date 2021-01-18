@@ -1,9 +1,9 @@
 <?php
 
-namespace Toei\Portal\Controller;
+namespace App\Controller;
 
 use Slim\Exception\NotFoundException;
-use Toei\Portal\ORM\Entity;
+use App\ORM\Entity;
 
 /**
  * Theater controller

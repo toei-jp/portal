@@ -1,13 +1,13 @@
 <?php
 
-namespace Toei\Portal\Controller;
+namespace App\Controller;
 
 use Slim\Collection;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Psr\Container\ContainerInterface;
-use Toei\Portal\Exception\RedirectException;
-use Toei\Portal\Responder\AbstractResponder as Responder;
+use App\Exception\RedirectException;
+use App\Responder\AbstractResponder as Responder;
 
 /**
  * Abstract controller

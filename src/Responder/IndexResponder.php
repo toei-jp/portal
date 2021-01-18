@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\Responder;
+namespace App\Responder;
 
 use Slim\Collection;
 use Psr\Http\Message\ResponseInterface as Response;

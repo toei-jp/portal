@@ -1,9 +1,9 @@
 <?php
 
-namespace Toei\Portal\Twig\Extension;
+namespace App\Twig\Extension;
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use Toei\Portal\ORM\Entity\File;
+use App\ORM\Entity\File;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

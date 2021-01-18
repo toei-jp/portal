@@ -1,10 +1,10 @@
 <?php
 
-namespace Toei\Portal\ORM\Repository;
+namespace App\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Toei\Portal\ORM\Entity\Schedule;
+use App\ORM\Entity\Schedule;
 
 /**
  * Schedule repository class

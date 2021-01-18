@@ -1,6 +1,6 @@
 <?php
 
-namespace Toei\Portal\Controller;
+namespace App\Controller;
 
 /**
  * General controller

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Twig\Extension;
 
 use Mockery;
-use Toei\Portal\ORM\Entity\Title;
-use Toei\Portal\Twig\Extension\TitleExtension;
+use App\ORM\Entity\Title;
+use App\Twig\Extension\TitleExtension;
 
 /**
  * Title extension test
