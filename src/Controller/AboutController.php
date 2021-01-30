@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\ORM\Entity;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * About controller
@@ -12,9 +13,9 @@ class AboutController extends GeneralController
     /**
      * faq action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeFaq($request, $response, $args)
@@ -24,9 +25,9 @@ class AboutController extends GeneralController
     /**
      * law action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeLaw($request, $response, $args)

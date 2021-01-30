@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * File entity class
@@ -74,11 +75,11 @@ class File extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -107,11 +108,11 @@ class File extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -130,11 +131,11 @@ class File extends AbstractEntity
      * @param string $originalName
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setOriginalName(string $originalName)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -153,11 +154,11 @@ class File extends AbstractEntity
      * @param string $mimeType
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setMimeType(string $mimeType)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -176,11 +177,11 @@ class File extends AbstractEntity
      * @param int $size
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSize(int $size)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

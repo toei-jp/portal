@@ -2,9 +2,9 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * MainBanner entity class
@@ -107,11 +107,11 @@ class MainBanner extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -140,11 +140,11 @@ class MainBanner extends AbstractEntity
      * @param File $image
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setImage(File $image)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -163,11 +163,11 @@ class MainBanner extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -186,11 +186,11 @@ class MainBanner extends AbstractEntity
      * @param int $linkType
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setLinkType(int $linkType)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -229,11 +229,11 @@ class MainBanner extends AbstractEntity
      * @param string|null $linkUrl
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setLinkUrl($linkUrl)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

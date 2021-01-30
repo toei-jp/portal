@@ -2,9 +2,9 @@
 
 namespace App\ORM\Repository;
 
+use App\ORM\Entity\News;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use App\ORM\Entity\News;
 
 /**
  * News repository class

@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * TheaterMeta entity class
@@ -48,11 +49,11 @@ class TheaterMeta extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -81,11 +82,11 @@ class TheaterMeta extends AbstractEntity
      * @param Theater $theater
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTheater(Theater $theater)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -112,10 +113,10 @@ class TheaterMeta extends AbstractEntity
      * @param TheaterOpeningHour[] $openingHours
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setOpeningHours(array $openingHours)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

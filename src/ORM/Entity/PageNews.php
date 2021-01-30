@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * PageNews entity class
@@ -58,11 +59,11 @@ class PageNews extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -91,11 +92,11 @@ class PageNews extends AbstractEntity
      * @param News $news
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setNews(News $news)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -114,11 +115,11 @@ class PageNews extends AbstractEntity
      * @param Page $page
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPage(Page $page)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -137,10 +138,10 @@ class PageNews extends AbstractEntity
      * @param int $displayOrder
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setDisplayOrder(int $displayOrder)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

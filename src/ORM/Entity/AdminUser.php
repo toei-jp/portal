@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * AdminUser entity class
@@ -76,11 +77,11 @@ class AdminUser extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -109,11 +110,11 @@ class AdminUser extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -132,11 +133,11 @@ class AdminUser extends AbstractEntity
      * @param string $displayName
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setDisplayName(string $displayName)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -155,11 +156,11 @@ class AdminUser extends AbstractEntity
      * @param string $password
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPassword(string $password)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -178,11 +179,11 @@ class AdminUser extends AbstractEntity
      * @param int $group
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setGroup(int $group)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -201,10 +202,10 @@ class AdminUser extends AbstractEntity
      * @param Theater $theater
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTheater(Theater $theater)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

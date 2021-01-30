@@ -2,9 +2,9 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * Page entity class
@@ -80,11 +80,11 @@ class Page extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -113,11 +113,11 @@ class Page extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -136,11 +136,11 @@ class Page extends AbstractEntity
      * @param string $nameJa
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setNameJa(string $nameJa)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

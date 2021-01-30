@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
 
-use Mockery;
 use App\ORM\Entity\ShowingFormat;
 use App\Twig\Extension\ShowingFormatExtension;
+use Mockery;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
 
 /**
  * ShowingFormat extension test
@@ -16,7 +18,7 @@ final class ShowingFormatExtensionTest extends BaseTestCase
     /**
      * Create target mock
      *
-     * @return \Mockery\MockInterface|\Mockery\LegacyMockInterface|ShowingFormatExtension
+     * @return MockInterface|LegacyMockInterface|ShowingFormatExtension
      */
     protected function createTargetMock()
     {

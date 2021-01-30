@@ -2,10 +2,10 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * AdvanceSale entity class
@@ -56,7 +56,7 @@ class AdvanceSale extends AbstractEntity
      *
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
      *
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $publishingExpectedDate;
 
@@ -81,11 +81,11 @@ class AdvanceSale extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -114,11 +114,11 @@ class AdvanceSale extends AbstractEntity
      * @param Theater $theater
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTheater(Theater $theater)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -137,17 +137,17 @@ class AdvanceSale extends AbstractEntity
      * @param Title $title
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTitle(Title $title)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get publishing_expected_date
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getPublishingExpectedDate()
     {
@@ -157,14 +157,14 @@ class AdvanceSale extends AbstractEntity
     /**
      * set publishing_dxpected_date
      *
-     * @param \DateTime|string|null $publishingExpectedDate
+     * @param DateTime|string|null $publishingExpectedDate
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPublishingExpectedDate($publishingExpectedDate)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -183,11 +183,11 @@ class AdvanceSale extends AbstractEntity
      * @param string|null $publishingExpectedDateText
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPublishingExpectedDateText(?string $publishingExpectedDateText)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use Slim\Exception\NotFoundException;
 use App\ORM\Entity;
+use Slim\Exception\NotFoundException;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Theater controller
@@ -29,9 +31,9 @@ class TheaterController extends BaseController
     /**
      * pre execute
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return void
      */
     protected function preExecute($request, $response, $args): void
@@ -55,9 +57,9 @@ class TheaterController extends BaseController
     /**
      * index action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeIndex($request, $response, $args)
@@ -97,9 +99,9 @@ class TheaterController extends BaseController
     /**
      * topic list action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeTopicList($request, $response, $args)
@@ -110,9 +112,9 @@ class TheaterController extends BaseController
     /**
      * topic detail action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeTopicDetail($request, $response, $args)
@@ -142,9 +144,9 @@ class TheaterController extends BaseController
     /**
      * advance ticket action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeAdvanceTicket($request, $response, $args)
@@ -168,9 +170,9 @@ class TheaterController extends BaseController
     /**
      * price action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executePrice($request, $response, $args)
@@ -180,9 +182,9 @@ class TheaterController extends BaseController
     /**
      * floor guide action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeFloorGuide($request, $response, $args)
@@ -192,9 +194,9 @@ class TheaterController extends BaseController
     /**
      * access action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeAccess($request, $response, $args)

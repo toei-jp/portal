@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
 
-use Mockery;
 use App\ORM\Entity\AdvanceTicket;
 use App\Twig\Extension\AdvanceTicketExtension;
+use Mockery;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
 
 /**
  * AdvanceTicket extension test
@@ -16,7 +18,7 @@ final class AdvanceTicketExtensionTest extends BaseTestCase
     /**
      * Create target mock
      *
-     * @return \Mockery\MockInterface|\Mockery\LegacyMockInterface|AdvanceTicketExtension
+     * @return MockInterface|LegacyMockInterface|AdvanceTicketExtension
      */
     protected function createTargetMock()
     {

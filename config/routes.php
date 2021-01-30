@@ -5,13 +5,14 @@
  */
 
 use App\Controller\AboutController;
-use App\Controller\IndexController;
-use App\Controller\TheaterController;
-use App\Controller\ScheduleController;
 use App\Controller\API\AuthController as AuthApiController;
+use App\Controller\IndexController;
+use App\Controller\ScheduleController;
+use App\Controller\TheaterController;
+use Slim\App as SlimApp;
 
 // phpcs:disable SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration
-/** @var \Slim\App $app */
+/** @var SlimApp $app */
 // phpcs:enable
 
 $app->get('/', IndexController::class . ':index')->setName('homepage');

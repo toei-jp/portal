@@ -2,9 +2,10 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * Campaign entity class
@@ -64,7 +65,7 @@ class Campaign extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="start_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $startDt;
 
@@ -73,7 +74,7 @@ class Campaign extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="end_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $endDt;
 
@@ -107,11 +108,11 @@ class Campaign extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -140,11 +141,11 @@ class Campaign extends AbstractEntity
      * @param Title|null $title
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTitle($title)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -163,11 +164,11 @@ class Campaign extends AbstractEntity
      * @param File $image
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setImage(File $image)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -186,17 +187,17 @@ class Campaign extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get start_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartDt()
     {
@@ -206,20 +207,20 @@ class Campaign extends AbstractEntity
     /**
      * set start_dt
      *
-     * @param \DateTime|string $startDt
+     * @param DateTime|string $startDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setStartDt($startDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get end_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEndDt()
     {
@@ -229,14 +230,14 @@ class Campaign extends AbstractEntity
     /**
      * set end_dt
      *
-     * @param \DateTime|string $endDt
+     * @param DateTime|string $endDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setEndDt($endDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -255,11 +256,11 @@ class Campaign extends AbstractEntity
      * @param string $url
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setUrl(string $url)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\ORM\Entity;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Schedule controller
@@ -12,9 +14,9 @@ class ScheduleController extends GeneralController
     /**
      * showing action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeShowing($request, $response, $args)
@@ -37,9 +39,9 @@ class ScheduleController extends GeneralController
     /**
      * soon action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeSoon($request, $response, $args)
