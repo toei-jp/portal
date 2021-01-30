@@ -2,9 +2,10 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * News entity class
@@ -84,7 +85,7 @@ class News extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="start_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $startDt;
 
@@ -93,7 +94,7 @@ class News extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="end_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $endDt;
 
@@ -118,11 +119,11 @@ class News extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -151,11 +152,11 @@ class News extends AbstractEntity
      * @param Title|null $title
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTitle($title)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -174,11 +175,11 @@ class News extends AbstractEntity
      * @param File $image
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setImage(File $image)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -197,11 +198,11 @@ class News extends AbstractEntity
      * @param int $category
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setCategory(int $category)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -220,11 +221,11 @@ class News extends AbstractEntity
      * @param string $headline
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setHeadline(string $headline)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -243,17 +244,17 @@ class News extends AbstractEntity
      * @param string $body
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setBody(string $body)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get start_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartDt()
     {
@@ -263,20 +264,20 @@ class News extends AbstractEntity
     /**
      * set start_dt
      *
-     * @param \DateTime|string $startDt
+     * @param DateTime|string $startDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setStartDt($startDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get end_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEndDt()
     {
@@ -286,14 +287,14 @@ class News extends AbstractEntity
     /**
      * set end_dt
      *
-     * @param \DateTime|string $endDt
+     * @param DateTime|string $endDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setEndDt($endDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

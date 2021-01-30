@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * ShowingFormat entity class
@@ -73,11 +74,11 @@ class ShowingFormat extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -106,11 +107,11 @@ class ShowingFormat extends AbstractEntity
      * @param Schedule $schedule
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSchedule(Schedule $schedule)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -129,11 +130,11 @@ class ShowingFormat extends AbstractEntity
      * @param int $system
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSystem(int $system)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -152,10 +153,10 @@ class ShowingFormat extends AbstractEntity
      * @param int $voice
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setVoice(int $voice)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

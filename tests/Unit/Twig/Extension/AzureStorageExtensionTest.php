@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
 
-use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use Mockery;
 use App\ORM\Entity\File;
 use App\Twig\Extension\AzureStorageExtension;
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use Mockery;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
+use ReflectionClass;
 
 /**
  * AzureStorage extension test
@@ -17,7 +20,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
     /**
      * Create target mock
      *
-     * @return \Mockery\MockInterface|\Mockery\LegacyMockInterface|AzureStorageExtension
+     * @return MockInterface|LegacyMockInterface|AzureStorageExtension
      */
     protected function createTargetMock()
     {
@@ -27,17 +30,17 @@ final class AzureStorageExtensionTest extends BaseTestCase
     /**
      * Create Target reflection
      *
-     * @return \ReflectionClass
+     * @return ReflectionClass
      */
     protected function createTargetReflection()
     {
-        return new \ReflectionClass(AzureStorageExtension::class);
+        return new ReflectionClass(AzureStorageExtension::class);
     }
 
     /**
      * Create BlobRestProxy mock
      *
-     * @return \Mockery\MockInterface|\Mockery\LegacyMockInterface|BlobRestProxy
+     * @return MockInterface|LegacyMockInterface|BlobRestProxy
      */
     protected function crateBlobRestProxyMock()
     {
@@ -161,7 +164,7 @@ final class AzureStorageExtensionTest extends BaseTestCase
         $blob      = 'sample.txt';
         $url       = 'http://storage.example.com/' . $container . '/' . $blob;
 
-        /** @var \Mockery\MockInterface|\Mockery\LegacyMockInterface|File $fileMock */
+        /** @var MockInterface|LegacyMockInterface|File $fileMock */
         $fileMock = Mockery::mock(File::class);
         $fileMock
             ->shouldReceive('getName')

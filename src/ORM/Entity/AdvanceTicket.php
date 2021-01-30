@@ -2,7 +2,9 @@
 
 namespace App\ORM\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * AdvanceTicket entity class
@@ -49,7 +51,7 @@ class AdvanceTicket extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="release_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $releaseDt;
 
@@ -120,11 +122,11 @@ class AdvanceTicket extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -153,17 +155,17 @@ class AdvanceTicket extends AbstractEntity
      * @param AdvanceSale $advanceSale
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setAdvanceSale(AdvanceSale $advanceSale)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get release_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getReleaseDt()
     {
@@ -173,14 +175,14 @@ class AdvanceTicket extends AbstractEntity
     /**
      * set release_dt
      *
-     * @param \DateTime|string $releaseDt
+     * @param DateTime|string $releaseDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setReleaseDt($releaseDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -199,11 +201,11 @@ class AdvanceTicket extends AbstractEntity
      * @param string|null $releaseDtText
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setReleaseDtText(?string $releaseDtText)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -234,11 +236,11 @@ class AdvanceTicket extends AbstractEntity
      * @param bool $isSalesEnd
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setIsSalesEnd(bool $isSalesEnd)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -257,11 +259,11 @@ class AdvanceTicket extends AbstractEntity
      * @param int $type
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setType(int $type)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -280,11 +282,11 @@ class AdvanceTicket extends AbstractEntity
      * @param string|null $priceText
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPriceText(?string $priceText)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -303,11 +305,11 @@ class AdvanceTicket extends AbstractEntity
      * @param string|null $specialGift
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSpecialGift(?string $specialGift)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -367,11 +369,11 @@ class AdvanceTicket extends AbstractEntity
      * @param int|null $specialGiftStock
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSpecialGiftStock($specialGiftStock)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -390,10 +392,10 @@ class AdvanceTicket extends AbstractEntity
      * @param File|null $specialGiftImage
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSpecialGiftImage($specialGiftImage)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * PageMainBanner entity class
@@ -58,11 +59,11 @@ class PageMainBanner extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -91,11 +92,11 @@ class PageMainBanner extends AbstractEntity
      * @param MainBanner $mainBanner
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setMainBanner(MainBanner $mainBanner)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -114,11 +115,11 @@ class PageMainBanner extends AbstractEntity
      * @param Page $page
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPage(Page $page)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -137,10 +138,10 @@ class PageMainBanner extends AbstractEntity
      * @param int $displayOrder
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setDisplayOrder(int $displayOrder)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

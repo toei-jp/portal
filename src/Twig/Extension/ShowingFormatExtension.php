@@ -2,9 +2,9 @@
 
 namespace App\Twig\Extension;
 
+use App\ORM\Entity\ShowingFormat;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use App\ORM\Entity\ShowingFormat;
 
 /**
  * ShowingFormat twig extension class

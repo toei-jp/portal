@@ -2,9 +2,11 @@
 
 namespace App\ORM\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * Title entity class
@@ -131,7 +133,7 @@ class Title extends AbstractEntity
      *
      * @ORM\Column(type="date", name="publishing_expected_date", nullable=true)
      *
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $publishingExpectedDate;
 
@@ -196,11 +198,11 @@ class Title extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -229,11 +231,11 @@ class Title extends AbstractEntity
      * @param File|null $image
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setImage($image)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -252,11 +254,11 @@ class Title extends AbstractEntity
      * @param string|null $cheverCode
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setCheverCode(?string $cheverCode)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -275,11 +277,11 @@ class Title extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -298,11 +300,11 @@ class Title extends AbstractEntity
      * @param string|null $nameKana
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setNameKana(?string $nameKana)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -321,11 +323,11 @@ class Title extends AbstractEntity
      * @param string|null $subTitle
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setSubTitle(?string $subTitle)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -344,11 +346,11 @@ class Title extends AbstractEntity
      * @param string|null $credit
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setCredit(?string $credit)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -367,11 +369,11 @@ class Title extends AbstractEntity
      * @param string|null $catchcopy
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setCatchcopy(?string $catchcopy)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -390,11 +392,11 @@ class Title extends AbstractEntity
      * @param string|null $introduction
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setIntroduction(?string $introduction)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -413,11 +415,11 @@ class Title extends AbstractEntity
      * @param string|null $director
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setDirector(?string $director)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -436,17 +438,17 @@ class Title extends AbstractEntity
      * @param string|null $cast
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setCast(?string $cast)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get publishing_expected_date
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getPublishingExpectedDate()
     {
@@ -456,14 +458,14 @@ class Title extends AbstractEntity
     /**
      * set publishing_dxpected_date
      *
-     * @param \DateTime|string|null $publishingExpectedDate
+     * @param DateTime|string|null $publishingExpectedDate
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPublishingExpectedDate($publishingExpectedDate)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -482,11 +484,11 @@ class Title extends AbstractEntity
      * @param string|null $officialSite
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setOfficialSite(?string $officialSite)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -505,11 +507,11 @@ class Title extends AbstractEntity
      * @param int|null $rating
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setRating(?int $rating)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -548,11 +550,11 @@ class Title extends AbstractEntity
      * @param array|null $universal
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setUniversal(?array $universal)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -567,8 +569,8 @@ class Title extends AbstractEntity
     {
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq('isDeleted', false))
-            ->andWhere(Criteria::expr()->lte('startDt', new \DateTime('now')))
-            ->andWhere(Criteria::expr()->gt('endDt', new \DateTime('now')))
+            ->andWhere(Criteria::expr()->lte('startDt', new DateTime('now')))
+            ->andWhere(Criteria::expr()->gt('endDt', new DateTime('now')))
             ->orderBy(['createdAt' => Criteria::ASC]);
 
         return $this->campaigns->matching($criteria);

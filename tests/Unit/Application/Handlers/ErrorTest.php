@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Tests\Unit\Application\Handlers;
 
 use App\Application\Handlers\Error;
+use Exception;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use PHPUnit\Framework\TestCase;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
 use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 /**
  * Error handler test
@@ -18,15 +22,15 @@ final class ErrorTest extends TestCase
     use MockeryPHPUnitIntegration;
 
     /**
-     * @return \ReflectionClass
+     * @return ReflectionClass
      */
     protected function createTargetReflection()
     {
-        return new \ReflectionClass(Error::class);
+        return new ReflectionClass(Error::class);
     }
 
     /**
-     * @return \Mockery\MockInterface&\Mockery\LegacyMockInterface&Error
+     * @return MockInterface&LegacyMockInterface&Error
      */
     protected function createTargetMock()
     {
@@ -34,7 +38,7 @@ final class ErrorTest extends TestCase
     }
 
     /**
-     * @return \Mockery\MockInterface&\Mockery\LegacyMockInterface&Logger
+     * @return MockInterface&LegacyMockInterface&Logger
      */
     protected function createLoggerMock()
     {
@@ -82,7 +86,7 @@ final class ErrorTest extends TestCase
      */
     public function testWriteToErrorLog()
     {
-        $exception = new \Exception();
+        $exception = new Exception();
 
         $targetMock = $this->createTargetMock();
         $targetMock
@@ -114,7 +118,7 @@ final class ErrorTest extends TestCase
         $message = 'message';
 
         // Exceptionのmockは出来ない？
-        $exception = new \Exception($message);
+        $exception = new Exception($message);
 
         $loggerMock = $this->createLoggerMock();
         $loggerMock

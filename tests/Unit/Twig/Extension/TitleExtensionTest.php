@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Twig\Extension;
 
-use Mockery;
 use App\ORM\Entity\Title;
 use App\Twig\Extension\TitleExtension;
+use Mockery;
+use Mockery\LegacyMockInterface;
+use Mockery\MockInterface;
 
 /**
  * Title extension test
@@ -16,7 +18,7 @@ final class TitleExtensionTest extends BaseTestCase
     /**
      * Create target mock
      *
-     * @return \Mockery\MockInterface|\Mockery\LegacyMockInterface|TitleExtension
+     * @return MockInterface|LegacyMockInterface|TitleExtension
      */
     protected function createTargetMock()
     {

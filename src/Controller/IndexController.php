@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\ORM\Entity;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Index controller
@@ -15,9 +17,9 @@ class IndexController extends GeneralController
     /**
      * index action
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return string|void
      */
     public function executeIndex($request, $response, $args)

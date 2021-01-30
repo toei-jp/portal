@@ -2,9 +2,10 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * Schedule entity class
@@ -45,7 +46,7 @@ class Schedule extends AbstractEntity
      *
      * @ORM\Column(type="date", name="start_date")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $startDate;
 
@@ -54,7 +55,7 @@ class Schedule extends AbstractEntity
      *
      * @ORM\Column(type="date", name="end_date")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $endDate;
 
@@ -63,7 +64,7 @@ class Schedule extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="public_start_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $publicStartDt;
 
@@ -72,7 +73,7 @@ class Schedule extends AbstractEntity
      *
      * @ORM\Column(type="datetime", name="public_end_dt")
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $publicEndDt;
 
@@ -106,11 +107,11 @@ class Schedule extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -139,17 +140,17 @@ class Schedule extends AbstractEntity
      * @param Title $title
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setTitle(Title $title)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get start_date
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartDate()
     {
@@ -159,20 +160,20 @@ class Schedule extends AbstractEntity
     /**
      * set start_date
      *
-     * @param \DateTime|string $startDate
+     * @param DateTime|string $startDate
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setStartDate($startDate)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get end_date
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEndDate()
     {
@@ -182,20 +183,20 @@ class Schedule extends AbstractEntity
     /**
      * set end_date
      *
-     * @param \DateTime|string $endDate
+     * @param DateTime|string $endDate
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setEndDate($endDate)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get public_start_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getPublicStartDt()
     {
@@ -205,20 +206,20 @@ class Schedule extends AbstractEntity
     /**
      * set public_start_dt
      *
-     * @param \DateTime|string $publicStartDt
+     * @param DateTime|string $publicStartDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPublicStartDt($publicStartDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
      * get public_end_dt
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getPublicEndDt()
     {
@@ -228,14 +229,14 @@ class Schedule extends AbstractEntity
     /**
      * set public_end_dt
      *
-     * @param \DateTime|string $publicEndDt
+     * @param DateTime|string $publicEndDt
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setPublicEndDt($publicEndDt)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -254,11 +255,11 @@ class Schedule extends AbstractEntity
      * @param string|null $remark
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setRemark(?string $remark)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -277,11 +278,11 @@ class Schedule extends AbstractEntity
      * @param Collection $showingFormats
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setShowingFormats(Collection $showingFormats)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -300,10 +301,10 @@ class Schedule extends AbstractEntity
      * @param Collection $showingTheaters
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setShowingTheaters(Collection $showingTheaters)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 }

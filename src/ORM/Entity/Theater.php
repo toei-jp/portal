@@ -2,9 +2,9 @@
 
 namespace App\ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LogicException;
 
 /**
  * Theater entity class
@@ -140,11 +140,11 @@ class Theater extends AbstractEntity
     /**
      * construct
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function __construct()
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -173,11 +173,11 @@ class Theater extends AbstractEntity
      * @param string $name
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setName(string $name)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -196,11 +196,11 @@ class Theater extends AbstractEntity
      * @param string $nameJa
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setNameJa(string $nameJa)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -219,11 +219,11 @@ class Theater extends AbstractEntity
      * @param int $area
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setArea($area)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -242,11 +242,11 @@ class Theater extends AbstractEntity
      * @param string $masterCode
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setMasterCode($masterCode)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**
@@ -265,11 +265,11 @@ class Theater extends AbstractEntity
      * @param int $displayOrder
      * @return void
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function setDisplayOrder(int $displayOrder)
     {
-        throw new \LogicException('Not allowed.');
+        throw new LogicException('Not allowed.');
     }
 
     /**

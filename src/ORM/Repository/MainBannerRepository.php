@@ -2,9 +2,9 @@
 
 namespace App\ORM\Repository;
 
+use App\ORM\Entity\MainBanner;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use App\ORM\Entity\MainBanner;
 
 /**
  * MainBanner repository class

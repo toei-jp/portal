@@ -2,9 +2,9 @@
 
 namespace App\ORM\Repository;
 
+use App\ORM\Entity\Campaign;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use App\ORM\Entity\Campaign;
 
 /**
  * Campaign repository class

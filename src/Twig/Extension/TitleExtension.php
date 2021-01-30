@@ -2,9 +2,9 @@
 
 namespace App\Twig\Extension;
 
+use App\ORM\Entity\Title;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use App\ORM\Entity\Title;
 
 /**
  * Title twig extension class

@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseInterface as Response;
 use App\ORM\Entity;
 use App\Responder;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Base controller
@@ -30,9 +30,9 @@ abstract class BaseController extends AbstractController
     /**
      * pre execute
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return void
      */
     protected function preExecute($request, $response, $args): void
@@ -44,9 +44,9 @@ abstract class BaseController extends AbstractController
     /**
      * post execute
      *
-     * @param \Slim\Http\Request  $request
-     * @param \Slim\Http\Response $response
-     * @param array               $args
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
      * @return void
      */
     protected function postExecute($request, $response, $args): void
