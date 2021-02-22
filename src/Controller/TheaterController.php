@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
@@ -7,12 +9,9 @@ use Slim\Exception\NotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Theater controller
- */
 class TheaterController extends BaseController
 {
-    /**@var Entity\Theater $theater */
+    /** @var Entity\Theater $theater */
     protected $theater;
 
     /**
@@ -36,20 +35,15 @@ class TheaterController extends BaseController
      * @param array    $args
      * @return void
      */
-    protected function preExecute($request, $response, $args): void
+    protected function preExecute(Request $request, Response $response, array $args): void
     {
-        if (! isset($args['name']) || empty($args['name'])) {
+        $theater = $this->getTheater($args['name']);
+
+        if (is_null($theater)) {
             throw new NotFoundException($request, $response);
         }
 
-        $theaterName   = $args['name'];
-        $this->theater = $this->getTheater($theaterName);
-
-        if (is_null($this->theater)) {
-            throw new NotFoundException($request, $response);
-        }
-
-        $this->data->set('theater', $this->theater);
+        $this->theater = $theater;
 
         parent::preExecute($request, $response, $args);
     }
@@ -60,13 +54,19 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeIndex($request, $response, $args)
+    public function executeIndex(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('mainBanners', $this->getMainBanners($this->theater));
+        $mainBanners = $this->getMainBanners($this->theater);
 
-        $this->data->set('topics', $this->getTopics($this->theater, 3));
+        $topics = $this->getTopics($this->theater, 3);
+
+        return $this->render($response, 'theater/index.html.twig', [
+            'theater' => $this->theater,
+            'mainBanners' => $mainBanners,
+            'topics' => $topics,
+        ]);
     }
 
     /**
@@ -102,11 +102,16 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeTopicList($request, $response, $args)
+    public function executeTopicList(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('topics', $this->getTopics($this->theater));
+        $topics = $this->getTopics($this->theater);
+
+        return $this->render($response, 'theater/topic/list.html.twig', [
+            'theater' => $this->theater,
+            'topics' => $topics,
+        ]);
     }
 
     /**
@@ -115,24 +120,27 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeTopicDetail($request, $response, $args)
+    public function executeTopicDetail(Request $request, Response $response, array $args): Response
     {
-        if (! isset($args['id']) || empty($args['id'])) {
+        $topic = $this->getTopic((int) $args['id']);
+
+        if (! $topic) {
             throw new NotFoundException($request, $response);
         }
 
-        $id = (int) $args['id'];
-
-        $this->data->set('news', $this->getTopic($id));
+        return $this->render($response, 'theater/topic/detail.html.twig', [
+            'theater' => $this->theater,
+            'news' => $topic,
+        ]);
     }
 
     /**
      * return topic
      *
      * @param int $id
-     * @return Entity\News
+     * @return Entity\News|null
      */
     protected function getTopic(int $id)
     {
@@ -147,11 +155,16 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeAdvanceTicket($request, $response, $args)
+    public function executeAdvanceTicket(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('advanceTicketList', $this->getAdvanceTicketList($this->theater));
+        $advanceTicketList = $this->getAdvanceTicketList($this->theater);
+
+        return $this->render($response, 'theater/advance_ticket/index.html.twig', [
+            'theater' => $this->theater,
+            'advanceTicketList' => $advanceTicketList,
+        ]);
     }
 
     /**
@@ -173,10 +186,11 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executePrice($request, $response, $args)
+    public function executePrice(Request $request, Response $response, array $args): Response
     {
+        return $this->render($response, 'theater/price/index.html.twig');
     }
 
     /**
@@ -185,10 +199,11 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeFloorGuide($request, $response, $args)
+    public function executeFloorGuide(Request $request, Response $response, array $args): Response
     {
+        return $this->render($response, 'theater/floor_guide/index.html.twig');
     }
 
     /**
@@ -197,9 +212,10 @@ class TheaterController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeAccess($request, $response, $args)
+    public function executeAccess(Request $request, Response $response, array $args): Response
     {
+        return $this->render($response, 'theater/access/index.html.twig');
     }
 }

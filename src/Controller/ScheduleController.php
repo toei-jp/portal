@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Schedule controller
- */
 class ScheduleController extends GeneralController
 {
     /**
@@ -17,11 +16,13 @@ class ScheduleController extends GeneralController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeShowing($request, $response, $args)
+    public function executeShowing(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('schedules', $this->getShowingSchedules());
+        $schedules = $this->getShowingSchedules();
+
+        return $this->render($response, 'schedule/showing.html.twig', ['schedules' => $schedules]);
     }
 
     /**
@@ -42,11 +43,13 @@ class ScheduleController extends GeneralController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeSoon($request, $response, $args)
+    public function executeSoon(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('schedules', $this->getSoonSchedules());
+        $schedules = $this->getSoonSchedules();
+
+        return $this->render($response, 'schedule/soon.html.twig', ['schedules' => $schedules]);
     }
 
     /**

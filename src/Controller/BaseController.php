@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
-use App\Responder;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Base controller
- */
 abstract class BaseController extends AbstractController
 {
     /** @var Entity\Theater[] */
@@ -35,10 +33,14 @@ abstract class BaseController extends AbstractController
      * @param array    $args
      * @return void
      */
-    protected function preExecute($request, $response, $args): void
+    protected function preExecute(Request $request, Response $response, array $args): void
     {
         $this->theaters = $this->getTheaters();
-        $this->data->set('theaters', $this->theaters);
+
+        $viewEnvironment = $this->view->getEnvironment();
+
+        // おそらくrender()前に追加する必要があるので、今の仕組み上postExecute()では追加できない。
+        $viewEnvironment->addGlobal('theaters', $this->theaters);
     }
 
     /**
@@ -49,20 +51,17 @@ abstract class BaseController extends AbstractController
      * @param array    $args
      * @return void
      */
-    protected function postExecute($request, $response, $args): void
+    protected function postExecute(Request $request, Response $response, array $args): void
     {
     }
 
     /**
-     * get responder
-     *
-     * @return Responder\AbstractResponder
+     * @param Response $response
+     * @param string   $template
+     * @param array    $data
      */
-    protected function getResponder(): Responder\AbstractResponder
+    protected function render(Response $response, string $template, array $data = []): Response
     {
-        $path = explode('\\', static::class);
-        $name = str_replace('Controller', '', array_pop($path));
-
-        return Responder\BaseResponder::factory($name, $this->view);
+        return $this->view->render($response, $template, $data);
     }
 }

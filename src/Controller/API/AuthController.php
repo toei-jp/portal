@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\API;
 
 use GuzzleHttp\Client as HttpClient;
@@ -48,19 +50,21 @@ class AuthController extends BaseController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeToken($request, $response, $args)
+    public function executeToken(Request $request, Response $response, array $args): Response
     {
         $meta = ['name' => 'Authorization Token'];
-        $this->data->set('meta', $meta);
 
-        $response = $this->requestToken();
+        $requestTokenResponse = $this->requestToken();
 
-        $rawData = $response->getBody()->getContents();
-        $data    = json_decode($rawData, true);
+        $rawData   = $requestTokenResponse->getBody()->getContents();
+        $tokenData = json_decode($rawData, true);
 
-        $this->data->set('data', $data);
+        return $response->withJson([
+            'meta' => $meta,
+            'data' => $tokenData,
+        ]);
     }
 
     /**

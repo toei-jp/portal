@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Index controller
- */
 class IndexController extends GeneralController
 {
     public const THEATER_SHIBUYA    = 1;
@@ -20,38 +19,43 @@ class IndexController extends GeneralController
      * @param Request  $request
      * @param Response $response
      * @param array    $args
-     * @return string|void
+     * @return Response
      */
-    public function executeIndex($request, $response, $args)
+    public function executeIndex(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('mainBanners', $this->getMainBanners());
+        $mainBanners = $this->getMainBanners();
 
         $shibuya    = null;
         $marunouchi = null;
 
         foreach ($this->theaters as $theater) {
-            /** @var Entity\Theater $theater */
-
             if ($theater->getId() === self::THEATER_SHIBUYA) {
-                /** @var Entity\Theater $shibuya */
                 $shibuya = $theater;
             } elseif ($theater->getId() === self::THEATER_MARUNOUCHI) {
-                /** @var Entity\Theater $marunouchi */
                 $marunouchi = $theater;
             }
         }
 
-        $this->data->set('shibuya', $shibuya);
-        $this->data->set('marunouchi', $marunouchi);
+        $shibuyaTopics = $this->getTopics($shibuya);
 
-        $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
-        $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
+        $marunouchiTopics = $this->getTopics($marunouchi);
 
-        $this->data->set('showingSchedules', $this->getShowingSchedules());
+        $showingSchedules = $this->getShowingSchedules();
 
-        $this->data->set('soonSchedules', $this->getSoonSchedules());
+        $soonSchedules = $this->getSoonSchedules();
 
-        $this->data->set('campaigns', $this->getCampaigns(self::PAGE_ID));
+        $campaigns = $this->getCampaigns(self::PAGE_ID);
+
+        return $this->render($response, 'index/index.html.twig', [
+            'mainBanners' => $mainBanners,
+            'shibuya' => $shibuya,
+            'marunouchi' => $marunouchi,
+            'shibuyaTopics' => $shibuyaTopics,
+            'marunouchiTopics' => $marunouchiTopics,
+            'showingSchedules' => $showingSchedules,
+            'soonSchedules' => $soonSchedules,
+            'campaigns' => $campaigns,
+        ]);
     }
 
     /**
