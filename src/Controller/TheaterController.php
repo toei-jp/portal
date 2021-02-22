@@ -190,7 +190,9 @@ class TheaterController extends BaseController
      */
     public function executePrice(Request $request, Response $response, array $args): Response
     {
-        return $this->render($response, 'theater/price/index.html.twig');
+        return $this->render($response, 'theater/price/index.html.twig', [
+            'theater' => $this->theater,
+        ]);
     }
 
     /**
@@ -203,7 +205,9 @@ class TheaterController extends BaseController
      */
     public function executeFloorGuide(Request $request, Response $response, array $args): Response
     {
-        return $this->render($response, 'theater/floor_guide/index.html.twig');
+        return $this->render($response, 'theater/floor_guide/index.html.twig', [
+            'theater' => $this->theater,
+        ]);
     }
 
     /**
@@ -216,6 +220,8 @@ class TheaterController extends BaseController
      */
     public function executeAccess(Request $request, Response $response, array $args): Response
     {
-        return $this->render($response, 'theater/access/index.html.twig');
+        return $this->render($response, 'theater/access/index.html.twig', [
+            'theater' => $this->theater,
+        ]);
     }
 }

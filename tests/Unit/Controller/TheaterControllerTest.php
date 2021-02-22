@@ -279,7 +279,7 @@ final class TheaterControllerTest extends BaseTestCase
         $targetMock
             ->shouldReceive('render')
             ->once()
-            ->with($responseMock, 'theater/price/index.html.twig')
+            ->with($responseMock, 'theater/price/index.html.twig', Mockery::type('array'))
             ->andReturn($responseMock);
 
         $this->assertEquals(
@@ -313,7 +313,7 @@ final class TheaterControllerTest extends BaseTestCase
         $targetMock
             ->shouldReceive('render')
             ->once()
-            ->with($responseMock, 'theater/floor_guide/index.html.twig')
+            ->with($responseMock, 'theater/floor_guide/index.html.twig', Mockery::type('array'))
             ->andReturn($responseMock);
 
         $this->assertEquals(
@@ -347,7 +347,7 @@ final class TheaterControllerTest extends BaseTestCase
         $targetMock
             ->shouldReceive('render')
             ->once()
-            ->with($responseMock, 'theater/access/index.html.twig')
+            ->with($responseMock, 'theater/access/index.html.twig', Mockery::type('array'))
             ->andReturn($responseMock);
 
         $this->assertEquals(
