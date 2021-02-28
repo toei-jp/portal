@@ -10,39 +10,25 @@ use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 use ReflectionClass;
 
-/**
- * MotionPicture extension test
- */
 final class MotionPictureExtenstionTest extends BaseTestCase
 {
     /**
-     * Create target mock
-     *
-     * @return MockInterface|LegacyMockInterface|MotionPictureExtenstion
+     * @return MockInterface&LegacyMockInterface&MotionPictureExtenstion
      */
     protected function createTargetMock()
     {
         return Mockery::mock(MotionPictureExtenstion::class);
     }
 
-    /**
-     * Create Target reflection
-     *
-     * @return ReflectionClass
-     */
-    protected function createTargetReflection()
+    protected function createTargetReflection(): ReflectionClass
     {
         return new ReflectionClass(MotionPictureExtenstion::class);
     }
 
     /**
-     * test construct
-     *
      * @test
-     *
-     * @return void
      */
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $targetMock = $this->createTargetMock();
         $settings   = ['foo' => 'bar'];
@@ -62,13 +48,9 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     }
 
     /**
-     * test getApiEndpoint
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetApiEndpoint()
+    public function testGetApiEndpoint(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
@@ -83,13 +65,9 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     }
 
     /**
-     * test getWaiterServerUrl
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetWaiterServerUrl()
+    public function testGetWaiterServerUrl(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
@@ -105,13 +83,9 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     }
 
     /**
-     * test getTicketSiteUrl
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetTicketSiteUrl()
+    public function testGetTicketSiteUrl(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
@@ -127,13 +101,9 @@ final class MotionPictureExtenstionTest extends BaseTestCase
     }
 
     /**
-     * test getProjectId
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetProjectId()
+    public function testGetProjectId(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();

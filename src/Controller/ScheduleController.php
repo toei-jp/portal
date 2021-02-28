@@ -13,10 +13,7 @@ class ScheduleController extends GeneralController
     /**
      * showing action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeShowing(Request $request, Response $response, array $args): Response
     {
@@ -26,11 +23,9 @@ class ScheduleController extends GeneralController
     }
 
     /**
-     * return showing schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getShowingSchedules()
+    protected function getShowingSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)
@@ -40,10 +35,7 @@ class ScheduleController extends GeneralController
     /**
      * soon action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeSoon(Request $request, Response $response, array $args): Response
     {
@@ -53,11 +45,9 @@ class ScheduleController extends GeneralController
     }
 
     /**
-     * return soon schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getSoonSchedules()
+    protected function getSoonSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)

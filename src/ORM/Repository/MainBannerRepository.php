@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\MainBanner;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * MainBanner repository class
- */
 class MainBannerRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('mb');
         $qb
@@ -26,12 +20,9 @@ class MainBannerRepository extends EntityRepository
     }
 
     /**
-     * find by page_id
-     *
-     * @param int $pageId
      * @return MainBanner[]
      */
-    public function findByPageId(int $pageId)
+    public function findByPageId(int $pageId): array
     {
         $qb = $this->getActiveQuery();
         $qb
@@ -44,12 +35,9 @@ class MainBannerRepository extends EntityRepository
     }
 
     /**
-     * find by theater_id
-     *
-     * @param int $theaterId
      * @return MainBanner[]
      */
-    public function findByTheaterId(int $theaterId)
+    public function findByTheaterId(int $theaterId): array
     {
         $qb = $this->getActiveQuery();
         $qb

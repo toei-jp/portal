@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Controller;
 
 use App\Controller\TheaterController;
+use App\ORM\Entity\News;
 use App\ORM\Entity\Theater;
 use Mockery;
 use Mockery\LegacyMockInterface;
@@ -157,7 +158,7 @@ final class TheaterControllerTest extends BaseTestCase
         $theaterPropertyRef->setAccessible(true);
         $theaterPropertyRef->setValue($targetMock, $theater);
 
-        $topic = 'topic';
+        $topic = $this->createNewsMock();
         $targetMock
             ->shouldReceive('getTopic')
             ->once()
@@ -178,6 +179,14 @@ final class TheaterControllerTest extends BaseTestCase
             $responseMock,
             $targetMock->executeTopicDetail($requestMock, $responseMock, $args)
         );
+    }
+
+    /**
+     * @return MockInterface&LegacyMockInterface&News
+     */
+    protected function createNewsMock()
+    {
+        return Mockery::mock(News::class);
     }
 
     /**

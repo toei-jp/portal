@@ -11,24 +11,14 @@ use Slim\Http\Response;
 abstract class BaseController extends AbstractController
 {
     /**
-     * pre execute
-     *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
     protected function preExecute(Request $request, Response $response, array $args): void
     {
     }
 
     /**
-     * post execute
-     *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
     protected function postExecute(Request $request, Response $response, array $args): void
     {

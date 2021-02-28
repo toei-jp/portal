@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\Common\Collections\Collection;
@@ -18,12 +20,10 @@ class Theater extends AbstractEntity
     use SoftDeleteTrait;
     use TimestampableTrait;
 
-    /** @var array */
+    /** @var array<int, string> */
     protected static $areas = [];
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue(strategy="NONE")
@@ -33,8 +33,6 @@ class Theater extends AbstractEntity
     protected $id;
 
     /**
-     * name
-     *
      * @ORM\Column(type="string", unique=true)
      *
      * @var string
@@ -42,8 +40,6 @@ class Theater extends AbstractEntity
     protected $name;
 
     /**
-     * name_ja
-     *
      * @ORM\Column(type="string", name="name_ja")
      *
      * @var string
@@ -51,8 +47,6 @@ class Theater extends AbstractEntity
     protected $nameJa;
 
     /**
-     * area
-     *
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      *
      * @var int
@@ -60,8 +54,6 @@ class Theater extends AbstractEntity
     protected $area;
 
     /**
-     * master_code
-     *
      * @ORM\Column(type="string", name="master_code", length=3, options={"fixed":true})
      *
      * @var string
@@ -69,8 +61,6 @@ class Theater extends AbstractEntity
     protected $masterCode;
 
     /**
-     * display_order
-     *
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
      *
      * @var int
@@ -78,8 +68,6 @@ class Theater extends AbstractEntity
     protected $displayOrder;
 
     /**
-     * meta
-     *
      * 設計の問題でnullを許容する形になってしまったが、nullにならないようデータで調整する。
      *
      * @ORM\OneToOne(targetEntity="TheaterMeta", mappedBy="theater")
@@ -89,8 +77,6 @@ class Theater extends AbstractEntity
     protected $meta;
 
     /**
-     * admin_users
-     *
      * @ORM\OneToMany(targetEntity="AdminUser", mappedBy="theater")
      *
      * @var Collection<AdminUser>
@@ -98,8 +84,6 @@ class Theater extends AbstractEntity
     protected $adminUsers;
 
     /**
-     * campaigns
-     *
      * @ORM\OneToMany(targetEntity="TheaterCampaign", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -108,8 +92,6 @@ class Theater extends AbstractEntity
     protected $campaigns;
 
     /**
-     * news_list
-     *
      * @ORM\OneToMany(targetEntity="TheaterNews", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -118,8 +100,6 @@ class Theater extends AbstractEntity
     protected $newsList;
 
     /**
-     * main_banners
-     *
      * @ORM\OneToMany(targetEntity="TheaterMainBanner", mappedBy="theater", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -128,18 +108,14 @@ class Theater extends AbstractEntity
     protected $mainBanners;
 
     /**
-     * return areas
-     *
-     * @return array
+     * @return array<int, string>
      */
-    public static function getAreas()
+    public static function getAreas(): array
     {
         return self::$areas;
     }
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -147,155 +123,91 @@ class Theater extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * set name
-     *
-     * @param string $name
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get name_ja
-     *
-     * @return string
-     */
-    public function getNameJa()
+    public function getNameJa(): string
     {
         return $this->nameJa;
     }
 
     /**
-     * set name_ja
-     *
-     * @param string $nameJa
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setNameJa(string $nameJa)
+    public function setNameJa(string $nameJa): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get area
-     *
-     * @return int
-     */
-    public function getArea()
+    public function getArea(): int
     {
         return $this->area;
     }
 
     /**
-     * set area
-     *
-     * @param int $area
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setArea($area)
+    public function setArea(int $area): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get master_code
-     *
-     * @return string
-     */
-    public function getMasterCode()
+    public function getMasterCode(): string
     {
         return $this->masterCode;
     }
 
     /**
-     * set master_code
-     *
-     * @param string $masterCode
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setMasterCode($masterCode)
+    public function setMasterCode(string $masterCode): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get display_order
-     *
-     * @return int
-     */
-    public function getDisplayOrder()
+    public function getDisplayOrder(): int
     {
         return $this->displayOrder;
     }
 
     /**
-     * set display_order
-     *
-     * @param int $displayOrder
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setDisplayOrder(int $displayOrder)
+    public function setDisplayOrder(int $displayOrder): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get meta
-     *
-     * @return TheaterMeta
-     */
-    public function getMeta()
+    public function getMeta(): TheaterMeta
     {
         return $this->meta;
     }
 
     /**
-     * get admin_users
-     *
-     * @return Collection
+     * @return Collection<AdminUser>
      */
-    public function getAdminUsers()
+    public function getAdminUsers(): Collection
     {
         return $this->adminUsers;
     }
 
     /**
-     * get campaigns
-     *
-     * @return Collection
+     * @return Collection<TheaterCampaign>
      */
     public function getCampaigns(): Collection
     {
@@ -303,9 +215,7 @@ class Theater extends AbstractEntity
     }
 
     /**
-     * get news_list
-     *
-     * @return Collection
+     * @return Collection<TheaterNews>
      */
     public function getNewsList(): Collection
     {
@@ -313,9 +223,7 @@ class Theater extends AbstractEntity
     }
 
     /**
-     * get main_banners
-     *
-     * @return Collection
+     * @return Collection<TheaterMainBanner>
      */
     public function getMainBanners(): Collection
     {

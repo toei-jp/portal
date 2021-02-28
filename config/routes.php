@@ -1,8 +1,6 @@
 <?php
 
-/**
- * routes.php
- */
+declare(strict_types=1);
 
 use App\Controller\AboutController;
 use App\Controller\API\AuthController as AuthApiController;
@@ -23,10 +21,10 @@ $app->get('/business_deal/', AboutController::class . ':law')->setName('law');
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
 $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedule_soon');
 
-$app->group('/theaters/{name}/', function () {
+$app->group('/theaters/{name}/', function (): void {
     $this->get('', TheaterController::class . ':index')->setName('theater');
 
-    $this->group('topics/', function () {
+    $this->group('topics/', function (): void {
         $this->get('', TheaterController::class . ':topicList')->setName('theater_topic_list');
         $this->get('detail/{id}.php', TheaterController::class . ':topicDetail')->setName('theater_topic_detail');
     });
@@ -37,8 +35,8 @@ $app->group('/theaters/{name}/', function () {
     $this->get('access/', TheaterController::class . ':access')->setName('theater_access');
 });
 
-$app->group('/api', function () {
-    $this->group('/auth', function () {
+$app->group('/api', function (): void {
+    $this->group('/auth', function (): void {
         $this->post('/token', AuthApiController::class . ':token');
     });
 });

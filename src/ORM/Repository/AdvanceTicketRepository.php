@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\AdvanceTicket;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * Advance Ticket repository class
- */
 class AdvanceTicketRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('t');
 
@@ -56,12 +50,9 @@ SQL;
     }
 
     /**
-     * find by theater
-     *
-     * @param int $theaterId
      * @return AdvanceTicket[]
      */
-    public function findByTheater(int $theaterId)
+    public function findByTheater(int $theaterId): array
     {
         $qb = $this->getActiveQuery();
 

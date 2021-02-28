@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -17,8 +19,6 @@ class PageNews extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
@@ -28,8 +28,6 @@ class PageNews extends AbstractEntity
     protected $id;
 
     /**
-     * news
-     *
      * @ORM\ManyToOne(targetEntity="News", inversedBy="pages")
      * @ORM\JoinColumn(name="news_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
@@ -38,8 +36,6 @@ class PageNews extends AbstractEntity
     protected $news;
 
     /**
-     * page
-     *
      * @ORM\ManyToOne(targetEntity="Page", inversedBy="newsList")
      * @ORM\JoinColumn(name="page_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
@@ -48,8 +44,6 @@ class PageNews extends AbstractEntity
     protected $page;
 
     /**
-     * display_order
-     *
      * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
      *
      * @var int
@@ -57,8 +51,6 @@ class PageNews extends AbstractEntity
     protected $displayOrder;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -66,81 +58,46 @@ class PageNews extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get news
-     *
-     * @return News
-     */
-    public function getNews()
+    public function getNews(): News
     {
         return $this->news;
     }
 
     /**
-     * set news
-     *
-     * @param News $news
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setNews(News $news)
+    public function setNews(News $news): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * page
-     *
-     * @return Page
-     */
-    public function getPage()
+    public function getPage(): Page
     {
         return $this->page;
     }
 
     /**
-     * set page
-     *
-     * @param Page $page
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setPage(Page $page)
+    public function setPage(Page $page): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get display_order
-     *
-     * @return int
-     */
-    public function getDisplayOrder()
+    public function getDisplayOrder(): int
     {
         return $this->displayOrder;
     }
 
     /**
-     * set display_order
-     *
-     * @param int $displayOrder
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setDisplayOrder(int $displayOrder)
+    public function setDisplayOrder(int $displayOrder): void
     {
         throw new LogicException('Not allowed.');
     }

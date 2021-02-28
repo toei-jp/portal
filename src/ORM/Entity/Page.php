@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\Common\Collections\Collection;
@@ -19,8 +21,6 @@ class Page extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue(strategy="NONE")
@@ -30,8 +30,6 @@ class Page extends AbstractEntity
     protected $id;
 
     /**
-     * name
-     *
      * @ORM\Column(type="string", unique=true)
      *
      * @var string
@@ -39,8 +37,6 @@ class Page extends AbstractEntity
     protected $name;
 
     /**
-     * name_ja
-     *
      * @ORM\Column(type="string", name="name_ja")
      *
      * @var string
@@ -48,8 +44,6 @@ class Page extends AbstractEntity
     protected $nameJa;
 
     /**
-     * campaigns
-     *
      * @ORM\OneToMany(targetEntity="PageCampaign", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -58,8 +52,6 @@ class Page extends AbstractEntity
     protected $campaigns;
 
     /**
-     * news_list
-     *
      * @ORM\OneToMany(targetEntity="PageNews", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -68,8 +60,6 @@ class Page extends AbstractEntity
     protected $newsList;
 
     /**
-     * main_banners
-     *
      * @ORM\OneToMany(targetEntity="PageMainBanner", mappedBy="page", orphanRemoval=true)
      * @ORM\OrderBy({"displayOrder" = "ASC"})
      *
@@ -78,8 +68,6 @@ class Page extends AbstractEntity
     protected $mainBanners;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -87,66 +75,39 @@ class Page extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * set name
-     *
-     * @param string $name
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get name_ja
-     *
-     * @return string
-     */
-    public function getNameJa()
+    public function getNameJa(): string
     {
         return $this->nameJa;
     }
 
     /**
-     * set name_ja
-     *
-     * @param string $nameJa
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setNameJa(string $nameJa)
+    public function setNameJa(string $nameJa): void
     {
         throw new LogicException('Not allowed.');
     }
 
     /**
-     * get campaigns
-     *
-     * @return Collection
+     * @return Collection<PageCampaign>
      */
     public function getCampaigns(): Collection
     {
@@ -154,9 +115,7 @@ class Page extends AbstractEntity
     }
 
     /**
-     * get news_list
-     *
-     * @return Collection
+     * @return Collection<PageNews>
      */
     public function getNewsList(): Collection
     {
@@ -164,9 +123,7 @@ class Page extends AbstractEntity
     }
 
     /**
-     * get main_banners
-     *
-     * @return Collection
+     * @return Collection<PageMainBanner>
      */
     public function getMainBanners(): Collection
     {

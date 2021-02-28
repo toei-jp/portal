@@ -12,10 +12,7 @@ class AboutController extends GeneralController
     /**
      * faq action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeFaq(Request $request, Response $response, array $args): Response
     {
@@ -25,10 +22,7 @@ class AboutController extends GeneralController
     /**
      * law action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeLaw(Request $request, Response $response, array $args): Response
     {

@@ -10,15 +10,10 @@ use Mockery;
 use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 
-/**
- * ShowingFormat extension test
- */
 final class ShowingFormatExtensionTest extends BaseTestCase
 {
     /**
-     * Create target mock
-     *
-     * @return MockInterface|LegacyMockInterface|ShowingFormatExtension
+     * @return MockInterface&LegacyMockInterface&ShowingFormatExtension
      */
     protected function createTargetMock()
     {
@@ -26,13 +21,9 @@ final class ShowingFormatExtensionTest extends BaseTestCase
     }
 
     /**
-     * test getVoiceText
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetVoiceText()
+    public function testGetVoiceText(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();

@@ -1,42 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Twig\Extension;
 
 use App\ORM\Entity\ShowingFormat;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * ShowingFormat twig extension class
- */
 class ShowingFormatExtension extends AbstractExtension
 {
-    /**
-     * construct
-     */
     public function __construct()
     {
     }
 
     /**
-     * get functions
-     *
-     * @return array
+     * @return TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('showing_format_voice_text', [$this, 'getVoiceText']),
         ];
     }
 
-    /**
-     * return voice text
-     *
-     * @param int $voice
-     * @return string
-     */
-    public function getVoiceText(int $voice)
+    public function getVoiceText(int $voice): string
     {
         switch ($voice) {
             case ShowingFormat::VOICE_SUBTITLE:

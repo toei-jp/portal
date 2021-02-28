@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use DateTime;
@@ -21,8 +23,6 @@ class Schedule extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
@@ -32,8 +32,6 @@ class Schedule extends AbstractEntity
     protected $id;
 
     /**
-     * title
-     *
      * @ORM\ManyToOne(targetEntity="Title", fetch="EAGER")
      * @ORM\JoinColumn(name="title_id", referencedColumnName="id", nullable=false, onDelete="RESTRICT")
      *
@@ -42,8 +40,6 @@ class Schedule extends AbstractEntity
     protected $title;
 
     /**
-     * start_date
-     *
      * @ORM\Column(type="date", name="start_date")
      *
      * @var DateTime
@@ -51,8 +47,6 @@ class Schedule extends AbstractEntity
     protected $startDate;
 
     /**
-     * end_date
-     *
      * @ORM\Column(type="date", name="end_date")
      *
      * @var DateTime
@@ -60,8 +54,6 @@ class Schedule extends AbstractEntity
     protected $endDate;
 
     /**
-     * public_start_dt
-     *
      * @ORM\Column(type="datetime", name="public_start_dt")
      *
      * @var DateTime
@@ -69,8 +61,6 @@ class Schedule extends AbstractEntity
     protected $publicStartDt;
 
     /**
-     * public_end_dt
-     *
      * @ORM\Column(type="datetime", name="public_end_dt")
      *
      * @var DateTime
@@ -78,8 +68,6 @@ class Schedule extends AbstractEntity
     protected $publicEndDt;
 
     /**
-     * remark
-     *
      * @ORM\Column(type="text", nullable=true)
      *
      * @var string|null
@@ -87,8 +75,6 @@ class Schedule extends AbstractEntity
     protected $remark;
 
     /**
-     * showing_formats
-     *
      * @ORM\OneToMany(targetEntity="ShowingFormat", mappedBy="schedule", orphanRemoval=true, fetch="EAGER")
      *
      * @var Collection<ShowingFormat>
@@ -96,8 +82,6 @@ class Schedule extends AbstractEntity
     protected $showingFormats;
 
     /**
-     * showing_theaters
-     *
      * @ORM\OneToMany(targetEntity="ShowingTheater", mappedBy="schedule", orphanRemoval=true, fetch="EAGER")
      *
      * @var Collection<ShowingTheater>
@@ -105,8 +89,6 @@ class Schedule extends AbstractEntity
     protected $showingTheaters;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -114,196 +96,129 @@ class Schedule extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get title
-     *
-     * @return Title
-     */
-    public function getTitle()
+    public function getTitle(): Title
     {
         return $this->title;
     }
 
     /**
-     * set title
-     *
-     * @param Title $title
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setTitle(Title $title)
+    public function setTitle(Title $title): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get start_date
-     *
-     * @return DateTime
-     */
-    public function getStartDate()
+    public function getStartDate(): DateTime
     {
         return $this->startDate;
     }
 
     /**
-     * set start_date
-     *
      * @param DateTime|string $startDate
-     * @return void
      *
      * @throws LogicException
      */
-    public function setStartDate($startDate)
+    public function setStartDate($startDate): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get end_date
-     *
-     * @return DateTime
-     */
-    public function getEndDate()
+    public function getEndDate(): DateTime
     {
         return $this->endDate;
     }
 
     /**
-     * set end_date
-     *
      * @param DateTime|string $endDate
-     * @return void
      *
      * @throws LogicException
      */
-    public function setEndDate($endDate)
+    public function setEndDate($endDate): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get public_start_dt
-     *
-     * @return DateTime
-     */
-    public function getPublicStartDt()
+    public function getPublicStartDt(): DateTime
     {
         return $this->publicStartDt;
     }
 
     /**
-     * set public_start_dt
-     *
      * @param DateTime|string $publicStartDt
-     * @return void
      *
      * @throws LogicException
      */
-    public function setPublicStartDt($publicStartDt)
+    public function setPublicStartDt($publicStartDt): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get public_end_dt
-     *
-     * @return DateTime
-     */
-    public function getPublicEndDt()
+    public function getPublicEndDt(): DateTime
     {
         return $this->publicEndDt;
     }
 
     /**
-     * set public_end_dt
-     *
      * @param DateTime|string $publicEndDt
-     * @return void
      *
      * @throws LogicException
      */
-    public function setPublicEndDt($publicEndDt)
+    public function setPublicEndDt($publicEndDt): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get remark
-     *
-     * @return string|null
-     */
-    public function getRemark()
+    public function getRemark(): ?string
     {
         return $this->remark;
     }
 
     /**
-     * set remark
-     *
-     * @param string|null $remark
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setRemark(?string $remark)
+    public function setRemark(?string $remark): void
     {
         throw new LogicException('Not allowed.');
     }
 
     /**
-     * get showing_formats
-     *
-     * @return Collection
+     * @return Collection<ShowingFormat>
      */
-    public function getShowingFormats()
+    public function getShowingFormats(): Collection
     {
         return $this->showingFormats;
     }
 
     /**
-     * set showing_formats
-     *
-     * @param Collection $showingFormats
-     * @return void
+     * @param Collection<ShowingFormat> $showingFormats
      *
      * @throws LogicException
      */
-    public function setShowingFormats(Collection $showingFormats)
+    public function setShowingFormats(Collection $showingFormats): void
     {
         throw new LogicException('Not allowed.');
     }
 
     /**
-     * get showing_theaters
-     *
-     * @return Collection
+     * @return Collection<ShowingTheater>
      */
-    public function getShowingTheaters()
+    public function getShowingTheaters(): Collection
     {
         return $this->showingTheaters;
     }
 
     /**
-     * set showing_theaters
-     *
-     * @param Collection $showingTheaters
-     * @return void
+     * @param Collection<ShowingTheater> $showingTheaters
      *
      * @throws LogicException
      */
-    public function setShowingTheaters(Collection $showingTheaters)
+    public function setShowingTheaters(Collection $showingTheaters): void
     {
         throw new LogicException('Not allowed.');
     }

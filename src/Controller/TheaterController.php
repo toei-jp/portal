@@ -14,13 +14,7 @@ class TheaterController extends BaseController
     /** @var Entity\Theater $theater */
     protected $theater;
 
-    /**
-     * find by entity
-     *
-     * @param string $name
-     * @return Entity\Theater|null
-     */
-    protected function getTheater(string $name)
+    protected function getTheater(string $name): ?Entity\Theater
     {
         return $this->em
             ->getRepository(Entity\Theater::class)
@@ -30,10 +24,7 @@ class TheaterController extends BaseController
     /**
      * pre execute
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
     protected function preExecute(Request $request, Response $response, array $args): void
     {
@@ -51,10 +42,7 @@ class TheaterController extends BaseController
     /**
      * index action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeIndex(Request $request, Response $response, array $args): Response
     {
@@ -70,12 +58,9 @@ class TheaterController extends BaseController
     }
 
     /**
-     * return main_banners
-     *
-     * @param Entity\Theater $theater
      * @return Entity\MainBanner[]
      */
-    protected function getMainBanners(Entity\Theater $theater)
+    protected function getMainBanners(Entity\Theater $theater): array
     {
         return $this->em
             ->getRepository(Entity\MainBanner::class)
@@ -83,13 +68,9 @@ class TheaterController extends BaseController
     }
 
     /**
-     * return topics
-     *
-     * @param Entity\Theater $theater
-     * @param int|null       $limit
      * @return Entity\News[]
      */
-    protected function getTopics(Entity\Theater $theater, ?int $limit = null)
+    protected function getTopics(Entity\Theater $theater, ?int $limit = null): array
     {
         return $this->em
             ->getRepository(Entity\News::class)
@@ -99,10 +80,7 @@ class TheaterController extends BaseController
     /**
      * topic list action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeTopicList(Request $request, Response $response, array $args): Response
     {
@@ -117,10 +95,7 @@ class TheaterController extends BaseController
     /**
      * topic detail action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeTopicDetail(Request $request, Response $response, array $args): Response
     {
@@ -136,13 +111,7 @@ class TheaterController extends BaseController
         ]);
     }
 
-    /**
-     * return topic
-     *
-     * @param int $id
-     * @return Entity\News|null
-     */
-    protected function getTopic(int $id)
+    protected function getTopic(int $id): ?Entity\News
     {
         return $this->em
             ->getRepository(Entity\News::class)
@@ -152,10 +121,7 @@ class TheaterController extends BaseController
     /**
      * advance ticket action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeAdvanceTicket(Request $request, Response $response, array $args): Response
     {
@@ -168,12 +134,9 @@ class TheaterController extends BaseController
     }
 
     /**
-     * return advance ticket list
-     *
-     * @param Entity\Theater $theater
      * @return Entity\AdvanceTicket[]
      */
-    protected function getAdvanceTicketList(Entity\Theater $theater)
+    protected function getAdvanceTicketList(Entity\Theater $theater): array
     {
         return $this->em
             ->getRepository(Entity\AdvanceTicket::class)
@@ -183,10 +146,7 @@ class TheaterController extends BaseController
     /**
      * price action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executePrice(Request $request, Response $response, array $args): Response
     {
@@ -198,10 +158,7 @@ class TheaterController extends BaseController
     /**
      * floor guide action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeFloorGuide(Request $request, Response $response, array $args): Response
     {
@@ -213,10 +170,7 @@ class TheaterController extends BaseController
     /**
      * access action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeAccess(Request $request, Response $response, array $args): Response
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -33,8 +35,6 @@ class ShowingFormat extends AbstractEntity
     public const VOICE_NONE     = 3;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
@@ -44,8 +44,6 @@ class ShowingFormat extends AbstractEntity
     protected $id;
 
     /**
-     * schedule
-     *
      * @ORM\ManyToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
@@ -54,8 +52,6 @@ class ShowingFormat extends AbstractEntity
     protected $schedule;
 
     /**
-     * system
-     *
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      *
      * @var int
@@ -63,8 +59,6 @@ class ShowingFormat extends AbstractEntity
     protected $system;
 
     /**
-     * voice
-     *
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      *
      * @var int
@@ -72,8 +66,6 @@ class ShowingFormat extends AbstractEntity
     protected $voice;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -81,81 +73,46 @@ class ShowingFormat extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get schedule
-     *
-     * @return Schedule
-     */
-    public function getSchedule()
+    public function getSchedule(): Schedule
     {
         return $this->schedule;
     }
 
     /**
-     * schedule
-     *
-     * @param Schedule $schedule
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setSchedule(Schedule $schedule)
+    public function setSchedule(Schedule $schedule): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get system
-     *
-     * @return int
-     */
-    public function getSystem()
+    public function getSystem(): int
     {
         return $this->system;
     }
 
     /**
-     * set system
-     *
-     * @param int $system
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setSystem(int $system)
+    public function setSystem(int $system): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get voice
-     *
-     * @return int
-     */
-    public function getVoice()
+    public function getVoice(): int
     {
         return $this->voice;
     }
 
     /**
-     * set voice
-     *
-     * @param int $voice
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setVoice(int $voice)
+    public function setVoice(int $voice): void
     {
         throw new LogicException('Not allowed.');
     }

@@ -14,11 +14,9 @@ abstract class BaseController extends AbstractController
     protected $theaters;
 
     /**
-     * return theaters
-     *
      * @return Entity\Theater[]
      */
-    private function getTheaters()
+    private function getTheaters(): array
     {
         return $this->em
             ->getRepository(Entity\Theater::class)
@@ -28,10 +26,7 @@ abstract class BaseController extends AbstractController
     /**
      * pre execute
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
     protected function preExecute(Request $request, Response $response, array $args): void
     {
@@ -46,19 +41,14 @@ abstract class BaseController extends AbstractController
     /**
      * post execute
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
     protected function postExecute(Request $request, Response $response, array $args): void
     {
     }
 
     /**
-     * @param Response $response
-     * @param string   $template
-     * @param array    $data
+     * @param array<string, mixed> $data
      */
     protected function render(Response $response, string $template, array $data = []): Response
     {

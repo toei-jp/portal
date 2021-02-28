@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\Schedule;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * Schedule repository class
- */
 class ScheduleRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('s');
         $qb
@@ -27,12 +21,7 @@ class ScheduleRepository extends EntityRepository
         return $qb;
     }
 
-    /**
-     * return showing query
-     *
-     * @return QueryBuilder
-     */
-    protected function getShowingQuery()
+    protected function getShowingQuery(): QueryBuilder
     {
         $qb = $this->getActiveQuery();
 
@@ -44,23 +33,16 @@ class ScheduleRepository extends EntityRepository
     }
 
     /**
-     * find showing
-     *
      * @return Schedule[]
      */
-    public function findShowing()
+    public function findShowing(): array
     {
         $qb = $this->getShowingQuery();
 
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * return soon query
-     *
-     * @return QueryBuilder
-     */
-    protected function getSoonQuery()
+    protected function getSoonQuery(): QueryBuilder
     {
         $qb = $this->getActiveQuery();
 
@@ -72,11 +54,9 @@ class ScheduleRepository extends EntityRepository
     }
 
     /**
-     * find soon
-     *
      * @return Schedule[]
      */
-    public function findSoon()
+    public function findSoon(): array
     {
         $qb = $this->getSoonQuery();
 

@@ -16,10 +16,7 @@ class IndexController extends GeneralController
     /**
      * index action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeIndex(Request $request, Response $response, array $args): Response
     {
@@ -59,11 +56,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return main_banners
-     *
      * @return Entity\MainBanner[]
      */
-    protected function getMainBanners()
+    protected function getMainBanners(): array
     {
         return $this->em
             ->getRepository(Entity\MainBanner::class)
@@ -77,10 +72,9 @@ class IndexController extends GeneralController
      *
      * @link https://m-p.backlog.jp/view/TOEI-137
      *
-     * @param Entity\Theater $theater
      * @return Entity\News[]
      */
-    protected function getTopics(Entity\Theater $theater)
+    protected function getTopics(Entity\Theater $theater): array
     {
         return $this->em
             ->getRepository(Entity\News::class)
@@ -88,11 +82,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return showing schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getShowingSchedules()
+    protected function getShowingSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)
@@ -100,11 +92,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return soon schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getSoonSchedules()
+    protected function getSoonSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)
@@ -112,12 +102,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return campaigns
-     *
-     * @param int $pageId
      * @return Entity\Campaign[]
      */
-    protected function getCampaigns(int $pageId)
+    protected function getCampaigns(int $pageId): array
     {
         return $this->em
             ->getRepository(Entity\Campaign::class)

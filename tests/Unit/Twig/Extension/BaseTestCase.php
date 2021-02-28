@@ -12,32 +12,22 @@ use PHPUnit\Framework\TestCase;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Base test case
- */
 abstract class BaseTestCase extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
     /**
-     * Create Target mock
-     *
-     * @return MockInterface|LegacyMockInterface|AbstractExtension
+     * @return MockInterface&LegacyMockInterface&AbstractExtension
      */
     abstract protected function createTargetMock();
 
     /**
-     * test getFunctions
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
-        /** @var Mock|AbstractExtension $targetMock */
-        $targetMock = $this->createTargetMock()
-            ->makePartial();
+        $targetMock = $this->createTargetMock();
+        $targetMock->makePartial();
 
         $functions = $targetMock->getFunctions();
 

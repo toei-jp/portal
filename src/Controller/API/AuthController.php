@@ -9,9 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Auth controller
- */
 class AuthController extends BaseController
 {
     /** @var string */
@@ -24,14 +21,9 @@ class AuthController extends BaseController
     protected $authClientSecret;
 
     /**
-     * pre execute
-     *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
-    protected function preExecute($request, $response, $args): void
+    protected function preExecute(Request $request, Response $response, array $args): void
     {
         $settings = $this->settings['api'];
 
@@ -47,10 +39,7 @@ class AuthController extends BaseController
      *
      * @link https://m-p.backlog.jp/view/TOEI-112
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return Response
+     * @param array<string, mixed> $args
      */
     public function executeToken(Request $request, Response $response, array $args): Response
     {
@@ -68,11 +57,7 @@ class AuthController extends BaseController
     }
 
     /**
-     * request Token
-     *
      * @link https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/token-endpoint.html
-     *
-     * @return ResponseInterface
      */
     protected function requestToken(): ResponseInterface
     {
@@ -92,11 +77,6 @@ class AuthController extends BaseController
         return $response;
     }
 
-    /**
-     * create HTTP Client
-     *
-     * @return HttpClient
-     */
     protected function createHttpClient(): HttpClient
     {
         $config = [
@@ -110,11 +90,6 @@ class AuthController extends BaseController
         return new HttpClient($config);
     }
 
-    /**
-     * create Authorization string
-     *
-     * @return string
-     */
     protected function createAuthStr(): string
     {
         $clientId     = $this->authClientId;

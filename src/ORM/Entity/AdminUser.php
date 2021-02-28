@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,8 +20,6 @@ class AdminUser extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue
@@ -29,8 +29,6 @@ class AdminUser extends AbstractEntity
     protected $id;
 
     /**
-     * name
-     *
      * @ORM\Column(type="string", unique=true)
      *
      * @var string
@@ -38,8 +36,6 @@ class AdminUser extends AbstractEntity
     protected $name;
 
     /**
-     * display_name
-     *
      * @ORM\Column(type="string", name="display_name")
      *
      * @var string
@@ -47,8 +43,6 @@ class AdminUser extends AbstractEntity
     protected $displayName;
 
     /**
-     * password
-     *
      * @ORM\Column(type="string", length=60, options={"fixed":true})
      *
      * @var string
@@ -56,8 +50,6 @@ class AdminUser extends AbstractEntity
     protected $password;
 
     /**
-     * group
-     *
      * @ORM\Column(type="smallint", name="`group`", options={"unsigned"=true})
      *
      * @var int
@@ -65,8 +57,6 @@ class AdminUser extends AbstractEntity
     protected $group;
 
     /**
-     * theater
-     *
      * @ORM\ManyToOne(targetEntity="Theater", inversedBy="adminUsers")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=true, onDelete="RESTRICT")
      *
@@ -75,8 +65,6 @@ class AdminUser extends AbstractEntity
     protected $theater;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -84,127 +72,72 @@ class AdminUser extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * set name
-     *
-     * @param string $name
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get display_name
-     *
-     * @return string
-     */
-    public function getDisplayName()
+    public function getDisplayName(): string
     {
         return $this->displayName;
     }
 
     /**
-     * set display_name
-     *
-     * @param string $displayName
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setDisplayName(string $displayName)
+    public function setDisplayName(string $displayName): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get password
-     *
-     * @return string
-     */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * set password
-     *
-     * @param string $password
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get group
-     *
-     * @return int
-     */
-    public function getGroup()
+    public function getGroup(): int
     {
         return $this->group;
     }
 
     /**
-     * set group
-     *
-     * @param int $group
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setGroup(int $group)
+    public function setGroup(int $group): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get theater
-     *
-     * @return Theater
-     */
-    public function getTheater()
+    public function getTheater(): ?Theater
     {
         return $this->theater;
     }
 
     /**
-     * set theater
-     *
-     * @param Theater $theater
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setTheater(Theater $theater)
+    public function setTheater(?Theater $theater): void
     {
         throw new LogicException('Not allowed.');
     }
