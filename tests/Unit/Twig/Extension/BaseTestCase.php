@@ -6,7 +6,6 @@ namespace Tests\Unit\Twig\Extension;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\LegacyMockInterface;
-use Mockery\Mock;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Twig\Extension\AbstractExtension;
