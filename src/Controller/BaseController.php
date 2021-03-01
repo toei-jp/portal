@@ -1,26 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
-use App\Responder;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Base controller
- */
 abstract class BaseController extends AbstractController
 {
     /** @var Entity\Theater[] */
     protected $theaters;
 
     /**
-     * return theaters
-     *
      * @return Entity\Theater[]
      */
-    private function getTheaters()
+    private function getTheaters(): array
     {
         return $this->em
             ->getRepository(Entity\Theater::class)
@@ -30,39 +26,32 @@ abstract class BaseController extends AbstractController
     /**
      * pre execute
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
-    protected function preExecute($request, $response, $args): void
+    protected function preExecute(Request $request, Response $response, array $args): void
     {
         $this->theaters = $this->getTheaters();
-        $this->data->set('theaters', $this->theaters);
+
+        $viewEnvironment = $this->view->getEnvironment();
+
+        // おそらくrender()前に追加する必要があるので、今の仕組み上postExecute()では追加できない。
+        $viewEnvironment->addGlobal('theaters', $this->theaters);
     }
 
     /**
      * post execute
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return void
+     * @param array<string, mixed> $args
      */
-    protected function postExecute($request, $response, $args): void
+    protected function postExecute(Request $request, Response $response, array $args): void
     {
     }
 
     /**
-     * get responder
-     *
-     * @return Responder\AbstractResponder
+     * @param array<string, mixed> $data
      */
-    protected function getResponder(): Responder\AbstractResponder
+    protected function render(Response $response, string $template, array $data = []): Response
     {
-        $path = explode('\\', static::class);
-        $name = str_replace('Controller', '', array_pop($path));
-
-        return Responder\BaseResponder::factory($name, $this->view);
+        return $this->view->render($response, $template, $data);
     }
 }

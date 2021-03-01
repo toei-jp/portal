@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\Campaign;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * Campaign repository class
- */
 class CampaignRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('c');
         $qb
@@ -30,12 +24,9 @@ class CampaignRepository extends EntityRepository
     }
 
     /**
-     * find by page
-     *
-     * @param int $pageId
      * @return Campaign[]
      */
-    public function findByPage(int $pageId)
+    public function findByPage(int $pageId): array
     {
         $qb = $this->getActiveQuery();
 

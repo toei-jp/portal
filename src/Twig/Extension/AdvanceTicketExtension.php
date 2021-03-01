@@ -1,29 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Twig\Extension;
 
 use App\ORM\Entity\AdvanceTicket;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * AdvanceTicket twig extension class
- */
 class AdvanceTicketExtension extends AbstractExtension
 {
-    /**
-     * construct
-     */
     public function __construct()
     {
     }
 
     /**
-     * get functions
-     *
-     * @return array
+     * @return TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('at_type_label', [$this, 'getTypeLabel']),
@@ -31,13 +25,7 @@ class AdvanceTicketExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * return type label
-     *
-     * @param int $type
-     * @return string
-     */
-    public function getTypeLabel(int $type)
+    public function getTypeLabel(int $type): string
     {
         switch ($type) {
             case AdvanceTicket::TYPE_MVTK:
@@ -51,13 +39,7 @@ class AdvanceTicketExtension extends AbstractExtension
         }
     }
 
-    /**
-     * return special gift stock label
-     *
-     * @param int|null $specialGiftStock
-     * @return string
-     */
-    public function getSpecialGiftStockLabel(?int $specialGiftStock)
+    public function getSpecialGiftStockLabel(?int $specialGiftStock): string
     {
         switch ($specialGiftStock) {
             case AdvanceTicket::SPECIAL_GIFT_STOCK_IN:

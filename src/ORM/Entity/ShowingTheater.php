@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -17,8 +19,6 @@ class ShowingTheater extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * id
-     *
      * @ORM\Id
      * @ORM\Column(type="integer", options={"unsigned"=true})
      * @ORM\GeneratedValue
@@ -28,8 +28,6 @@ class ShowingTheater extends AbstractEntity
     protected $id;
 
     /**
-     * schedule
-     *
      * @ORM\ManyToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
@@ -38,8 +36,6 @@ class ShowingTheater extends AbstractEntity
     protected $schedule;
 
     /**
-     * theater
-     *
      * @ORM\ManyToOne(targetEntity="Theater")
      * @ORM\JoinColumn(name="theater_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
@@ -48,8 +44,6 @@ class ShowingTheater extends AbstractEntity
     protected $theater;
 
     /**
-     * construct
-     *
      * @throws LogicException
      */
     public function __construct()
@@ -57,58 +51,33 @@ class ShowingTheater extends AbstractEntity
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * get schedule
-     *
-     * @return Schedule
-     */
-    public function getSchedule()
+    public function getSchedule(): Schedule
     {
         return $this->schedule;
     }
 
     /**
-     * set schedule
-     *
-     * @param Schedule $schedule
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setSchedule(Schedule $schedule)
+    public function setSchedule(Schedule $schedule): void
     {
         throw new LogicException('Not allowed.');
     }
 
-    /**
-     * get theater
-     *
-     * @return Theater
-     */
-    public function getTheater()
+    public function getTheater(): Theater
     {
         return $this->theater;
     }
 
     /**
-     * set theater
-     *
-     * @param Theater $theater
-     * @return void
-     *
      * @throws LogicException
      */
-    public function setTheater(Theater $theater)
+    public function setTheater(Theater $theater): void
     {
         throw new LogicException('Not allowed.');
     }

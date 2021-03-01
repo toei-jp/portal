@@ -14,17 +14,11 @@ use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-/**
- * PhpError handler test
- */
 final class PhpErrorTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    /**
-     * @return ReflectionClass
-     */
-    protected function createTargetReflection()
+    protected function createTargetReflection(): ReflectionClass
     {
         return new ReflectionClass(PhpError::class);
     }
@@ -46,13 +40,9 @@ final class PhpErrorTest extends TestCase
     }
 
     /**
-     * test construct
-     *
      * @test
-     *
-     * @return void
      */
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $loggerMock = $this->createLoggerMock();
 
@@ -80,11 +70,9 @@ final class PhpErrorTest extends TestCase
     }
 
     /**
-     * test writeToErrorLog
-     *
-     * @return void
+     * @test
      */
-    public function testWriteToErrorLog()
+    public function testWriteToErrorLog(): void
     {
         $exception = new Exception();
 
@@ -107,13 +95,9 @@ final class PhpErrorTest extends TestCase
     }
 
     /**
-     * test log
-     *
      * @test
-     *
-     * @return void
      */
-    public function testLog()
+    public function testLog(): void
     {
         $message = 'message';
 

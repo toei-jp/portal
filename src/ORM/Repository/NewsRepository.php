@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\News;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * News repository class
- */
 class NewsRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('n');
         $qb
@@ -29,13 +23,7 @@ class NewsRepository extends EntityRepository
         return $qb;
     }
 
-    /**
-     * find one by id
-     *
-     * @param int $id
-     * @return News|null
-     */
-    public function findOneById(int $id)
+    public function findOneById(int $id): ?News
     {
         $qb = $this->getActiveQuery();
         $qb
@@ -46,14 +34,10 @@ class NewsRepository extends EntityRepository
     }
 
     /**
-     * find by theater
-     *
-     * @param int      $theaterId
-     * @param array    $category
-     * @param int|null $limit
+     * @param array<int> $category
      * @return News[]
      */
-    public function findByTheater(int $theaterId, array $category = [], ?int $limit = null)
+    public function findByTheater(int $theaterId, array $category = [], ?int $limit = null): array
     {
         $qb = $this->getActiveQuery();
         $qb

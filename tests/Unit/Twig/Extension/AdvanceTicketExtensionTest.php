@@ -10,15 +10,10 @@ use Mockery;
 use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 
-/**
- * AdvanceTicket extension test
- */
 final class AdvanceTicketExtensionTest extends BaseTestCase
 {
     /**
-     * Create target mock
-     *
-     * @return MockInterface|LegacyMockInterface|AdvanceTicketExtension
+     * @return MockInterface&LegacyMockInterface&AdvanceTicketExtension
      */
     protected function createTargetMock()
     {
@@ -26,13 +21,9 @@ final class AdvanceTicketExtensionTest extends BaseTestCase
     }
 
     /**
-     * test getTypeLabel
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetTypeLabel()
+    public function testGetTypeLabel(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();
@@ -43,13 +34,9 @@ final class AdvanceTicketExtensionTest extends BaseTestCase
     }
 
     /**
-     * test getSpecialGiftStockLabel
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetSpecialGiftStockLabel()
+    public function testGetSpecialGiftStockLabel(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();

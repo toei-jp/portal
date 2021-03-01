@@ -1,22 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * MotionPicture twig extension class
- */
 class MotionPictureExtenstion extends AbstractExtension
 {
-    /** @var array */
+    /** @var array<string, mixed> */
     protected $settings;
 
     /**
-     * construct
-     *
-     * @param array $settings
+     * @param array<string, mixed> $settings
      */
     public function __construct(array $settings)
     {
@@ -24,11 +21,9 @@ class MotionPictureExtenstion extends AbstractExtension
     }
 
     /**
-     * get functions
-     *
-     * @return array
+     * @return TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('mp_api_endpoint', [$this, 'getApiEndpoint']),
@@ -38,41 +33,21 @@ class MotionPictureExtenstion extends AbstractExtension
         ];
     }
 
-    /**
-     * return API endpoint
-     *
-     * @return string
-     */
     public function getApiEndpoint(): string
     {
         return $this->settings['api_endpoint'];
     }
 
-    /**
-     * return waiter server URL
-     *
-     * @return string
-     */
     public function getWaiterServerUrl(): string
     {
         return $this->settings['waiter_server_url'];
     }
 
-    /**
-     * return ticket site URL
-     *
-     * @return string
-     */
     public function getTicketSiteUrl(): string
     {
         return $this->settings['ticket_site_url'];
     }
 
-    /**
-     * return project ID
-     *
-     * @return string
-     */
     public function getProjectId(): string
     {
         return $this->settings['project_id'];

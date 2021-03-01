@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\ORM\Entity;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/**
- * Index controller
- */
 class IndexController extends GeneralController
 {
     public const THEATER_SHIBUYA    = 1;
@@ -17,49 +16,49 @@ class IndexController extends GeneralController
     /**
      * index action
      *
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     * @return string|void
+     * @param array<string, mixed> $args
      */
-    public function executeIndex($request, $response, $args)
+    public function executeIndex(Request $request, Response $response, array $args): Response
     {
-        $this->data->set('mainBanners', $this->getMainBanners());
+        $mainBanners = $this->getMainBanners();
 
         $shibuya    = null;
         $marunouchi = null;
 
         foreach ($this->theaters as $theater) {
-            /** @var Entity\Theater $theater */
-
             if ($theater->getId() === self::THEATER_SHIBUYA) {
-                /** @var Entity\Theater $shibuya */
                 $shibuya = $theater;
             } elseif ($theater->getId() === self::THEATER_MARUNOUCHI) {
-                /** @var Entity\Theater $marunouchi */
                 $marunouchi = $theater;
             }
         }
 
-        $this->data->set('shibuya', $shibuya);
-        $this->data->set('marunouchi', $marunouchi);
+        $shibuyaTopics = $this->getTopics($shibuya);
 
-        $this->data->set('shibuyaTopics', $this->getTopics($shibuya));
-        $this->data->set('marunouchiTopics', $this->getTopics($marunouchi));
+        $marunouchiTopics = $this->getTopics($marunouchi);
 
-        $this->data->set('showingSchedules', $this->getShowingSchedules());
+        $showingSchedules = $this->getShowingSchedules();
 
-        $this->data->set('soonSchedules', $this->getSoonSchedules());
+        $soonSchedules = $this->getSoonSchedules();
 
-        $this->data->set('campaigns', $this->getCampaigns(self::PAGE_ID));
+        $campaigns = $this->getCampaigns(self::PAGE_ID);
+
+        return $this->render($response, 'index/index.html.twig', [
+            'mainBanners' => $mainBanners,
+            'shibuya' => $shibuya,
+            'marunouchi' => $marunouchi,
+            'shibuyaTopics' => $shibuyaTopics,
+            'marunouchiTopics' => $marunouchiTopics,
+            'showingSchedules' => $showingSchedules,
+            'soonSchedules' => $soonSchedules,
+            'campaigns' => $campaigns,
+        ]);
     }
 
     /**
-     * return main_banners
-     *
      * @return Entity\MainBanner[]
      */
-    protected function getMainBanners()
+    protected function getMainBanners(): array
     {
         return $this->em
             ->getRepository(Entity\MainBanner::class)
@@ -73,10 +72,9 @@ class IndexController extends GeneralController
      *
      * @link https://m-p.backlog.jp/view/TOEI-137
      *
-     * @param Entity\Theater $theater
      * @return Entity\News[]
      */
-    protected function getTopics(Entity\Theater $theater)
+    protected function getTopics(Entity\Theater $theater): array
     {
         return $this->em
             ->getRepository(Entity\News::class)
@@ -84,11 +82,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return showing schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getShowingSchedules()
+    protected function getShowingSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)
@@ -96,11 +92,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return soon schedules
-     *
      * @return Entity\Schedule[]
      */
-    protected function getSoonSchedules()
+    protected function getSoonSchedules(): array
     {
         return $this->em
             ->getRepository(Entity\Schedule::class)
@@ -108,12 +102,9 @@ class IndexController extends GeneralController
     }
 
     /**
-     * return campaigns
-     *
-     * @param int $pageId
      * @return Entity\Campaign[]
      */
-    protected function getCampaigns(int $pageId)
+    protected function getCampaigns(int $pageId): array
     {
         return $this->em
             ->getRepository(Entity\Campaign::class)

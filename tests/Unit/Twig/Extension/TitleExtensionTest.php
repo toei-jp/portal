@@ -10,15 +10,10 @@ use Mockery;
 use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 
-/**
- * Title extension test
- */
 final class TitleExtensionTest extends BaseTestCase
 {
     /**
-     * Create target mock
-     *
-     * @return MockInterface|LegacyMockInterface|TitleExtension
+     * @return MockInterface&LegacyMockInterface&TitleExtension
      */
     protected function createTargetMock()
     {
@@ -26,13 +21,9 @@ final class TitleExtensionTest extends BaseTestCase
     }
 
     /**
-     * test getRatingText
-     *
      * @test
-     *
-     * @return void
      */
-    public function testGetRatingText()
+    public function testGetRatingText(): void
     {
         $targetMock = $this->createTargetMock();
         $targetMock->makePartial();

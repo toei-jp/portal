@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ORM\Repository;
 
 use App\ORM\Entity\Theater;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-/**
- * Theater repository class
- */
 class TheaterRepository extends EntityRepository
 {
-    /**
-     * return active query
-     *
-     * @return QueryBuilder
-     */
-    protected function getActiveQuery()
+    protected function getActiveQuery(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('t');
         $qb
@@ -26,11 +20,9 @@ class TheaterRepository extends EntityRepository
     }
 
     /**
-     * find by active
-     *
      * @return Theater[]
      */
-    public function findByActive()
+    public function findByActive(): array
     {
         $qb = $this->getActiveQuery();
         $qb
@@ -39,13 +31,7 @@ class TheaterRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * find one by name
-     *
-     * @param string $name
-     * @return Theater|null
-     */
-    public function findOneByName(string $name)
+    public function findOneByName(string $name): ?Theater
     {
         $qb = $this->getActiveQuery();
         $qb
