@@ -326,12 +326,13 @@ function selectDate(event) {
     $(this).removeClass(defaultClass).addClass(activeClass);
     $('.target-date').text(moment(date).format('YYYY/MM/DD(ddd)'));
     $('.change-schedule-button button').prop('disabled', true);
+    var scheduleDate = moment(date).format('YYYYMMDD');
     var params = {
         typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
         startFrom: date,
-        startThrough: moment(moment(date).add(1, 'day').format('YYYYMMDD')).toDate(),
+        startThrough: moment(scheduleDate).add(1, 'day').add(-1, 'millisecond').toDate(),
         offers: {
             availableFrom: now,
             availableThrough: now,
