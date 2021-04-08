@@ -1,4 +1,4 @@
-var cinerino = window.cinerino;
+
 var toei = {
     /**
      * APIエンドポイント
@@ -115,32 +115,6 @@ function getCredentials() {
 }
 
 /**
- * 設定作成
- * @param {string} accessToken 
- */
-function createOptions(accessToken) {
-    var option = {
-        domain: '',
-        clientId: '',
-        redirectUri: '',
-        logoutUri: '',
-        responseType: '',
-        scope: '',
-        state: '',
-        nonce: null,
-        tokenIssuer: ''
-    };
-    var auth = cinerino.createAuthInstance(option);
-    auth.setCredentials({ accessToken: accessToken });
-
-    return {
-        endpoint: toei.API_ENDPOINT,
-        auth: auth,
-        project: { id: toei.PROJECT_ID }
-    }
-}
-
-/**
  * 上映作品取得
  * @param {*} params
  */
@@ -150,15 +124,30 @@ function getScreeningEvent(params, sort) {
     var screeningEvents = [];
     var screeningEventSeries = [];
     var options;
-    var eventService;
+    var accessToken;
     getCredentials()
-        .then(function (accessToken) {
-            options = createOptions(accessToken);
-            eventService = new cinerino.service.Event(options);
+        .then(function (token) {
+            accessToken = token;
+            if (params.eventStatuses !== undefined) {
+                params.eventStatuses = array2object(params.eventStatuses);
+            }
+            if (params.superEvent !== undefined
+                && params.superEvent.locationBranchCodes !== undefined) {
+                params.superEvent.locationBranchCodes = array2object(params.superEvent.locationBranchCodes);
+            }
+            var options = {
+                dataType: 'json',
+                url: toei.API_ENDPOINT + '/projects/' + toei.PROJECT_ID + '/events/ScreeningEvent',
+                type: 'GET',
+                timeout: 30000,
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+                data: params,
+            };
             // TODO 100件制限
-            return eventService.search(params)
-        }).then(function (result) {
-            screeningEvents = result.data;
+            return $.ajax(options);
+        }).then(function (screeningEvents) {
             if (!sort) {
                 toei.isRequest = false;
                 deferred.resolve(screeningEvents);
@@ -174,12 +163,21 @@ function getScreeningEvent(params, sort) {
                 }
                 workPerformedIdentifiers.push(s.workPerformed.identifier);
             });
-            eventService.search({
-                typeOf: 'ScreeningEventSeries',
-                location: { branchCodes: params.superEvent.locationBranchCodes },
-                workPerformed: { identifiers: workPerformedIdentifiers }
-            }).then(function (result2) {
-                screeningEventSeries = result2.data;
+            var options = {
+                dataType: 'json',
+                url: toei.API_ENDPOINT + '/projects/' + toei.PROJECT_ID + '/events/ScreeningEventSeries',
+                type: 'GET',
+                timeout: 30000,
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+                data: {
+                    location: { branchCodes: params.superEvent.locationBranchCodes },
+                    workPerformed: { identifiers: array2object(workPerformedIdentifiers) }
+                },
+            };
+            // TODO 100件制限
+            $.ajax(options).then(function (screeningEventSeries) {
                 var sortResult = sortScreeningEvents(screeningEvents, screeningEventSeries);
                 toei.isRequest = false;
                 deferred.resolve(sortResult);
@@ -201,13 +199,12 @@ function getScreeningEvent(params, sort) {
  */
 function createSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toDate();
-    var now = moment().toDate();
+    var now = moment().toISOString();
     var params = {
-        typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
-        startFrom: today,
-        startThrough: moment(moment().add(10, 'day').format('YYYYMMDD')).toDate(),
+        startFrom: moment(today).toISOString(),
+        startThrough: moment(moment().add(10, 'day').format('YYYYMMDD')).toISOString(),
         offers: {
             availableFrom: now,
             availableThrough: now
@@ -313,8 +310,7 @@ function selectDate(event) {
         return;
     }
     var date = $(this).attr('data-date');
-    var today = moment(moment().format('YYYYMMDD')).toDate();
-    var now = moment().toDate();
+    var now = moment().toISOString();
     var activeClass = 'bg-orange text-white';
     var defaultClass = 'bg-yellow text-ultra-dark-gray'
     $('.schedule-slider .swiper-slide .bg-orange')
@@ -328,11 +324,10 @@ function selectDate(event) {
     $('.change-schedule-button button').prop('disabled', true);
     var scheduleDate = moment(date).format('YYYYMMDD');
     var params = {
-        typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
-        startFrom: date,
-        startThrough: moment(scheduleDate).add(1, 'day').add(-1, 'millisecond').toDate(),
+        startFrom: moment(date).toISOString(),
+        startThrough: moment(scheduleDate).add(1, 'day').add(-1, 'millisecond').toISOString(),
         offers: {
             availableFrom: now,
             availableThrough: now,
@@ -386,6 +381,7 @@ function screeningEventToFilm() {
  * 作品HTML作成
  */
 function createFilmDom(film) {
+    console.log(film);
     var info = film.info;
     var dom = '<li class="p-3 mb-3 bg-super-light-orange">\
         <div class="mb-3">\
@@ -515,12 +511,12 @@ function createPerformanceDom(performance) {
  */
 function createPreSchedule() {
     var today = moment(moment().format('YYYYMMDD')).toDate();
-    var now = moment().toDate();
+    var now = moment().toISOString();
     var params = {
         typeOf: 'ScreeningEvent',
         eventStatuses: ['EventScheduled'],
         superEvent: { locationBranchCodes: [toei.THEATER_CODE] },
-        startFrom: moment(today).add(3, 'days').toDate(),
+        startFrom: moment(today).add(3, 'days').toISOString(),
         offers: {
             validFrom: now,
             validThrough: now,
@@ -637,4 +633,12 @@ function sortScreeningEvents(screeningEvents, screeningEventSeries) {
     });
 
     return sortResult;
+}
+
+function array2object(array) {
+    var result = {};
+    array.forEach(function (v, i) {
+        result[i] = v;
+    });
+    return result;
 }
