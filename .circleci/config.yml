@@ -390,7 +390,7 @@ workflows:
           filters:
             branches:
               only:
-                - feature/TOEI-375 # TODO master
+                - master
     jobs:
       - login_test_to_azure_test_env
       - login_test_to_azure_prod_env
