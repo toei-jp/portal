@@ -41,7 +41,7 @@ commands:
             fi
 
 orbs:
-  azure-cli: circleci/azure-cli@1.1.0
+  azure-cli: circleci/azure-cli@1.2.0
 
 executors:
   build:
@@ -284,6 +284,21 @@ jobs:
           name: Slot swap
           command: az webapp deployment slot swap -g toei-portal -n toei-portal-production --slot release --target-slot production
 
+  login_test_to_azure_test_env:
+    executor: azure-cli/azure-docker
+    steps:
+      - azure-cli/login-with-user:
+          alternate-tenant: true
+          azure-tenant: AZURE_TENANT_DEV
+          azure-username: AZURE_USERNAME_DEV
+          azure-password: AZURE_PASSWORD_DEV
+
+  login_test_to_azure_prod_env:
+    executor: azure-cli/azure-docker
+    steps:
+      - azure-cli/login-with-user:
+          alternate-tenant: true
+
 workflows:
   version: 2
 
@@ -367,3 +382,15 @@ workflows:
           <<: *job_setup
           requires:
             - swap_approval
+
+  check_user_password_expired:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - login_test_to_azure_test_env
+      - login_test_to_azure_prod_env
