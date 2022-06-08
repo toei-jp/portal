@@ -11,7 +11,7 @@ use Slim\Http\Response;
 abstract class BaseController extends AbstractController
 {
     /** @var Entity\Theater[] */
-    protected $theaters;
+    protected array $theaters;
 
     /**
      * @return Entity\Theater[]
