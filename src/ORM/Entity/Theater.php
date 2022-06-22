@@ -21,67 +21,43 @@ class Theater extends AbstractEntity
     use TimestampableTrait;
 
     /** @var array<int, string> */
-    protected static $areas = [];
+    protected static array $areas = [];
 
     /**
      * @ORM\Id
      * @ORM\Column(type="smallint", options={"unsigned"=true})
      * @ORM\GeneratedValue(strategy="NONE")
-     *
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
-    /**
-     * @ORM\Column(type="string", unique=true)
-     *
-     * @var string
-     */
-    protected $name;
+    /** @ORM\Column(type="string", unique=true) */
+    protected string $name;
 
-    /**
-     * @ORM\Column(type="string", name="name_ja")
-     *
-     * @var string
-     */
-    protected $nameJa;
+    /** @ORM\Column(type="string", name="name_ja") */
+    protected string $nameJa;
 
-    /**
-     * @ORM\Column(type="smallint", options={"unsigned"=true})
-     *
-     * @var int
-     */
-    protected $area;
+    /** @ORM\Column(type="smallint", options={"unsigned"=true}) */
+    protected int $area;
 
-    /**
-     * @ORM\Column(type="string", name="master_code", length=3, options={"fixed":true})
-     *
-     * @var string
-     */
-    protected $masterCode;
+    /** @ORM\Column(type="string", name="master_code", length=3, options={"fixed":true}) */
+    protected string $masterCode;
 
-    /**
-     * @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true})
-     *
-     * @var int
-     */
-    protected $displayOrder;
+    /** @ORM\Column(type="smallint", name="display_order", options={"unsigned"=true}) */
+    protected int $displayOrder;
 
     /**
      * 設計の問題でnullを許容する形になってしまったが、nullにならないようデータで調整する。
      *
      * @ORM\OneToOne(targetEntity="TheaterMeta", mappedBy="theater")
-     *
-     * @var TheaterMeta|null
      */
-    protected $meta;
+    protected ?TheaterMeta $meta = null;
 
     /**
      * @ORM\OneToMany(targetEntity="AdminUser", mappedBy="theater")
      *
      * @var Collection<AdminUser>
      */
-    protected $adminUsers;
+    protected Collection $adminUsers;
 
     /**
      * @ORM\OneToMany(targetEntity="TheaterCampaign", mappedBy="theater", orphanRemoval=true)
@@ -89,7 +65,7 @@ class Theater extends AbstractEntity
      *
      * @var Collection<TheaterCampaign>
      */
-    protected $campaigns;
+    protected Collection $campaigns;
 
     /**
      * @ORM\OneToMany(targetEntity="TheaterNews", mappedBy="theater", orphanRemoval=true)
@@ -97,7 +73,7 @@ class Theater extends AbstractEntity
      *
      * @var Collection<TheaterNews>
      */
-    protected $newsList;
+    protected Collection $newsList;
 
     /**
      * @ORM\OneToMany(targetEntity="TheaterMainBanner", mappedBy="theater", orphanRemoval=true)
@@ -105,7 +81,7 @@ class Theater extends AbstractEntity
      *
      * @var Collection<TheaterMainBanner>
      */
-    protected $mainBanners;
+    protected Collection $mainBanners;
 
     /**
      * @return array<int, string>

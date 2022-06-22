@@ -11,8 +11,7 @@ use Slim\Http\Response;
 
 class TheaterController extends BaseController
 {
-    /** @var Entity\Theater $theater */
-    protected $theater;
+    protected Entity\Theater $theater;
 
     protected function getTheater(string $name): ?Entity\Theater
     {
