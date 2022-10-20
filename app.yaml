@@ -5,6 +5,9 @@ instance_class: F1
 runtime_config:
   document_root: ./public
 
+includes:
+- .gcp/env.yaml
+
 handlers:
   - url: /css
     static_dir: public/css
