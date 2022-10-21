@@ -11,12 +11,12 @@ use App\Application\Handlers\NotAllowed;
 use App\Application\Handlers\NotFound;
 use App\Application\Handlers\PhpError;
 use App\Logger\DbalLogger;
-use App\Logger\Handler\AzureBlobStorageHandler;
 use App\Twig\Extension\AdvanceTicketExtension;
 use App\Twig\Extension\AzureStorageExtension;
 use App\Twig\Extension\MotionPictureExtenstion;
 use App\Twig\Extension\ShowingFormatExtension;
 use App\Twig\Extension\TitleExtension;
+use Blue32a\MonologGoogleCloudLoggingHandler\GoogleCloudLoggingHandler;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
@@ -101,19 +101,24 @@ $container['logger'] = static function ($container) {
         ));
     }
 
-    $azureBlobStorageSettings = $settings['azure_blob_storage'];
-    $azureBlobStorageHandler  = new AzureBlobStorageHandler(
-        $container->get('bc'),
-        $azureBlobStorageSettings['container'],
-        $azureBlobStorageSettings['blob'],
-        $azureBlobStorageSettings['level']
-    );
+    if (isset($settings['google_cloud_logging'])) {
+        $googleCloudLoggingSettings = $settings['google_cloud_logging'];
+        $googleCloudLoggingClient   = GoogleCloudLoggingHandler::factoryLoggingClient(
+            $googleCloudLoggingSettings['client_options']
+        );
+        $googleCloudLoggingHandler  = new GoogleCloudLoggingHandler(
+            $googleCloudLoggingSettings['name'],
+            $googleCloudLoggingClient,
+            [],
+            $googleCloudLoggingSettings['level']
+        );
 
-    $fingersCrossedSettings = $settings['fingers_crossed'];
-    $logger->pushHandler(new FingersCrossedHandler(
-        $azureBlobStorageHandler,
-        $fingersCrossedSettings['activation_strategy']
-    ));
+        $fingersCrossedSettings = $settings['fingers_crossed'];
+        $logger->pushHandler(new FingersCrossedHandler(
+            $googleCloudLoggingHandler,
+            $fingersCrossedSettings['activation_strategy']
+        ));
+    }
 
     return $logger;
 };
