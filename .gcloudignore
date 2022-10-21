@@ -17,7 +17,6 @@
 .env.example
 .env.test
 .phpunit.result.cache
-cli-config.php
 docker-compose.yml
 phpcs.xml
 phpstan.neon
