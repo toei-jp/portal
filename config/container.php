@@ -17,6 +17,8 @@ use App\Twig\Extension\MotionPictureExtenstion;
 use App\Twig\Extension\ShowingFormatExtension;
 use App\Twig\Extension\TitleExtension;
 use Blue32a\MonologGoogleCloudLoggingHandler\GoogleCloudLoggingHandler;
+use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
@@ -130,6 +132,13 @@ $container['logger'] = static function ($container) {
  */
 $container['em'] = static function ($container) {
     $settings = $container->get('settings')['doctrine'];
+    $proxyDir = APP_ROOT . '/src/ORM/Proxy';
+
+    if ($settings['cache'] === 'filesystem') {
+        $cache = new FilesystemCache($settings['filesystem_cache_dir']);
+    } else {
+        $cache = new ArrayCache();
+    }
 
     /**
      * 第５引数について、他のアノテーションとの競合を避けるためSimpleAnnotationReaderは使用しない。
@@ -139,12 +148,11 @@ $container['em'] = static function ($container) {
     $config = Setup::createAnnotationMetadataConfiguration(
         $settings['metadata_dirs'],
         $settings['dev_mode'],
-        null,
-        null,
+        $proxyDir,
+        $cache,
         false
     );
 
-    $config->setProxyDir(APP_ROOT . '/src/ORM/Proxy');
     $config->setProxyNamespace('App\ORM\Proxy');
     $config->setAutoGenerateProxyClasses($settings['dev_mode']);
 
