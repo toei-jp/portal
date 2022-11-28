@@ -308,7 +308,7 @@ workflows:
           <<: *job_setup
           filters:
             branches:
-              only: develop
+              only: azure/develop
 
       - test:
           <<: *job_setup
@@ -326,9 +326,7 @@ workflows:
           <<: *job_setup
           filters:
             branches:
-              ignore:
-                - develop
-                - master
+              only: azure/develop
 
       - test:
           <<: *job_setup
@@ -351,7 +349,7 @@ workflows:
           <<: *job_setup
           filters:
             branches:
-              only: master
+              only: azure/master
 
       - test:
           <<: *job_setup
@@ -390,7 +388,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - azure/master
     jobs:
       - login_test_to_azure_test_env
       - login_test_to_azure_prod_env
