@@ -21,6 +21,8 @@ $app->get('/business_deal/', AboutController::class . ':law')->setName('law');
 $app->get('/showing/', ScheduleController::class . ':showing')->setName('schedule_showing');
 $app->get('/coming_soon/', ScheduleController::class . ':soon')->setName('schedule_soon');
 
+$app->redirect('/theaters/shibuya/[{path:.*}]', '/notice/shibuya-close.html');
+
 $app->group('/theaters/{name}/', function (): void {
     $this->get('', TheaterController::class . ':index')->setName('theater');
 
