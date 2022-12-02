@@ -29,6 +29,10 @@ handlers:
   - url: /js
     static_dir: public/js
 
+  - url: /notice/(.*)
+    static_files: public/notice/\1
+    upload: public/notice/(.*)
+
   - url: .*
     script: auto
     secure: always
