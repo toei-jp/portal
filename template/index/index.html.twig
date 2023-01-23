@@ -4,7 +4,7 @@
 
 {% block description %}東映直営劇場の総合情報サイトです。映画に関する上映スケジュールや作品情報、オンラインでの座席指定予約、映画館の劇場情報、トピックスのご案内など{% endblock %}
 
-{% block keywords %}{{ parent()}},座席指定,予約,上映,丸の内,渋谷{% endblock %}
+{% block keywords %}{{ parent()}},座席指定,予約,上映,丸の内{% endblock %}
 
 {% block css %}
 <link href="/css/top.css" rel="stylesheet">
@@ -24,8 +24,6 @@
 } only %}
 
 {% include "index/include/topics.html.twig" with {
-    shibuya: shibuya,
-    shibuyaTopics: shibuyaTopics,
     marunouchi: marunouchi,
     marunouchiTopics: marunouchiTopics,
 } only %}
