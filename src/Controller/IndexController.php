@@ -10,7 +10,6 @@ use Slim\Http\Response;
 
 class IndexController extends GeneralController
 {
-    public const THEATER_SHIBUYA    = 1;
     public const THEATER_MARUNOUCHI = 2;
 
     /**
@@ -22,18 +21,13 @@ class IndexController extends GeneralController
     {
         $mainBanners = $this->getMainBanners();
 
-        $shibuya    = null;
         $marunouchi = null;
 
         foreach ($this->theaters as $theater) {
-            if ($theater->getId() === self::THEATER_SHIBUYA) {
-                $shibuya = $theater;
-            } elseif ($theater->getId() === self::THEATER_MARUNOUCHI) {
+            if ($theater->getId() === self::THEATER_MARUNOUCHI) {
                 $marunouchi = $theater;
             }
         }
-
-        $shibuyaTopics = $this->getTopics($shibuya);
 
         $marunouchiTopics = $this->getTopics($marunouchi);
 
@@ -45,9 +39,7 @@ class IndexController extends GeneralController
 
         return $this->render($response, 'index/index.html.twig', [
             'mainBanners' => $mainBanners,
-            'shibuya' => $shibuya,
             'marunouchi' => $marunouchi,
-            'shibuyaTopics' => $shibuyaTopics,
             'marunouchiTopics' => $marunouchiTopics,
             'showingSchedules' => $showingSchedules,
             'soonSchedules' => $soonSchedules,

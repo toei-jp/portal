@@ -47,24 +47,11 @@ final class IndexControllerTest extends BaseTestCase
             ->with()
             ->andReturn($mainBanners);
 
-        $theaterShibuyaMock = $this->createTheaterMock();
-        $theaterShibuyaMock
-            ->shouldReceive('getId')
-            ->with()
-            ->andReturn(1);
-
         $theaterMarunouchiMock = $this->createTheaterMock();
         $theaterMarunouchiMock
             ->shouldReceive('getId')
             ->with()
             ->andReturn(2);
-
-        $shibuyaTopics = ['shibuyaTopics'];
-        $targetMock
-            ->shouldReceive('getTopics')
-            ->once()
-            ->with($theaterShibuyaMock)
-            ->andReturn($shibuyaTopics);
 
         $marunouchiTopics = ['marunouchiTopics'];
         $targetMock
@@ -98,13 +85,11 @@ final class IndexControllerTest extends BaseTestCase
 
         $theatersPropertyRef = $targetRef->getProperty('theaters');
         $theatersPropertyRef->setAccessible(true);
-        $theatersPropertyRef->setValue($targetMock, [$theaterShibuyaMock, $theaterMarunouchiMock]);
+        $theatersPropertyRef->setValue($targetMock, [$theaterMarunouchiMock]);
 
         $data = [
             'mainBanners' => $mainBanners,
-            'shibuya' => $theaterShibuyaMock,
             'marunouchi' => $theaterMarunouchiMock,
-            'shibuyaTopics' => $shibuyaTopics,
             'marunouchiTopics' => $marunouchiTopics,
             'showingSchedules' => $showingSchedules,
             'soonSchedules' => $soonSchedules,
