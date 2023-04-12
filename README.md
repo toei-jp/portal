@@ -6,9 +6,9 @@
 
 ## システム要件
 
-- PHP: 7.3
+- PHP: 7.4
 - MySQL: 5.7
-- Azure App Service (Windows)
+- Google App Engine
 - Azure Blob Storage
 
 ## EditorConfig
@@ -26,8 +26,6 @@
 ※ [Docker](https://www.docker.com/)をインストールしてください。
 
 ※ 現状では開発環境としての利用のみを想定してます。
-
-※ AzureはWindowsサーバですが、こちらはLinuxサーバです。
 
 ※ データベース、ストレージについてはCMSアプリケーションのドキュメントを参照してください。
 
