@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Application\Handlers;
 
 use Exception;
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Slim\Handlers\PhpError as BaseHandler;
 use Throwable;
 
 class PhpError extends BaseHandler
 {
-    protected Logger $logger;
+    protected LoggerInterface $logger;
 
-    public function __construct(Logger $logger, bool $displayErrorDetails = false)
+    public function __construct(LoggerInterface $logger, bool $displayErrorDetails = false)
     {
         $this->logger = $logger;
 
