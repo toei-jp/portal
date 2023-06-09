@@ -40,4 +40,16 @@ class PhpError extends BaseHandler
             'trace' => $error->getTraceAsString(),
         ]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function renderHtmlErrorMessage(Throwable $error)
+    {
+        if (APP_DEBUG) {
+            return parent::renderHtmlErrorMessage($error);
+        }
+
+        return file_get_contents(APP_ROOT . '/error/500.html');
+    }
 }
