@@ -22,6 +22,56 @@ $settings['view'] = [
     ],
 ];
 
+/**
+ * session
+ *
+ * @link https://github.com/phpredis/phpredis#php-session-handler
+ */
+$getSessionSetting = static function () {
+    $settings = [
+        'name' => 'toeiportal',
+        'php_save_handler' => 'redis',
+        'gc_maxlifetime' => 60 * 60 * 1,
+    ];
+
+    // https://github.com/phpredis/phpredis#php-session-handler
+    $savePathParams = [
+        /**
+         * セッションに関して変更があった場合に適宜変更する。
+         */
+        'prefix' => 'session_v20230612:',
+
+        /**
+         * 「Azure Cache for Redis のベスト プラクティス」を参考に 5 秒とする
+         * https://learn.microsoft.com/ja-jp/azure/azure-cache-for-redis/cache-best-practices-connection#connect-timeout
+         */
+        'timeout' => 5,
+
+        /**
+         * 他の用途では別のデータベースを使用する予定。
+         * ただしprefixの変更で対応できない場合は別のデータベースに変更する可能性もある。
+         */
+        'database' => 0,
+    ];
+
+    if (getenv('CUSTOMCONNSTR_REDIS_AUTH')) {
+        $savePathParams['auth'] = getenv('CUSTOMCONNSTR_REDIS_AUTH');
+    }
+
+    $savePath = 'tcp://'
+        . getenv('CUSTOMCONNSTR_REDIS_HOST')
+        . ':'
+        . getenv('CUSTOMCONNSTR_REDIS_PORT');
+
+    $savePath .= '?' . http_build_query($savePathParams, '', '&');
+
+    $settings['save_path'] = $savePath;
+
+    return $settings;
+};
+
+$settings['session'] = $getSessionSetting();
+
 // logger
 $getLoggerSetting = static function () {
     $settings = ['name' => 'app'];

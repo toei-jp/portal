@@ -11,6 +11,7 @@ use App\Application\Handlers\NotAllowed;
 use App\Application\Handlers\NotFound;
 use App\Application\Handlers\PhpError;
 use App\Logger\DbalLogger;
+use App\Session\SessionManager;
 use App\Twig\Extension\AdvanceTicketExtension;
 use App\Twig\Extension\AzureStorageExtension;
 use App\Twig\Extension\MotionPictureExtenstion;
@@ -21,6 +22,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
+use Laminas\Session\Config\SessionConfig;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FingersCrossedHandler;
@@ -160,6 +162,18 @@ $container['em'] = static function ($container) {
     $config->setSQLLogger($logger);
 
     return EntityManager::create($settings['connection'], $config);
+};
+
+/**
+ * @return SessionManager
+ */
+$container['sm'] = static function ($container) {
+    $settings = $container->get('settings')['session'];
+
+    $config = new SessionConfig();
+    $config->setOptions($settings);
+
+    return new SessionManager($config);
 };
 
 /**

@@ -19,6 +19,7 @@
         "blue32a/monolog-google-cloud-logging": "^1.0",
         "doctrine/orm": "~2.7.4",
         "guzzlehttp/guzzle": "^6.5",
+        "laminas/laminas-session": "^2.13",
         "microsoft/azure-storage-blob": "^1.5",
         "monolog/monolog": "^2.1",
         "slim/slim": "^3.12",
