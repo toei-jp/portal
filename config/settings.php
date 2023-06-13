@@ -58,7 +58,6 @@ $getSessionSetting = static function () {
         $savePathParams['auth'] = getenv('CUSTOMCONNSTR_REDIS_AUTH');
     }
 
-
     $useSSL = in_array(getenv('CUSTOMCONNSTR_REDIS_SSL'), [true, 'true', 'True'], true);
 
     $savePath = sprintf(
