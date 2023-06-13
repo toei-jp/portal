@@ -58,10 +58,15 @@ $getSessionSetting = static function () {
         $savePathParams['auth'] = getenv('CUSTOMCONNSTR_REDIS_AUTH');
     }
 
-    $savePath = 'tcp://'
-        . getenv('CUSTOMCONNSTR_REDIS_HOST')
-        . ':'
-        . getenv('CUSTOMCONNSTR_REDIS_PORT');
+
+    $useSSL = in_array(getenv('CUSTOMCONNSTR_REDIS_SSL'), [true, 'true', 'True'], true);
+
+    $savePath = sprintf(
+        '%s://%s:%s',
+        $useSSL ? 'tls' : 'tcp',
+        getenv('CUSTOMCONNSTR_REDIS_HOST'),
+        getenv('CUSTOMCONNSTR_REDIS_PORT')
+    );
 
     $savePath .= '?' . http_build_query($savePathParams, '', '&');
 
