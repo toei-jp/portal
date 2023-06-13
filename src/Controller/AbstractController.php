@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Authorization\AuthorizationManager;
 use App\Exception\RedirectException;
 use App\Session\SessionManager;
 use Doctrine\ORM\EntityManager;
@@ -16,6 +17,7 @@ use Slim\Http\Response;
 use Slim\Views\Twig;
 
 /**
+ * @property-read AuthorizationManager $am
  * @property-read EntityManager $em
  * @property-read Logger $logger
  * @property-read array $settings

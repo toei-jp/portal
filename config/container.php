@@ -10,6 +10,7 @@ use App\Application\Handlers\Error;
 use App\Application\Handlers\NotAllowed;
 use App\Application\Handlers\NotFound;
 use App\Application\Handlers\PhpError;
+use App\Authorization\AuthorizationManager;
 use App\Logger\DbalLogger;
 use App\Session\SessionManager;
 use App\Twig\Extension\AdvanceTicketExtension;
@@ -46,6 +47,28 @@ use Twig\Extra\String\StringExtension;
 // phpcs:enable
 
 $container = $app->getContainer();
+
+/**
+ * @return AuthorizationManager
+ */
+$container['am'] = static function ($container) {
+    /**
+     * 名称変更によるclearを想定しておく。（仕様変更などがあった場合）
+     * must consist of alphanumerics, backslashes and underscores only.
+     */
+    $sessionContainerName = 'authorization_20230613';
+
+    $session = $container->get('sm')->getContainer($sessionContainerName);
+
+    $settings = $container->get('settings')['api'];
+
+    return new AuthorizationManager(
+        $settings['auth_server'],
+        $settings['auth_client_id'],
+        $settings['auth_client_secret'],
+        $session
+    );
+};
 
 /**
  * view
