@@ -6,40 +6,40 @@ namespace App\Authorization;
 
 use App\Authorization\Provider\SmartTheaterProvider;
 use App\Authorization\Token\ClientCredentialsToken;
-use App\Session\Container as SessionContainer;
+use DateTimeImmutable;
 
 class AuthorizationManager
 {
     private SmartTheaterProvider $provider;
-    private SessionContainer $session;
+    private Cache $cache;
 
     public function __construct(
         string $server,
         string $clientId,
         string $clientSecret,
-        SessionContainer $session
+        Cache $cache
     ) {
         $this->provider = new SmartTheaterProvider(
             'https://' . $server,
             $clientId,
             $clientSecret
         );
-        $this->session  = $session;
+        $this->cache    = $cache;
     }
 
-    public function fetchAccessToken(int $tiem): ClientCredentialsToken
+    public function fetchAccessToken(): ClientCredentialsToken
     {
-        if (
-            isset($this->session['token'])
-            && ! $this->session['token']->isExpired($tiem)
-        ) {
-            return $this->session['token'];
+        $cachedToken = $this->cache->getToken();
+
+        if (! is_null($cachedToken)) {
+            return $cachedToken;
         }
 
-        $accessToken = $this->provider->fetchAccessToken();
+        $token = $this->provider->fetchAccessToken();
 
-        $this->session['token'] = $accessToken;
+        $expiration = (new DateTimeImmutable())->setTimestamp($token->getExpires());
+        $this->cache->saveToken($token, $expiration);
 
-        return $accessToken;
+        return $token;
     }
 }

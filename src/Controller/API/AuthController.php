@@ -19,12 +19,12 @@ class AuthController extends BaseController
      */
     public function executeToken(Request $request, Response $response, array $args): Response
     {
-        $accessToken = $this->am->fetchAccessToken(time());
+        $token = $this->am->fetchAccessToken();
 
         $data = [
-            'access_token' => $accessToken->getAccessToken(),
-            'expires' => $accessToken->getExpires(),
-            'token_type' => $accessToken->getTokenType(),
+            'access_token' => $token->getAccessToken(),
+            'expires' => $token->getExpires(),
+            'token_type' => $token->getTokenType(),
 
             // 後方互換性のため（非推奨）
             'expires_in' => 3600,

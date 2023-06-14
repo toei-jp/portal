@@ -11,8 +11,8 @@ use App\Application\Handlers\NotAllowed;
 use App\Application\Handlers\NotFound;
 use App\Application\Handlers\PhpError;
 use App\Authorization\AuthorizationManager;
+use App\Authorization\Cache;
 use App\Logger\DbalLogger;
-use App\Session\SessionManager;
 use App\Twig\Extension\AdvanceTicketExtension;
 use App\Twig\Extension\AzureStorageExtension;
 use App\Twig\Extension\MotionPictureExtenstion;
@@ -23,7 +23,6 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
-use Laminas\Session\Config\SessionConfig;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FingersCrossedHandler;
@@ -39,6 +38,8 @@ use Slim\Http\Environment;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Twig\Extension\DebugExtension;
 use Twig\Extra\String\StringExtension;
 
@@ -49,24 +50,26 @@ use Twig\Extra\String\StringExtension;
 $container = $app->getContainer();
 
 /**
+ * @link https://m-p.backlog.jp/view/TOEI-409#comment-209051275
+ *
  * @return AuthorizationManager
  */
 $container['am'] = static function ($container) {
-    /**
-     * 名称変更によるclearを想定しておく。（仕様変更などがあった場合）
-     * must consist of alphanumerics, backslashes and underscores only.
-     */
-    $sessionContainerName = 'authorization_20230613';
-
-    $session = $container->get('sm')->getContainer($sessionContainerName);
-
     $settings = $container->get('settings')['api'];
+
+    $adapter = new ArrayAdapter();
+
+    if ($settings['auth_token_cache'] === 'filesystem') {
+        $adapter = new FilesystemAdapter('', 0, $settings['auth_filesystem_cache_dir']);
+    }
+
+    $cache = new Cache($adapter);
 
     return new AuthorizationManager(
         $settings['auth_server'],
         $settings['auth_client_id'],
         $settings['auth_client_secret'],
-        $session
+        $cache
     );
 };
 
@@ -185,18 +188,6 @@ $container['em'] = static function ($container) {
     $config->setSQLLogger($logger);
 
     return EntityManager::create($settings['connection'], $config);
-};
-
-/**
- * @return SessionManager
- */
-$container['sm'] = static function ($container) {
-    $settings = $container->get('settings')['session'];
-
-    $config = new SessionConfig();
-    $config->setOptions($settings);
-
-    return new SessionManager($config);
 };
 
 /**

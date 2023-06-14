@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Authorization\AuthorizationManager;
 use App\Exception\RedirectException;
-use App\Session\SessionManager;
 use Doctrine\ORM\EntityManager;
 use LogicException;
 use Monolog\Logger;
@@ -21,7 +20,6 @@ use Slim\Views\Twig;
  * @property-read EntityManager $em
  * @property-read Logger $logger
  * @property-read array $settings
- * @property-read SessionManager $sm
  * @property-read Twig $view
  */
 abstract class AbstractController

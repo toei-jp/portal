@@ -17,8 +17,5 @@ composer.phar
 composer.bat
 /vendor/
 
-# docker
-/docker/redis/data
-
 # git
 !.gitkeep

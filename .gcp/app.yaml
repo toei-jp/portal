@@ -25,6 +25,9 @@ env_variables:
   APPSETTING_DOCTRINE_CACHE: filesystem
   APPSETTING_DOCTRINE_FILESYSTEM_CACHE_DIR: /tmp/doctrine
 
+  APPSETTING_API_AUTH_TOKEN_CACHE: filesystem
+  APPSETTING_API_AUTH_FILESYSTEM_CACHE_DIR: /tmp/auth
+
 handlers:
   - url: /css
     static_dir: public/css
