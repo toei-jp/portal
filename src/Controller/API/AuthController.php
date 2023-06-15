@@ -24,10 +24,8 @@ class AuthController extends BaseController
         $data = [
             'access_token' => $token->getAccessToken(),
             'expires' => $token->getExpires(),
+            'expires_in' => $token->getExpires() - time(),
             'token_type' => $token->getTokenType(),
-
-            // 後方互換性のため（非推奨）
-            'expires_in' => 3600,
         ];
 
         return $response->withJson([
