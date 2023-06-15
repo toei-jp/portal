@@ -10,6 +10,8 @@ use App\Application\Handlers\Error;
 use App\Application\Handlers\NotAllowed;
 use App\Application\Handlers\NotFound;
 use App\Application\Handlers\PhpError;
+use App\Authorization\AuthorizationManager;
+use App\Authorization\Cache;
 use App\Logger\DbalLogger;
 use App\Twig\Extension\AdvanceTicketExtension;
 use App\Twig\Extension\AzureStorageExtension;
@@ -36,6 +38,8 @@ use Slim\Http\Environment;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Twig\Extension\DebugExtension;
 use Twig\Extra\String\StringExtension;
 
@@ -44,6 +48,30 @@ use Twig\Extra\String\StringExtension;
 // phpcs:enable
 
 $container = $app->getContainer();
+
+/**
+ * @link https://m-p.backlog.jp/view/TOEI-409#comment-209051275
+ *
+ * @return AuthorizationManager
+ */
+$container['am'] = static function ($container) {
+    $settings = $container->get('settings')['api'];
+
+    $adapter = new ArrayAdapter();
+
+    if ($settings['auth_token_cache'] === 'filesystem') {
+        $adapter = new FilesystemAdapter('', 0, $settings['auth_filesystem_cache_dir']);
+    }
+
+    $cache = new Cache($adapter);
+
+    return new AuthorizationManager(
+        $settings['auth_server'],
+        $settings['auth_client_id'],
+        $settings['auth_client_secret'],
+        $cache
+    );
+};
 
 /**
  * view

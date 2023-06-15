@@ -137,6 +137,8 @@ $settings['api'] = [
     'auth_server' => getenv('APPSETTING_API_AUTH_SERVER'),
     'auth_client_id' => getenv('APPSETTING_API_AUTH_CLIENT_ID'),
     'auth_client_secret' => getenv('APPSETTING_API_AUTH_CLIENT_SECRET'),
+    'auth_token_cache' => getenv('APPSETTING_API_AUTH_TOKEN_CACHE'),
+    'auth_filesystem_cache_dir' => getenv('APPSETTING_API_AUTH_FILESYSTEM_CACHE_DIR'),
 ];
 
 // MotionPicture
