@@ -45,6 +45,8 @@ var toei = {
      */
     credentials: undefined
 };
+const errMsg = "アクセスが集中しております。\n誠に申し訳ございませんがしばらく時間を置いてから再度アクセスしてください。";
+
 $(function () {
     init();
     createSchedule();
@@ -232,7 +234,7 @@ function createSchedule() {
             }
             $('.schedule-slider .swiper-slide a[data-date="' + target.date + '"]').trigger('click');
         }).catch(function (error) {
-            alert('上映作品取得エラー');
+            alert(errMsg);
         });
 }
 
@@ -347,7 +349,7 @@ function selectDate(event) {
             $('.films').html(domList.join('\n'));
             $('.change-schedule-button button').prop('disabled', false);
         }).catch(function (error) {
-            alert('上映作品取得エラー');
+            alert(errMsg);
             $('.change-schedule-button button').prop('disabled', false);
         });
 }
@@ -541,7 +543,7 @@ function createPreSchedule() {
             toei.preScheduleSlider = createPreScheduleSlider();
             $('.change-schedule-button').removeClass('d-none');
         }).catch(function (error) {
-            alert('上映作品取得エラー');
+            alert(errMsg);
         });;
 }
 
