@@ -27,7 +27,7 @@ $getLoggerSetting = static function () {
     $settings = ['name' => 'app'];
 
     if (APP_DEBUG) {
-        $settings['chrome_php'] = [
+        $settings['browser_console'] = [
             'level' => Logger::DEBUG,
         ];
     }
