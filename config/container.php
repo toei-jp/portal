@@ -24,7 +24,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use Monolog\Handler\ChromePHPHandler;
+use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
@@ -124,10 +124,9 @@ $container['logger'] = static function ($container) {
     $logger->pushProcessor(new MemoryUsageProcessor());
     $logger->pushProcessor(new MemoryPeakUsageProcessor());
 
-    if (isset($settings['chrome_php'])) {
-        $chromePhpSettings = $settings['chrome_php'];
-        $logger->pushHandler(new ChromePHPHandler(
-            $chromePhpSettings['level']
+    if (isset($settings['browser_console'])) {
+        $logger->pushHandler(new BrowserConsoleHandler(
+            $settings['browser_console']['level']
         ));
     }
 
