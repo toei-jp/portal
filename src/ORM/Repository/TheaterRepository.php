@@ -10,13 +10,21 @@ use Doctrine\ORM\QueryBuilder;
 
 class TheaterRepository extends EntityRepository
 {
-    protected function getActiveQuery(): QueryBuilder
+    private function addActiveQuery(QueryBuilder $qb, string $alias): void
     {
-        $qb = $this->createQueryBuilder('t');
-        $qb
-            ->where('t.isDeleted = false');
+        $qb->where($alias . '.isDeleted = false');
+    }
 
-        return $qb;
+    /**
+     * theaterとtheate_metaのN+1問題を解決するためのクエリを追加
+     *
+     * @see https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/faq.html#why-is-an-extra-sql-query-executed-every-time-i-fetch-an-entity-with-a-one-to-one-relation
+     */
+    private function addFixTheaterMetaNPlasOneQuery(QueryBuilder $qb, string $alias, string $metaAlias): void
+    {
+        $qb
+            ->select(sprintf('%s, %s', $alias, $metaAlias))
+            ->innerJoin($alias . '.meta', $metaAlias);
     }
 
     /**
@@ -24,18 +32,27 @@ class TheaterRepository extends EntityRepository
      */
     public function findByActive(): array
     {
-        $qb = $this->getActiveQuery();
-        $qb
-            ->orderBy('t.displayOrder', 'ASC');
+        $alias = 't';
+        $qb    = $this->createQueryBuilder($alias);
+
+        $this->addFixTheaterMetaNPlasOneQuery($qb, $alias, 'tm');
+        $this->addActiveQuery($qb, $alias);
+
+        $qb->orderBy($alias . '.displayOrder', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
 
     public function findOneByName(string $name): ?Theater
     {
-        $qb = $this->getActiveQuery();
+        $alias = 't';
+        $qb    = $this->createQueryBuilder($alias);
+
+        $this->addFixTheaterMetaNPlasOneQuery($qb, $alias, 'tm');
+        $this->addActiveQuery($qb, $alias);
+
         $qb
-            ->andWhere('t.name = :name')
+            ->andWhere($alias . '.name = :name')
             ->setParameter('name', $name);
 
         return $qb->getQuery()->getOneOrNullResult();
