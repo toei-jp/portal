@@ -6,56 +6,106 @@ namespace Tests\Unit\Twig\Extension;
 
 use App\ORM\Entity\AdvanceTicket;
 use App\Twig\Extension\AdvanceTicketExtension;
-use Mockery;
-use Mockery\LegacyMockInterface;
-use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
+use Twig\TwigFunction;
 
-final class AdvanceTicketExtensionTest extends BaseTestCase
+/**
+ * @coversDefaultClass \App\Twig\Extension\AdvanceTicketExtension
+ * @testdox 前売券に関するTwig拡張機能
+ */
+final class AdvanceTicketExtensionTest extends TestCase
 {
     /**
-     * @return MockInterface&LegacyMockInterface&AdvanceTicketExtension
+     * @covers ::getFunctions
+     * @dataProvider functionNameDataProvider
+     * @test
      */
-    protected function createTargetMock()
+    public function 決まった名称のtwigヘルパー関数が含まれる(string $name): void
     {
-        return Mockery::mock(AdvanceTicketExtension::class);
+        // Arrange
+        $sut = new AdvanceTicketExtension();
+
+        // Act
+        $functions = $sut->getFunctions();
+
+        // Assert
+        $functionNames = [];
+
+        foreach ($functions as $function) {
+            $this->assertInstanceOf(TwigFunction::class, $function);
+            $functionNames[] = $function->getName();
+        }
+
+        $this->assertContains($name, $functionNames);
     }
 
     /**
-     * @test
+     * @return array<array{string}>
      */
-    public function testGetTypeLabel(): void
+    public function functionNameDataProvider(): array
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
-
-        $this->assertEquals('ムビチケ', $targetMock->getTypeLabel(AdvanceTicket::TYPE_MVTK));
-        $this->assertEquals('紙券', $targetMock->getTypeLabel(AdvanceTicket::TYPE_PAPER));
-        $this->assertEquals('', $targetMock->getTypeLabel(0));
+        return [
+            ['at_type_label'],
+            ['at_special_gift_stock_label'],
+        ];
     }
 
     /**
+     * @covers ::getTypeLabel
+     * @dataProvider typeLabelDataProvider
      * @test
      */
-    public function testGetSpecialGiftStockLabel(): void
+    public function 前売区分に応じたラベルを取得する(int $type, string $expected): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
+        // Arrange
+        $sut = new AdvanceTicketExtension();
 
-        $this->assertStringContainsString(
-            '有り',
-            $targetMock->getSpecialGiftStockLabel(AdvanceTicket::SPECIAL_GIFT_STOCK_IN)
-        );
-        $this->assertStringContainsString(
-            '残り僅か',
-            $targetMock->getSpecialGiftStockLabel(AdvanceTicket::SPECIAL_GIFT_STOCK_FEW)
-        );
-        $this->assertStringContainsString(
-            '特典終了',
-            $targetMock->getSpecialGiftStockLabel(AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN)
-        );
-        $this->assertEquals(
-            '',
-            $targetMock->getSpecialGiftStockLabel(0)
-        );
+        // Act
+        $result = $sut->getTypeLabel($type);
+
+        // Assert
+        $this->assertSame($result, $expected);
+    }
+
+    /**
+     * @return array<string,array{int,string}>
+     */
+    public function typeLabelDataProvider(): array
+    {
+        return [
+            'ムビチケ' => [AdvanceTicket::TYPE_MVTK, 'ムビチケ'],
+            '紙券' => [AdvanceTicket::TYPE_PAPER, '紙券'],
+            '無効な区分' => [0, ''],
+        ];
+    }
+
+    /**
+     * @covers ::getSpecialGiftStockLabel
+     * @dataProvider specialGiftStockLabelDataProvider
+     * @test
+     */
+    public function 特典在庫区分に応じたラベルを取得(int $type, string $expected): void
+    {
+        // Arrange
+        $sut = new AdvanceTicketExtension();
+
+        // Act
+        $result = $sut->getSpecialGiftStockLabel($type);
+
+        // Assert
+        $this->assertSame($result, $expected);
+    }
+
+    /**
+     * @return array<string,array{int,string}>
+     */
+    public function specialGiftStockLabelDataProvider(): array
+    {
+        return [
+            '有り' => [AdvanceTicket::SPECIAL_GIFT_STOCK_IN, '（有り）'],
+            '残り僅か' => [AdvanceTicket::SPECIAL_GIFT_STOCK_FEW, '（残り僅か）'],
+            '特典終了' => [AdvanceTicket::SPECIAL_GIFT_STOCK_NOT_IN, '（特典終了）'],
+            '無効な区分' => [0, ''],
+        ];
     }
 }

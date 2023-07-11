@@ -6,30 +6,75 @@ namespace Tests\Unit\Twig\Extension;
 
 use App\ORM\Entity\ShowingFormat;
 use App\Twig\Extension\ShowingFormatExtension;
-use Mockery;
-use Mockery\LegacyMockInterface;
-use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
+use Twig\TwigFunction;
 
-final class ShowingFormatExtensionTest extends BaseTestCase
+/**
+ * @coversDefaultClass \App\Twig\Extension\ShowingFormatExtension
+ * @testdox 上映方式に関するTwig拡張機能
+ */
+final class ShowingFormatExtensionTest extends TestCase
 {
     /**
-     * @return MockInterface&LegacyMockInterface&ShowingFormatExtension
+     * @covers ::getFunctions
+     * @dataProvider functionNameDataProvider
+     * @test
      */
-    protected function createTargetMock()
+    public function 決まった名称のtwigヘルパー関数が含まれる(string $name): void
     {
-        return Mockery::mock(ShowingFormatExtension::class);
+        // Arrange
+        $sut = new ShowingFormatExtension();
+
+        // Act
+        $functions = $sut->getFunctions();
+
+        // Assert
+        $functionNames = [];
+
+        foreach ($functions as $function) {
+            $this->assertInstanceOf(TwigFunction::class, $function);
+            $functionNames[] = $function->getName();
+        }
+
+        $this->assertContains($name, $functionNames);
     }
 
     /**
+     * @return array<array{string}>
+     */
+    public function functionNameDataProvider(): array
+    {
+        return [
+            ['showing_format_voice_text'],
+        ];
+    }
+
+    /**
+     * @covers ::getVoiceText
+     * @dataProvider voiceTextDataProvider
      * @test
      */
-    public function testGetVoiceText(): void
+    public function 音声区分に応じたラベルを取得(int $type, string $expected): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
+        // Arrange
+        $sut = new ShowingFormatExtension();
 
-        $this->assertEquals('字幕版', $targetMock->getVoiceText(ShowingFormat::VOICE_SUBTITLE));
-        $this->assertEquals('吹替版', $targetMock->getVoiceText(ShowingFormat::VOICE_DUB));
-        $this->assertEquals('', $targetMock->getVoiceText(0));
+        // Act
+        $result = $sut->getVoiceText($type);
+
+        // Assert
+        $this->assertSame($result, $expected);
+    }
+
+    /**
+     * @return array<string,array{int,string}>
+     */
+    public function voiceTextDataProvider(): array
+    {
+        return [
+            '字幕' => [ShowingFormat::VOICE_SUBTITLE, '字幕版'],
+            '吹替' => [ShowingFormat::VOICE_DUB, '吹替版'],
+            '無効な区分' => [0, ''],
+        ];
     }
 }

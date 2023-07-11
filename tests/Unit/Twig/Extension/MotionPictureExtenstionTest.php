@@ -5,116 +5,126 @@ declare(strict_types=1);
 namespace Tests\Unit\Twig\Extension;
 
 use App\Twig\Extension\MotionPictureExtenstion;
-use Mockery;
-use Mockery\LegacyMockInterface;
-use Mockery\MockInterface;
-use ReflectionClass;
+use PHPUnit\Framework\TestCase;
+use Twig\TwigFunction;
 
-final class MotionPictureExtenstionTest extends BaseTestCase
+/**
+ * @coversDefaultClass \App\Twig\Extension\MotionPictureExtenstion
+ * @testdox モーションピクチャーのサービスに関するTwig拡張機能
+ */
+final class MotionPictureExtenstionTest extends TestCase
 {
     /**
-     * @return MockInterface&LegacyMockInterface&MotionPictureExtenstion
+     * @param array<string, string> $params
      */
-    protected function createTargetMock()
+    private function factoryMotionPictureExtenstion(array $params = []): MotionPictureExtenstion
     {
-        return Mockery::mock(MotionPictureExtenstion::class);
-    }
+        $params['api_endpoint']      ??= 'https://example.com';
+        $params['waiter_server_url'] ??= 'https://example.com';
+        $params['ticket_site_url']   ??= 'https://example.com';
+        $params['project_id']        ??= 'hogefuga';
 
-    protected function createTargetReflection(): ReflectionClass
-    {
-        return new ReflectionClass(MotionPictureExtenstion::class);
-    }
-
-    /**
-     * @test
-     */
-    public function testConstruct(): void
-    {
-        $targetMock = $this->createTargetMock();
-        $settings   = ['foo' => 'bar'];
-
-        // execute constructor
-        $targetRef      = $this->createTargetReflection();
-        $constructorRef = $targetRef->getConstructor();
-        $constructorRef->invoke($targetMock, $settings);
-
-        // test property "settings"
-        $settingsPropertyRef = $targetRef->getProperty('settings');
-        $settingsPropertyRef->setAccessible(true);
-        $this->assertEquals(
-            $settings,
-            $settingsPropertyRef->getValue($targetMock)
-        );
+        return new MotionPictureExtenstion($params);
     }
 
     /**
+     * @covers ::getFunctions
+     * @dataProvider functionNameDataProvider
      * @test
      */
-    public function testGetApiEndpoint(): void
+    public function 決まった名称のtwigヘルパー関数が含まれる(string $name): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
-        $settings = ['api_endpoint' => 'example.com/api'];
+        // Arrange
+        $sut = $this->factoryMotionPictureExtenstion();
 
-        $targetRef           = $this->createTargetReflection();
-        $settingsPropertyRef = $targetRef->getProperty('settings');
-        $settingsPropertyRef->setAccessible(true);
-        $settingsPropertyRef->setValue($targetMock, $settings);
+        // Act
+        $functions = $sut->getFunctions();
 
-        $this->assertEquals($settings['api_endpoint'], $targetMock->getApiEndpoint());
+        // Assert
+        $functionNames = [];
+
+        foreach ($functions as $function) {
+            $this->assertInstanceOf(TwigFunction::class, $function);
+            $functionNames[] = $function->getName();
+        }
+
+        $this->assertContains($name, $functionNames);
     }
 
     /**
-     * @test
+     * @return array<array{string}>
      */
-    public function testGetWaiterServerUrl(): void
+    public function functionNameDataProvider(): array
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
-        $settings = ['waiter_server_url' => 'https://example.com/waiter'];
-
-        $targetRef = $this->createTargetReflection();
-
-        $settingsPropertyRef = $targetRef->getProperty('settings');
-        $settingsPropertyRef->setAccessible(true);
-        $settingsPropertyRef->setValue($targetMock, $settings);
-
-        $this->assertEquals($settings['waiter_server_url'], $targetMock->getWaiterServerUrl());
+        return [
+            ['mp_api_endpoint'],
+            ['mp_waiter_server_url'],
+            ['mp_ticket_site_url'],
+            ['mp_project_id'],
+        ];
     }
 
     /**
+     * @covers ::getApiEndpoint
      * @test
      */
-    public function testGetTicketSiteUrl(): void
+    public function APIエンドポイントを取得(): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
-        $settings = ['ticket_site_url' => 'https://example.com/ticket'];
+        // Arrange
+        $sut = $this->factoryMotionPictureExtenstion(['api_endpoint' => 'https://api.example.com']);
 
-        $targetRef = $this->createTargetReflection();
+        // Act
+        $result = $sut->getApiEndpoint();
 
-        $settingsPropertyRef = $targetRef->getProperty('settings');
-        $settingsPropertyRef->setAccessible(true);
-        $settingsPropertyRef->setValue($targetMock, $settings);
-
-        $this->assertEquals($settings['ticket_site_url'], $targetMock->getTicketSiteUrl());
+        // Assert
+        $this->assertSame('https://api.example.com', $result);
     }
 
     /**
+     * @covers ::getWaiterServerUrl
      * @test
      */
-    public function testGetProjectId(): void
+    public function WaiterサーバーのURLを取得(): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
-        $settings = ['project_id' => 'aaabbbccc'];
+        // Arrange
+        $sut = $this->factoryMotionPictureExtenstion(['waiter_server_url' => 'https://waiter.example.com']);
 
-        $targetRef = $this->createTargetReflection();
+        // Act
+        $result = $sut->getWaiterServerUrl();
 
-        $settingsPropertyRef = $targetRef->getProperty('settings');
-        $settingsPropertyRef->setAccessible(true);
-        $settingsPropertyRef->setValue($targetMock, $settings);
+        // Assert
+        $this->assertSame('https://waiter.example.com', $result);
+    }
 
-        $this->assertEquals($settings['project_id'], $targetMock->getProjectId());
+    /**
+     * @covers ::getTicketSiteUrl
+     * @test
+     */
+    public function チケットサイトのURLを取得(): void
+    {
+        // Arrange
+        $sut = $this->factoryMotionPictureExtenstion(['ticket_site_url' => 'https://ticket.example.com']);
+
+        // Act
+        $result = $sut->getTicketSiteUrl();
+
+        // Assert
+        $this->assertSame('https://ticket.example.com', $result);
+    }
+
+    /**
+     * @covers ::getProjectId
+     * @test
+     */
+    public function プロジェクトIDを取得(): void
+    {
+        // Arrange
+        $sut = $this->factoryMotionPictureExtenstion(['project_id' => 'foo_project']);
+
+        // Act
+        $result = $sut->getProjectId();
+
+        // Assert
+        $this->assertSame('foo_project', $result);
     }
 }

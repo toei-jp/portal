@@ -6,32 +6,77 @@ namespace Tests\Unit\Twig\Extension;
 
 use App\ORM\Entity\Title;
 use App\Twig\Extension\TitleExtension;
-use Mockery;
-use Mockery\LegacyMockInterface;
-use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
+use Twig\TwigFunction;
 
-final class TitleExtensionTest extends BaseTestCase
+/**
+ * @coversDefaultClass \App\Twig\Extension\TitleExtension
+ * @testdox 作品に関するTwig拡張機能
+ */
+final class TitleExtensionTest extends TestCase
 {
     /**
-     * @return MockInterface&LegacyMockInterface&TitleExtension
+     * @covers ::getFunctions
+     * @dataProvider functionNameDataProvider
+     * @test
      */
-    protected function createTargetMock()
+    public function 決まった名称のtwigヘルパー関数が含まれる(string $name): void
     {
-        return Mockery::mock(TitleExtension::class);
+        // Arrange
+        $sut = new TitleExtension();
+
+        // Act
+        $functions = $sut->getFunctions();
+
+        // Assert
+        $functionNames = [];
+
+        foreach ($functions as $function) {
+            $this->assertInstanceOf(TwigFunction::class, $function);
+            $functionNames[] = $function->getName();
+        }
+
+        $this->assertContains($name, $functionNames);
     }
 
     /**
+     * @return array<array{string}>
+     */
+    public function functionNameDataProvider(): array
+    {
+        return [
+            ['title_rating_text'],
+        ];
+    }
+
+    /**
+     * @covers ::getRatingText
+     * @dataProvider ratingTextDataProvider
      * @test
      */
-    public function testGetRatingText(): void
+    public function レーティング区分に応じたラベルを取得(int $type, string $expected): void
     {
-        $targetMock = $this->createTargetMock();
-        $targetMock->makePartial();
+        // Arrange
+        $sut = new TitleExtension();
 
-        $this->assertEquals('G', $targetMock->getRatingText(Title::RATING_G));
-        $this->assertEquals('PG12', $targetMock->getRatingText(Title::RATING_PG12));
-        $this->assertEquals('R15+', $targetMock->getRatingText(Title::RATING_R15));
-        $this->assertEquals('R18+', $targetMock->getRatingText(Title::RATING_R18));
-        $this->assertEquals('', $targetMock->getRatingText(0));
+        // Act
+        $result = $sut->getRatingText($type);
+
+        // Assert
+        $this->assertSame($result, $expected);
+    }
+
+    /**
+     * @return array<string,array{int,string}>
+     */
+    public function ratingTextDataProvider(): array
+    {
+        return [
+            'G' => [Title::RATING_G, 'G'],
+            'PG12' => [Title::RATING_PG12, 'PG12'],
+            'R15+' => [Title::RATING_R15, 'R15+'],
+            'R18+' => [Title::RATING_R18, 'R18+'],
+            '無効な区分' => [0, ''],
+        ];
     }
 }
